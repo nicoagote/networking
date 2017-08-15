@@ -11,9 +11,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      // $this->call(UsersTableSeeder::class);
+      // Poner las skills
+      $this->call(SkillsSeeder::class);
+
+      // Generar usuarios
       factory(App\User::class, 10)->create()->each(function ($u) {
-        // $u->posts()->save(factory(App\Post::class)->make());
-    });
+        // Le asignamos skills al usuario.
+        for($i = 0; $i < 3; $i++) {
+          $variable = factory(App\UserSkills::class)->create(["user_id" => $u->id]);
+        }
+      });
     }
 }

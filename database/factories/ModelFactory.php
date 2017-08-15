@@ -46,3 +46,31 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'profile_picture_file_location' => NULL #!!! randomize
     ];
 });
+
+$factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_id) {
+    $seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior'];
+
+    $key = array_rand($seniority_levels);
+    $seniority_level = $seniority_levels[$key];
+
+    // $skills = App\Skill::all();
+    $skills = DB::select(
+      'SELECT *
+      FROM skills
+      WHERE id NOT IN (SELECT skill_id
+      FROM users_skills
+      WHERE user_id = ' . $user_id['user_id'] . ');'
+    );
+
+    $skills = collect($skills);
+
+    $randSkills = $skills->shuffle();
+
+    $skill = $randSkills->first();
+
+    return [
+      'user_id' => $user_id,
+      'skill_id' => $skill->id,
+      'seniority_level' => $seniority_level,
+    ];
+});
