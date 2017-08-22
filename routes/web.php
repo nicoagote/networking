@@ -10,6 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/prueba', function() {
+  $usuarios = App\User::all();
+  $especialidades = App\Skill::all();
+  $proyectos = App\Project::all();
+
+  $datos = compact('usuarios', 'especialidades', 'proyectos');
+
+  return view('prueba', $datos);
+});
 
 Route::get('/', function () {
     return view('welcome');

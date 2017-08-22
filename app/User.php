@@ -31,4 +31,9 @@ class User extends Authenticatable
     public function skills() {
       return $this->belongsToMany('App\UserSkills', 'users_skills', 'user_id', 'skill_id');
     }
+
+    public function projects() {
+      // return DB::statement('select * from users as u inner join projects as p where u.id = p.creator_id;');
+      return $this->hasMany('App\Project', 'creator_id', 'id');
+    }
 }

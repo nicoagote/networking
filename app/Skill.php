@@ -9,6 +9,10 @@ class Skill extends Model
   protected $fillable = ['id', 'name', 'color'];
 
   public function users() {
-    return belongsToMany('App\User', 'users_skills', 'skill_id', 'user_id');
+    return $this->belongsToMany('App\User', 'users_skills', 'skill_id', 'user_id');
+  }
+
+  public function projects() {
+    return $this->belongsToMany('App\Project', 'project_skills', 'skill_id', 'project_id');
   }
 }

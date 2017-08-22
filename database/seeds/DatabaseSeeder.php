@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         for($i = 0; $i < 3; $i++) {
           $variable = factory(App\UserSkills::class)->create(["user_id" => $u->id]);
         }
+        for($i = 0; $i < 2; $i++) {
+          $variable = factory(App\Project::class)->create(["creator_id" => $u->id]);
+        }
       });
     }
 }

@@ -74,3 +74,20 @@ $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_
       'seniority_level' => $seniority_level,
     ];
 });
+
+$factory->define(App\Project::class, function (Faker\Generator $faker, $user_id) {
+    $activeStates = ['Y', 'N'];
+
+    $key = array_rand($activeStates);
+    $active = $activeStates[$key];
+
+    $titleString = $faker->sentence(floor(rand(1, 8)));
+    $title = substr($titleString,0 ,strlen($titleString) - 1);
+
+    return [
+      'title' => $title,
+      'short_description' => $faker->text(140),
+      'long_description' => $faker->text(1400),
+      'active' => $active,
+    ];
+});
