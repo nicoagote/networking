@@ -12,6 +12,17 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+/*
+MODELO DE FACTORY
+$factory->define(App\ClassName::class, function (Faker\Generator $faker) {
+    return [
+      'key' => 'value',
+      ];
+});
+*/
+
+
+// --------------------------- User Factory ----------------------------- //
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -47,6 +58,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+// --------------------------- UserSkill Factory ----------------------------- //
 $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_id) {
     $seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior'];
 
@@ -75,6 +87,7 @@ $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_
     ];
 });
 
+// --------------------------- Project Factory ----------------------------- //
 $factory->define(App\Project::class, function (Faker\Generator $faker, $user_id) {
     $activeStates = ['Y', 'N'];
 

@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     public function skills() {
-      return $this->belongsToMany('App\UserSkills', 'users_skills', 'user_id', 'skill_id');
+      return $this->belongsToMany('App\Skill', 'users_skills', 'user_id', 'skill_id');
     }
 
     public function projects() {

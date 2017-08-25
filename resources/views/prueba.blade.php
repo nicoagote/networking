@@ -6,20 +6,20 @@
     @foreach ($usuarios as $usuario)
     <li>
       {{$usuario->name}} {{$usuario->surname}}
-      <ul> Sus proyectos
+      <ul> <b>Sus proyectos</b>
         @foreach ($usuario->projects as $proyecto)
         <li>
           {{$proyecto->title}}: {{$proyecto->short_description}}
         </li>
         @endforeach
       </ul>
-      {{-- <ul>  Especialidades:
+      <ul>  <b>Especialidades:</b>
         @foreach ($usuario->skills as $especialidad)
         <li style='background-color:'{{$especialidad->color}}>
           {{$especialidad->name}}
         </li>
         @endforeach
-      </ul> --}}
+      </ul>
     </li>
     @endforeach
   </ul>
@@ -27,7 +27,7 @@
   <ul> Proyectos
     @foreach ($proyectos as $proyecto)
     <li>
-      {{$proyecto->title}}, by {{$proyecto->user}} ({{$proyecto->active}}):
+      {{$proyecto->title}}, by {{$proyecto->user->name}} {{$proyecto->user->surname}} ({{$proyecto->active}}):
       {{$proyecto->long_description}}
     </li>
     @endforeach
@@ -46,5 +46,13 @@
     </li>
     @endforeach
   </ul>
-</div>
 @endsection
+
+
+
+
+
+
+
+
+</div>
