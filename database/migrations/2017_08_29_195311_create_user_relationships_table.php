@@ -17,9 +17,9 @@ class CreateUserRelationshipsTable extends Migration
            $table->increments('id');
            $table->integer('relating_user_id')->unsigned();
            $table->foreign('relating_user_id')->references('id')->on('users');
+           $table->enum('state', ['contact', 'request', 'blocked'])->length(7);
            $table->integer('related_user_id')->unsigned();
            $table->foreign('related_user_id')->references('id')->on('users');
-           $table->enum('state', ['contact', 'request', 'blocked'])->length(7);
            $table->timestamps();
        });
    }

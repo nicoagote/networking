@@ -140,7 +140,7 @@ $factory->define(App\ProjectUser::class, function (Faker\Generator $faker, $proj
     FROM users
     WHERE id NOT IN (SELECT user_id
     FROM projects_users
-    WHERE user_id = ' . $user_id['user_id'] . ');'
+    WHERE project_id = ' . $project_id['project_id'] . ');'
   );
 
   $users = collect($users);
@@ -148,7 +148,7 @@ $factory->define(App\ProjectUser::class, function (Faker\Generator $faker, $proj
   $user_id = $randUsers->first()->id;
 
   $states = [
-    'contact', 'request', 'blocked',
+    'part_of', 'request', 'blocked',
   ];
   $key = array_rand($states);
   $state = $states[$key];
@@ -165,12 +165,13 @@ $factory->define(App\UserRelationship::class, function (Faker\Generator $faker, 
   $relatedUsers = DB::select(
     'SELECT *
     FROM users
-    WHERE id NOT IN (SELECT relating_user_id
+    WHERE id NOT IN (SELECT related_user_id
     FROM user_relationships
-    WHERE relating_user_id = ' . $user_id['user_id'] . ')
-    AND id NOT IN (SELECT related_user_id
+    WHERE relating_user_id = ' . $relating_user_id['relating_user_id'] . ')
+    AND id NOT IN (SELECT relating_user_id
     FROM user_relationships
-    WHERE related_user_id = ' . $user_id['user_id'] . ');'
+    WHERE related_user_id = ' . $relating_user_id['relating_user_id'] . ')
+    AND id != '. $relating_user_id['relating_user_id'] .';'
   );
 
   $relatedUsers = collect($relatedUsers);
@@ -178,7 +179,7 @@ $factory->define(App\UserRelationship::class, function (Faker\Generator $faker, 
   $related_user_id = $randRelatedUsers->first()->id;
 
   $states = [
-    'part_of', 'request', 'blocked',
+    'contact', 'request', 'blocked',
   ];
   $key = array_rand($states);
   $state = $states[$key];
