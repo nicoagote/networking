@@ -104,3 +104,64 @@ $factory->define(App\Project::class, function (Faker\Generator $faker, $user_id)
       'active' => $active,
     ];
 });
+
+// ------------------------ ProjectSkills Factory -------------------------- //
+$factory->define(App\ProjectSkill::class, function (Faker\Generator $faker, $project_id) {
+  $seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior', NULL];
+
+  $key = array_rand($seniority_levels);
+  $seniority_level = $seniority_levels[$key];
+
+  $skills = DB::select(
+    'SELECT *
+    FROM skills
+    WHERE id NOT IN (SELECT skill_id
+    FROM project_skills
+    WHERE project_id = ' . $project_id['project_id'] . ');'
+  );
+  // var_dump($skills);
+  $skills = collect($skills);
+  // var_dump($skills);
+  $randSkills = $skills->shuffle();
+  // var_dump($randSkills);
+  $skill_id = $randSkills->first()->id;
+  // var_dump($skill_id);
+
+  return [
+    'skill_id' => $skill_id,
+    'seniority_level' => $seniority_level,
+    ];
+});
+
+// ------------------------- Contact Factory ------------------------------- //
+$factory->define(App\Contact::class, function (Faker\Generator $faker, $user_id) {
+  $contacts = DB::select(
+    'SELECT *
+    FROM users
+    WHERE id NOT IN (SELECT contact_id
+    FROM contacts
+    WHERE user_id = ' . $user_id['user_id'] . ');'
+  );
+  $contacts = collect($contacts);
+  $randContact = $contacts->shuffle();
+  $contact_id = $randContact->first()->id;
+  var_dump($contact_id);
+
+  return [
+    'contact_id' => $contact_id,
+    ];
+});
+
+// --------------------- ContactRequest Factory ---------------------------- //
+
+// $factory->define(App\ClassName::class, function (Faker\Generator $faker) {
+//     return [
+//       'key' => 'value',
+//       ];
+// });
+// ----------------------- BlockedUser Factory ----------------------------- //
+// ----------------------- ProjectUser Factory ----------------------------- //
+// ------------------- ProjectUserRequest Factory -------------------------- //
+// ------------------- ProjectBlockedUser Factory -------------------------- //
+// ----------------------- UserReview Factory ------------------------------ //
+// ---------------------- EndorseSkill Factory ----------------------------- //

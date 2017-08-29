@@ -17,11 +17,16 @@ class DatabaseSeeder extends Seeder
       // Generar usuarios
       factory(App\User::class, 10)->create()->each(function ($u) {
         // Le asignamos skills al usuario.
-        for($i = 0; $i < 3; $i++) {
-          $variable = factory(App\UserSkills::class)->create(["user_id" => $u->id]);
+        for($userSkills = 0; $userSkills < 3; $userSkills++) {
+          $userSkill = factory(App\UserSkills::class)->create(["user_id" => $u->id]);
         }
-        for($i = 0; $i < 2; $i++) {
-          $variable = factory(App\Project::class)->create(["creator_id" => $u->id]);
+        for($userProjects = 0; $userProjects < 2; $userProjects++) {
+          $userProject = factory(App\Project::class)->create(["creator_id" => $u->id]);
+          $project = App\Project::all()->last();
+          dump($userProject, $project);
+          for ($projectSkills=0; $projectSkills < 3; $projectSkills++) {
+            factory(App\ProjectSkill::class)->create(["project_id" => $project->id]);
+          }
         }
       });
     }
