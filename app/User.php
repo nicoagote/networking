@@ -28,12 +28,37 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function skills() {
-      return $this->belongsToMany('App\Skill', 'users_skills', 'user_id', 'skill_id');
+    public function blockedUsers() {
+      return $this->hasMany('App\User', 'blocked_users', 'user_id', 'blocked_user_id');
+    }
+
+    public function contacts() {
+      return $this->hasMany('App\User', 'contacts', 'user_id', 'contact_id');
+    }
+
+    public function contactRequests() {
+      return $this->hasMany('App\User', 'contact_requests', 'recipient_id', 'issuer_id');
+    }
+
+    public function endorsed(Skill $skill) {
+      $endorsedSkills = $this->hasMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id);
+      dd($endorsedSkills); // !!! ver si funciona
+      return $this->skills('App\User', '');
     }
 
     public function projects() {
       // return DB::statement('select * from users as u inner join projects as p where u.id = p.creator_id;');
       return $this->hasMany('App\Project', 'creator_id', 'id');
     }
+
+    public function skills() {
+      return $this->belongsToMany('App\Skill', 'users_skills', 'user_id', 'skill_id');
+    }
+
+    /* public function reviews() {
+      return $this->hasMany('App\User', 'user_reviews', 'user_id', ''); // !!! ver si hay que hacer una clase nueva
+    } */
+
+    
+
 }
