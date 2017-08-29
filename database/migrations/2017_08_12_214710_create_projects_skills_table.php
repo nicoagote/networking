@@ -13,7 +13,7 @@ class CreateProjectSkillsTable extends Migration
      */
      public function up()
      {
-         Schema::create('project_skills', function (Blueprint $table) {
+         Schema::create('projects_skills', function (Blueprint $table) {
              $table->increments('id');
              $table->integer('project_id')->unsigned();
              $table->foreign('project_id')->references('id')->on('projects');
@@ -31,6 +31,6 @@ class CreateProjectSkillsTable extends Migration
       */
      public function down()
      {
-         Schema::dropIfExists('project_skills');
+         Schema::dropIfExists('projects_skills');
      }
 }
