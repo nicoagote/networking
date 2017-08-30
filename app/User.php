@@ -28,22 +28,36 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function blockedUsers() {
-      return $this->hasMany('App\User', 'blocked_users', 'user_id', 'blocked_user_id');
+    public function relationships() {
+      return  $this->belongsToMany('App\User', 'user_relationships', 'relating_user_id', 'related_user_id')->union($this->belongsToMany('App\User', 'user_relationships', 'related_user_id', 'relating_user_id')->addSelect('users.*')->addSelect('user_relationships.related_user_id')->addSelect('user_relationships.relating_user_id'));
     }
 
     public function contacts() {
-      return $this->hasMany('App\User', 'contacts', 'user_id', 'contact_id');
+      return $this->belongsToMany('App\User', 'user_relationships', 'relating_user_id', 'related_user_id')->where('state', '=', 'contact')->union($this->belongsToMany('App\User', 'user_relationships', 'related_user_id', 'relating_user_id')->where('state', '=', 'contact')->addSelect('users.*')->addSelect('user_relationships.related_user_id')->addSelect('user_relationships.relating_user_id'));
     }
 
-    public function contactRequests() {
-      return $this->hasMany('App\User', 'contact_requests', 'recipient_id', 'issuer_id');
+    public function relatingContacts() {
+      return $this->belongsToMany('App\User', 'user_relationships', 'relating_user_id', 'related_user_id')->where('state', '=', 'contact');
     }
 
-    public function endorsed(Skill $skill) {
-      $endorsedSkills = $this->hasMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id);
-      dd($endorsedSkills); // !!! ver si funciona
-      return $this->skills('App\User', '');
+    public function relatedContacts() {
+      return $this->belongsToMany('App\User', 'user_relationships', 'related_user_id', 'relating_user_id')->where('state', '=', 'contact');
+    }
+
+    public function sentRequests() {
+      return $this->belongsToMany('App\User', 'user_relationships', 'relating_user_id', 'related_user_id')->where('state', '=', 'request');
+    }
+
+    public function pendingRequests() {
+      return $this->belongsToMany('App\User', 'user_relationships', 'related_user_id', 'relating_user_id')->where('state', '=', 'request');
+    }
+
+    public function blocked() {
+      return $this->belongsToMany('App\User', 'user_relationships', 'relating_user_id', 'related_user_id')->where('state', '=', 'blocked');
+    }
+
+    public function blockedBy() {
+      return $this->belongsToMany('App\User', 'user_relationships', 'related_user_id', 'relating_user_id')->where('state', '=', 'blocked');
     }
 
     public function projects() {
@@ -59,6 +73,10 @@ class User extends Authenticatable
       return $this->hasMany('App\User', 'user_reviews', 'user_id', ''); // !!! ver si hay que hacer una clase nueva
     } */
 
-    
+    // public function endorsed(Skill $skill) {
+    //   $endorsedSkills = $this->hasMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id);
+    //   dd($endorsedSkills); // !!! ver si funciona
+    //   return $this->skills('App\User', '');
+    // }
 
 }

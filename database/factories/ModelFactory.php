@@ -116,7 +116,7 @@ $factory->define(App\ProjectSkill::class, function (Faker\Generator $faker, $pro
     'SELECT *
     FROM skills
     WHERE id NOT IN (SELECT skill_id
-    FROM project_skills
+    FROM projects_skills
     WHERE project_id = ' . $project_id['project_id'] . ');'
   );
   // var_dump($skills);
@@ -133,35 +133,62 @@ $factory->define(App\ProjectSkill::class, function (Faker\Generator $faker, $pro
     ];
 });
 
-// ------------------------- Contact Factory ------------------------------- //
-$factory->define(App\Contact::class, function (Faker\Generator $faker, $user_id) {
-  $contacts = DB::select(
+// ----------------------- ProjectUser Factory ----------------------------- //
+$factory->define(App\ProjectUser::class, function (Faker\Generator $faker, $project_id) {
+  $users = DB::select(
     'SELECT *
     FROM users
-    WHERE id NOT IN (SELECT contact_id
-    FROM contacts
-    WHERE user_id = ' . $user_id['user_id'] . ');'
+    WHERE id NOT IN (SELECT user_id
+    FROM projects_users
+    WHERE project_id = ' . $project_id['project_id'] . ');'
   );
-  $contacts = collect($contacts);
-  $randContact = $contacts->shuffle();
-  $contact_id = $randContact->first()->id;
-  var_dump($contact_id);
+
+  $users = collect($users);
+  $randUsers = $users->shuffle();
+  $user_id = $randUsers->first()->id;
+
+  $states = [
+    'part_of', 'request', 'blocked',
+  ];
+  $key = array_rand($states);
+  $state = $states[$key];
 
   return [
-    'contact_id' => $contact_id,
+    'user_id' => $user_id,
+    'state' => $state,
     ];
 });
 
-// --------------------- ContactRequest Factory ---------------------------- //
+// -------------------- UserRelationship Factory --------------------------- //
 
-// $factory->define(App\ClassName::class, function (Faker\Generator $faker) {
-//     return [
-//       'key' => 'value',
-//       ];
-// });
-// ----------------------- BlockedUser Factory ----------------------------- //
-// ----------------------- ProjectUser Factory ----------------------------- //
-// ------------------- ProjectUserRequest Factory -------------------------- //
-// ------------------- ProjectBlockedUser Factory -------------------------- //
+$factory->define(App\UserRelationship::class, function (Faker\Generator $faker, $relating_user_id) {
+  $relatedUsers = DB::select(
+    'SELECT *
+    FROM users
+    WHERE id NOT IN (SELECT related_user_id
+    FROM user_relationships
+    WHERE relating_user_id = ' . $relating_user_id['relating_user_id'] . ')
+    AND id NOT IN (SELECT relating_user_id
+    FROM user_relationships
+    WHERE related_user_id = ' . $relating_user_id['relating_user_id'] . ')
+    AND id != '. $relating_user_id['relating_user_id'] .';'
+  );
+
+  $relatedUsers = collect($relatedUsers);
+  $randRelatedUsers = $relatedUsers->shuffle();
+  $related_user_id = $randRelatedUsers->first()->id;
+
+  $states = [
+    'contact', 'request', 'blocked',
+  ];
+  $key = array_rand($states);
+  $state = $states[$key];
+
+  return [
+    'related_user_id' => $related_user_id,
+    'state' => $state,
+    ];
+});
+
 // ----------------------- UserReview Factory ------------------------------ //
 // ---------------------- EndorseSkill Factory ----------------------------- //
