@@ -64,10 +64,10 @@
     <!-- nav bar -->
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <div class="container">
-        <a class="navbar-brand" href="#">NetWorking</a>
         @if (Auth::check())
           <a href="{{ url('/home') }}">Home</a>
         @else
+          <a class="navbar-brand" href="/">NetWorking</a>
           <a href="{{ url('/login') }}" class="pull-right navbar-brand">Login</a>
           <a href="{{ url('/register') }}" class="pull-right navbar-brand">Register</a>
         @endif

@@ -4,7 +4,7 @@
 <body>
   <div class="flex-center position-ref">
 
-    <div class="content" style="margin-top: 10%;">
+    <div class="content" style="padding-top: 10%;margin-bottom:5%;">
       <div class="title m-b-md">
         <span style="color:rgb(208, 3, 44); margin: 0 -24px;">Net</span>
         <span style="color:rgb(3, 16, 22);">Working</span>
