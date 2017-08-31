@@ -21,8 +21,38 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function home()
     {
         return view('home');
+    }
+
+    public function perfil()
+    {
+        return view('perfil');
+    }
+
+    public function editarPerfil()
+    {
+        return view('editarperfil');
+    }
+
+    public function crearProyecto()
+    {
+        return view('crearproyecto');
+    }
+
+    public function editarProyecto()
+    {
+        return view('editarproyecto');
+    }
+
+    public function misProyectos()
+    {
+        return view('misproyectos');
+    }
+
+    public function proyecto()
+    {
+        return view('proyecto');
     }
 }
