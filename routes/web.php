@@ -24,8 +24,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', 'IndexController@index');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/index', 'IndexController@index')->name('index');
+Route::get('/login', 'IndexController@login')->name('login');
+Route::get('/register', 'IndexController@register')->name('register');
+Route::get('/recuperar', 'IndexController@recuperar')->name('recuperar');
+Route::get('/perfil', 'HomeController@perfil')->name('perfil');
+Route::get('/editarpefil', 'HomeController@editarPefil')->name('editarperfil');
+Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyecto');
+Route::get('/editarproyecto', 'HomeController@editarProyecto')->name('editarproyecto');
+Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
+Route::get('/proyecto', 'HomeController@proyecto')->name('proyecto');
