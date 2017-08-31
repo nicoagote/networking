@@ -191,4 +191,67 @@ $factory->define(App\UserRelationship::class, function (Faker\Generator $faker, 
 });
 
 // ----------------------- UserReview Factory ------------------------------ //
+$factory->define(App\UserReview::class, function (Faker\Generator $faker, $reviewer_id) {
+  $projects = App\Project::all();
+
+  $projects = collect($projects);
+  $randProject = $projects->shuffle();
+  $project_id = $randProject->first()->id;
+
+  $users = DB::select(
+      'SELECT *
+      FROM users
+      WHERE id NOT IN (SELECT user_id
+      FROM projects_users
+      WHERE project_id = ' . $project_id . ')
+      AND id != ' . $reviewer_id['reviewer_id'] . ';'
+    );
+
+
+  $users = collect($users);
+  $randUser = $users->shuffle();
+  $user_id = $randUser->first()->id;
+
+  $overall = [
+    'P', 'N',
+  ];
+  $key = array_rand($overall);
+  $overall = $overall[$key];
+  
+  return [
+    'user_id' => $user_id,
+    'project_id' => $project_id,
+    'overall' => $overall,
+    'review' => $faker->text(512),
+    ];
+});
+
 // ---------------------- EndorseSkill Factory ----------------------------- //
+$factory->define(App\EndorseSkill::class, function (Faker\Generator $faker, $endorser_id) {
+  $users = DB::select(
+      'SELECT *
+      FROM users
+      WHERE id != ' . $endorser_id['endorser_id'] . ';'
+    );
+
+  $users = collect($users);
+  $randUser = $users->shuffle();
+  $user_id = $randUser->first()->id;
+
+  $skills = DB::select(
+      'SELECT *
+      FROM skills
+      WHERE id IN (SELECT skill_id
+      FROM users_skills
+      WHERE user_id = ' . $user_id . ');'
+    );
+
+  $skills = collect($skills);
+  $randSkill = $skills->shuffle();
+  $skill_id = $randSkill->first()->id;
+
+  return [
+    'user_id' => $user_id,
+    'skill_id' => $skill_id,
+    ];
+});

@@ -2,7 +2,14 @@
 
 @section('content')
   <div class="container">
-    {{dd($usuarios->first()->relationships)}}
+
+    <?php
+      $usuario = $usuarios->find(2);
+      foreach ($usuario->endorsed($usuario->skills->first()) as $usuario) {
+        echo ($usuario->name) . " " . $usuario->surname;
+        echo "<br><br>";
+      }
+    ?>
     <ul style='display:block'> <h2>Usuarios</h2>
       @foreach ($usuarios as $usuario)
         <li> <h3>{{$usuario->name}} {{$usuario->surname}}</h3>
@@ -63,6 +70,23 @@
                 </li>
               @endforeach
             @endif
+          </ul>
+          <ul> <h4>Reviews que le hicieron:</h4>
+            <ul>
+              @foreach ($usuario->reviews as $review)
+                @if($review->overall == 'P')
+                  <li style="background-color:green; color:white">
+                    {{$review->reviewer->name}} {{$review->reviewer->surname}}
+                    {{$review->review}}
+                  </li>
+                @else
+                <li style="background-color:red; color:white">
+                  {{$review->reviewer->name}} {{$review->reviewer->surname}}
+                  {{$review->review}}
+                </li>
+                @endif
+              @endforeach
+            </ul>
           </ul>
         </li>
       @endforeach

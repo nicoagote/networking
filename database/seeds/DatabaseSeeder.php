@@ -37,6 +37,15 @@ class DatabaseSeeder extends Seeder
         for ($userRelationships=0; $userRelationships < 2; $userRelationships++) {
           factory(App\UserRelationship::class)->create(['relating_user_id' => $u->id]);
         }
+
+        for ($endorseSkills = 0; $endorseSkills < 2; $endorseSkills++) {
+          factory(App\EndorseSkill::class)->create(['endorser_id' => $u->id]);
+        }
+
+        for ($userReviews = 0; $userReviews < 2; $userReviews++) {
+          factory(App\UserReview::class)->create(['reviewer_id' => $u->id]);
+        }
       });
+
     }
 }
