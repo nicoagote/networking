@@ -68,8 +68,8 @@
           <a href="{{ url('/home') }}">Home</a>
         @else
           <a class="navbar-brand" href="/">NetWorking</a>
-          <a href="{{ url('/login') }}" class="pull-right navbar-brand">Login</a>
-          <a href="{{ url('/register') }}" class="pull-right navbar-brand">Register</a>
+          <a href="{{ url('/login') }}" class="pull-right navbar-brand">Entrá</a>
+          <a href="{{ url('/register') }}" class="pull-right navbar-brand">Registrate</a>
         @endif
         </div>
     </nav>
