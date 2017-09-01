@@ -29,10 +29,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@home')->name('home');
-Route::get('/index', 'IndexController@index')->name('index');
-Route::get('/login', 'IndexController@login')->name('login');
-Route::get('/register', 'IndexController@register')->name('register');
-Route::get('/recuperar', 'IndexController@recuperar')->name('recuperar');
 Route::get('/perfil', 'HomeController@perfil')->name('perfil');
 Route::get('/editarpefil', 'HomeController@editarPefil')->name('editarperfil');
 Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyecto');

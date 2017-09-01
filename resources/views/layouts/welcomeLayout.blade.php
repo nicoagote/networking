@@ -77,16 +77,16 @@
     <div class="" style="min-height: 500px;">
       @yield('contenido')
     </div>
+    <hr style="
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    ">
+    <footer style="padding:22px 0;margin-bottom:1rem; margin-top:0;">
+      <p class="text-center">© Company 2017</p>
+    </footer>
+  </div>
   </body>
-  <hr style="
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  border: 0;
-  border-top: 1px solid rgba(0,0,0,.1);
-  ">
-  <footer style="padding:22px 0;margin-bottom:1rem; margin-top:0;">
-    <p class="text-center">© Company 2017</p>
-  </footer>
-</div>
 
 </html>
