@@ -73,7 +73,7 @@ class User extends Authenticatable
     }
 
     public function endorsed(Skill $skill) {
-      return $endorsedSkills = $this->belongsToMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id)->get();
+      return $this->belongsToMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id)->get();
     }
-    
+
 }

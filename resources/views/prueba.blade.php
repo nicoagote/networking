@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts/welcomeLayout')
 
-@section('content')
+@section('contenido')
   <div class="container">
 
     <?php
