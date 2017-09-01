@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts/welcomeLayout')
 
-@section('content')
+@section('contenido')
   <div class="container">
 
     <?php
@@ -24,6 +24,9 @@
             @foreach ($usuario->skills as $especialidad)
               <li style='background-color:'{{$especialidad->color}}>
                 {{$especialidad->name}}
+              </li>
+              <li>
+                {{$especialidad->getImage()}}
               </li>
             @endforeach
           </ul>
