@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -38,7 +38,11 @@ class HomeController extends Controller
 
     public function crearProyecto()
     {
-        return view('crearproyecto');
+        $skills = App\Skill::all();
+
+        $data = ['skills' => $skills];
+
+        return view('crearproyecto', $data);
     }
 
     public function editarProyecto()
