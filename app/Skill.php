@@ -17,7 +17,19 @@ class Skill extends Model
   }
 
   public function getLogoLocation() {
-    return 'logos/logo' . $this->name . '.png';
+    $name = "";
+    switch ($this->name) {
+      case "C#":
+        $name = "CSharp";
+        break;
+      case "C++":
+        $name = "CPlusPlus";
+        break;
+      default:
+        $name = $this->name;
+        break;
+    }
+    return 'logos/logo' . $name . '.png';
   }
 
   public function getAltOfImage() {

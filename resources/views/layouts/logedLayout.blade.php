@@ -118,7 +118,7 @@
         <div class="navbar-inverse side-collapse in">
           <nav role="navigation" class="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="#" id="net-working">NetWorking</a></li>
+              <li><a href="#" id="net-working"><img src="nw.png" alt=""></a></li>
               <li><a href="#" style="text-align:ceter;">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
                   <img src="https://image.freepik.com/iconos-gratis/persona-de-negocios-hombre-que-sostiene-una-maleta_318-63795.jpg" class="image-Perfil">
@@ -131,6 +131,17 @@
               <li><a href="#">Mis Proyectos</a></li>
               <li><a href="#">Contactos</a></li>
               <li><a href="#">FAQS</a></li>
+              <li>
+                  <a href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                      Cerrar Sesión
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
+              </li>
             </ul>
           </nav>
         </div>
