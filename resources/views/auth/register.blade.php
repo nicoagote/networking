@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.welcomeLayout')
 
-@section('content')
-<div class="container">
+@section('contenido')
+<div class="container"style="padding-top: 10%;margin-bottom:5%;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">

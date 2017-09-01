@@ -61,7 +61,6 @@ class User extends Authenticatable
     }
 
     public function projects() {
-      // return DB::statement('select * from users as u inner join projects as p where u.id = p.creator_id;');
       return $this->hasMany('App\Project', 'creator_id', 'id');
     }
 
@@ -69,14 +68,12 @@ class User extends Authenticatable
       return $this->belongsToMany('App\Skill', 'users_skills', 'user_id', 'skill_id');
     }
 
-    /* public function reviews() {
-      return $this->hasMany('App\User', 'user_reviews', 'user_id', ''); // !!! ver si hay que hacer una clase nueva
-    } */
+    public function reviews() {
+      return $this->hasMany('App\UserReview', 'user_id', 'id');
+    }
 
-    // public function endorsed(Skill $skill) {
-    //   $endorsedSkills = $this->hasMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id);
-    //   dd($endorsedSkills); // !!! ver si funciona
-    //   return $this->skills('App\User', '');
-    // }
+    public function endorsed(Skill $skill) {
+      return $this->belongsToMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id)->get();
+    }
 
 }

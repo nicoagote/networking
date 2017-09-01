@@ -13,6 +13,18 @@ class Skill extends Model
   }
 
   public function projects() {
-    return $this->belongsToMany('App\Project', 'project_skills', 'skill_id', 'project_id');
+    return $this->belongsToMany('App\Project', 'projects_skills', 'skill_id', 'project_id');
+  }
+
+  public function getLogoLocation() {
+    return 'logos/logo' . $this->name . '.png';
+  }
+
+  public function getAltOfImage() {
+    return 'logo' . $this->name;
+  }
+
+  public function getImage() {
+    echo '<img src="' . $this->getLogoLocation() . '" alt="' .  $this->getAltOfImage() . '" width="50px" height="50px">';
   }
 }

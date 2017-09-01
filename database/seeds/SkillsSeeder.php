@@ -13,17 +13,17 @@ class SkillsSeeder extends Seeder
     public function run()
     {
       $skills = [
+        'C#'          => '#662e93',
         'C++'         => '#076390',
+        'CSS'         => '#33a9dc',
+        'HTML'        => '#f16529',
         'Java'        => '#f99924',
-        'Python'      => '#1e415e',
         'JavaScript'  => '#f0da50',
         'PHP'         => '#5f83bb',
-        'C#'          => '#662e93',
-        'Swift'       => '#f57939',
+        'Python'      => '#1e415e',
         'Ruby'        => '#e14e40',
-        'HTML'        => '#f16529',
-        'CSS'         => '#33a9dc',
-        'SQL'         => '#e0e1e3'
+        'SQL'         => '#e0e1e3',
+        'Swift'       => '#f57939'
       ];
 
       foreach ($skills as $name => $color) {
