@@ -20,7 +20,7 @@ Route::get('/prueba', function() {
   return view('prueba', $datos);
 });
 
-Route::get('/', function () {
+Route::middleware('guest')->get('/', function () {
     return view('welcome');
 });
 

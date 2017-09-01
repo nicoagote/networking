@@ -65,9 +65,9 @@
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <div class="container">
         @if (Auth::check())
-          <a href="{{ url('/home') }}">Home</a>
+
         @else
-          <a class="navbar-brand" href="/">NetWorking</a>
+          <a class="navbar-brand" href="/"><img src="nw.png" alt=""></a>
           <a href="{{ url('/login') }}" class="pull-right navbar-brand">Entrá</a>
           <a href="{{ url('/register') }}" class="pull-right navbar-brand">Registrate</a>
         @endif
