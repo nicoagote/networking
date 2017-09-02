@@ -147,11 +147,23 @@ $factory->define(App\ProjectUser::class, function (Faker\Generator $faker, $proj
   $randUsers = $users->shuffle();
   $user_id = $randUsers->first()->id;
 
-  $states = [
-    'part_of', 'request', 'blocked',
+  $statesBaseArray = [
+    #state => percentage ratio,
+    'part_of' => 80,
+    'request' => 19,
+    'blocked' =>  1,
   ];
-  $key = array_rand($states);
-  $state = $states[$key];
+
+  $statesArray = [];
+
+  foreach ($statesBaseArray as $state => $distribution) {
+    for ($i=0; $i < $distribution; $i++) {
+      $statesArray[] = $state;
+    }
+  }
+
+  $key = array_rand($statesArray);
+  $state = $statesArray[$key];
 
   return [
     'user_id' => $user_id,
@@ -178,11 +190,23 @@ $factory->define(App\UserRelationship::class, function (Faker\Generator $faker, 
   $randRelatedUsers = $relatedUsers->shuffle();
   $related_user_id = $randRelatedUsers->first()->id;
 
-  $states = [
-    'contact', 'request', 'blocked',
+  $statesBaseArray = [
+    #state => percentage ratio,
+    'contact' => 80,
+    'request' => 19,
+    'blocked' =>  1,
   ];
-  $key = array_rand($states);
-  $state = $states[$key];
+
+  $statesArray = [];
+
+  foreach ($statesBaseArray as $state => $distribution) {
+    for ($i=0; $i < $distribution; $i++) {
+      $statesArray[] = $state;
+    }
+  }
+
+  $key = array_rand($statesArray);
+  $state = $statesArray[$key];
 
   return [
     'related_user_id' => $related_user_id,
@@ -217,7 +241,7 @@ $factory->define(App\UserReview::class, function (Faker\Generator $faker, $revie
   ];
   $key = array_rand($overall);
   $overall = $overall[$key];
-  
+
   return [
     'user_id' => $user_id,
     'project_id' => $project_id,
@@ -228,13 +252,15 @@ $factory->define(App\UserReview::class, function (Faker\Generator $faker, $revie
 
 // ---------------------- EndorseSkill Factory ----------------------------- //
 $factory->define(App\EndorseSkill::class, function (Faker\Generator $faker, $endorser_id) {
-  $users = DB::select(
-      'SELECT *
-      FROM users
-      WHERE id != ' . $endorser_id['endorser_id'] . ';'
-    );
+  $users = App\User::find($endorser_id['endorser_id'])->relationships;
 
-  $users = collect($users);
+  // DB::select(
+  //     'SELECT *
+  //     FROM users
+  //     WHERE id != ' . $endorser_id['endorser_id'] . ';'
+  //   );
+
+  // $users = collect($users);
   $randUser = $users->shuffle();
   $user_id = $randUser->first()->id;
 
