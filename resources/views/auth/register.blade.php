@@ -88,6 +88,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                            <label for="sex" class="col-md-4 control-label">Género</label>
+
+                            <div class="container col-md-8">
+                              <label for="masculino" class="col-md-3 radio-inline">
+                                <input id="masculino" type="radio" name="sex" value="1">
+                              Masculino</label>
+                              <label for="femenino" class="col-md-3 radio-inline">
+                                <input id="femenino" type="radio" name="sex" value="0">
+                              Femenino</label>
+
+                                @if ($errors->has('sex'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('sex') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
