@@ -1,5 +1,9 @@
 @extends('layouts.logedLayout')
 
+@section('title')
+Mis proyectos - NW
+@endsection
+
 @section('contenidoLog')
 
 <style media="screen">
@@ -16,7 +20,6 @@ body {
 .btn-link {
   font-size: 1.5em;
 }
-
 
 .panel > .list-group .list-group-item:first-child {
   /*border-top: 1px solid rgb(204, 204, 204);*/
@@ -226,7 +229,7 @@ ul.c-controls li a:hover {
                       <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="h3">{{$project->title}}</span><br/><span>by {{$project->creator->name}} {{$project->creator->name}}</span>
+                      <span class="h3">{{$project->title}}</span><br/><span>by {{$project->creator->name}} {{$project->creator->surname}}</span>
                   </div>
                   <div class="col-xs-12 col-sm-9">
                       <span class="small">

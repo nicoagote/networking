@@ -1,13 +1,11 @@
-@extends("layouts.logedLayout")
+@extends('layouts.logedLayout')
 
-@section("title")
- Mi perfil
+@section('title')
+Mi perfil - NW
 @endsection
 
-@section("contenidoLog")
+@section('contenido')
 
-
- 
-
+Tu perfil!
 
 @endsection
