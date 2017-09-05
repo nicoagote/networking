@@ -29,6 +29,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@home')->name('home');
 
 Route::get('/perfil/{id}', 'HomeController@perfil');
+Route::get('/perfil', 'HomeController@perfilpropio');
+
 Route::get('/editarperfil', 'HomeController@editarPerfil')->name('editarperfil');
 
 Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyecto');
@@ -38,4 +40,4 @@ Route::get('/editarproyecto', 'HomeController@editarProyecto')->name('editarproy
 Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
 Route::get('/contactos', 'HomeController@contacto')->name('contactos');
 Route::get('/faqs', 'HomeController@faqs')->name('faqs');
-Route::get('/proyecto/{id}', 'HomeController@proyecto');
+Route::get('/proyecto/{id?}', 'HomeController@proyecto');

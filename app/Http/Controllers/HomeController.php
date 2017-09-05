@@ -33,9 +33,16 @@ class HomeController extends Controller
 
     public function perfil($id)
     {
-        $perfil = App\User::find($id);
-        $data = compact('perfil');
-        return view('perfil', $data);
+          $perfil = App\User::find($id);
+          $data = compact('perfil');
+          return view('perfil', $data);
+    }
+
+    public function perfilpropio()
+    {
+          $perfil = Auth::User();
+          $data = compact('perfil');
+          return view('perfil', $data);
     }
 
     public function editarPerfil()
