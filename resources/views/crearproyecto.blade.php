@@ -8,130 +8,179 @@
               <div class="panel panel-default">
                   <div class="panel-heading">Crear Proyecto</div>
                   <div class="panel-body">
-                      <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                          {{ csrf_field() }}
+                    @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                    @endif
+                    <form class="form-horizontal" method="POST" action="{{ route('crearproyecto') }}">
+                      {{ csrf_field() }}
 
-                          <div class="form-group">
-                              <label for="title" class="col-md-4 control-label">Titulo</label>
+                      <div class="form-group">
+                          <label for="title" class="col-md-4 control-label">Titulo</label>
 
-                              <div class="col-md-6">
-                                  <input type="text" class="form-control" name="title" required>
-                              </div>
+                          <div class="col-md-6">
+                              <input type="text" class="form-control" name="title" required>
                           </div>
+                      </div>
 
-                          <div class="form-group">
-                              <label for="short_description" class="col-md-4 control-label">Presentacion</label>
+                      <div class="form-group">
+                          <label for="short_description" class="col-md-4 control-label">Presentacion</label>
 
-                              <div class="col-md-6">
-                                <textarea name="short_description" cols="40" rows="5" class="form-control" required autofocus ></textarea>
-                              </div>
+                          <div class="col-md-6">
+                            <textarea name="short_description" cols="40" rows="5" class="form-control" required autofocus ></textarea>
                           </div>
+                      </div>
 
-                          <div class="form-group">
-                              <label for="long_description" class="col-md-4 control-label">Descripcion completa</label>
+                      <div class="form-group">
+                          <label for="long_description" class="col-md-4 control-label">Descripcion completa</label>
 
-                              <div class="col-md-6">
-                                <textarea name="long_description" cols="40" rows="10" class="form-control" required autofocus ></textarea>
-                              </div>
+                          <div class="col-md-6">
+                            <textarea name="long_description" cols="40" rows="10" class="form-control" required autofocus ></textarea>
                           </div>
+                      </div>
 
-                          <!-- <div class="form-group">
-                              <label for="active" class="col-md-4 control-label">Activo</label>
+                      <div class="form-group">
+                        <label for="active" class="col-md-4 control-label">Activo</label>
 
-                              <div id="active" class="col-md-6">
-                                <input type="checkbox" name="active" value="">
-                              </div>
-                          </div> -->
+                        <div class="col-md-6" id="active" >
+                          <input type="checkbox" class="form-check-input" name="active" value="Y">
+                        </div>
+                      </div>
 
-                          <div class="form-group">
-                            <label for="active" class="col-md-4 control-label">Activo</label>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Especialidades en las que estas interesado</label>
+                        <span class="col-md-6"></span>
+                        <button type="button" id="addSkill" class="btn btn-info" >+</button>
+                        <div class="col-md-12" id='skillsSelectors'>
+                          <select class="hidden" id='genericSkillSelector'>
+                            <option value=NULL>Seleccioná una habilidad</option>
+                            @foreach ($skills as $skill)
+                              <option value="{{$skill->id}}">{{$skill->name}}</option>
+                            @endforeach
+                          </select>
+                          <select class="hidden" id='genericSenioritySelector'>
+                            @php
+                              $seniorities = [NULL => 'Cualquier nivel de expertise',
+                                              'trainee' => 'Trainee',
+                                              'junior' => 'Junior',
+                                              'semi-senior' => 'Semi-senior',
+                                              'senior' => 'Senior'];
+                            @endphp
+                            @foreach ($seniorities as $seniority_level => $nivel)
+                              <option value="{{$seniority_level}}">{{$nivel}}</option>
+                            @endforeach
+                          </select>
+                          <button type="button" class="hidden" id='genericRemoveSkillSelector' >-</button>
+                        </div>
+                      </div>
 
-                            <div class="col-md-6" id="active" >
-                              <input type="checkbox" name="active" value="Y">
-                            </div>
-                          </div>
+                      <input type="hidden" id='genericSelectorIdentifier'>
 
-                          <div class="form-group">
-                            <label class="col-md-4 control-label">Especialidades en las que estas interesado</label>
-                            <button type="button" id="addSkill" class="btn btn-info" >+</button>
-                            <div class="" id='skillsSelectors'>
-                              <select class="col-md-3 hidden" id='genericSkillSelector'>
-                                @foreach ($skills as $skill)
-                                  <option value="{{$skill->id}}">{{$skill->name}}</option>
-                                @endforeach
-                              </select>
-                              <select class="col-md-3 hidden" id='genericSenioritySelector'>
-                                @php
-                                  $seniorities = [NULL => 'Selecciona un nivel de expertise',
-                                                  'trainee' => 'Trainee',
-                                                  'junior' => 'Junior',
-                                                  'semi-senior' => 'Semi-senior',
-                                                  'senior' => 'Senior'];
-                                @endphp
-                                @foreach ($seniorities as $seniority_level => $nivel)
-                                  <option value="{{$seniority_level}}">{{$nivel}}</option>
-                                @endforeach
-                              </select>
-                              <button type="button" class="hidden" id='genericRemoveSkillSelector' class="btn btn-default">-</button>
-                            </div>
-                          </div>
+                      <script>
+                        var skillsSelectorsDiv = document.getElementById('skillsSelectors');
+                        var addSkillButton = document.getElementById('addSkill');
+                        addSkillButton.counter = 0;
 
-                          <script>
-                            var skillsSelectorsDiv = document.getElementById('skillsSelectors');
-                            var addSkillButton = document.getElementById('addSkill');
-                            addSkillButton.counter = 0;
+                        var genericSelectorIdentifier = document.getElementById('genericSelectorIdentifier');
 
-                            var genericSkillSelector = document.getElementById('genericSkillSelector');
-                            var genericSenioritySelector = document.getElementById('genericSenioritySelector');
-                            var genericRemoveSkillSelector = document.getElementById('genericRemoveSkillSelector');
+                        var genericSkillSelector = document.getElementById('genericSkillSelector');
+                        var genericSenioritySelector = document.getElementById('genericSenioritySelector');
+                        var genericRemoveSkillSelector = document.getElementById('genericRemoveSkillSelector');
 
-                            addSkillButton.onclick = function() {
-                              console.log('Estoy aca!');
-                                console.log(addSkillButton.counter);
-                                var newSkillsSelector = document.createElement('div');
-                                var newGenericSkillSelector = genericSkillSelector.cloneNode(true);
-                                var newGenericSenioritySelector = genericSenioritySelector.cloneNode(true);
-                                var newGenericRemoveSkillSelector = genericRemoveSkillSelector.cloneNode(true);
+                        addSkillButton.onclick = function() {
+                          if (validarSkillSelectors()) {
+                            var newSkillsSelector = document.createElement('div');
+                            newSkillsSelector.setAttribute('class', 'col-md-12');
+                            var newGenericSkillSelector = genericSkillSelector.cloneNode(true);
+                            var newGenericSenioritySelector = genericSenioritySelector.cloneNode(true);
+                            var newGenericRemoveSkillSelector = genericRemoveSkillSelector.cloneNode(true);
+                            var newGenericSelectorIdentifier = genericSelectorIdentifier.cloneNode(true);
 
-                                newGenericSkillSelector.removeAttribute('id');
-                                newGenericSenioritySelector.removeAttribute('id');
-                                newGenericRemoveSkillSelector.removeAttribute('id');
+                            newGenericSkillSelector.removeAttribute('id');
+                            newGenericSenioritySelector.removeAttribute('id');
+                            newGenericRemoveSkillSelector.removeAttribute('id');
 
-                                newGenericSkillSelector.removeAttribute('class', 'hidden');
-                                newGenericSenioritySelector.removeAttribute('class', 'hidden');
-                                newGenericRemoveSkillSelector.removeAttribute('class', 'hidden');
+                            newGenericSkillSelector.removeAttribute('class', 'hidden');
+                            newGenericSenioritySelector.removeAttribute('class', 'hidden');
+                            newGenericRemoveSkillSelector.removeAttribute('class', 'hidden');
 
-                                newGenericSkillSelector.setAttribute('name', 'skill' + this.counter);
-                                newGenericSenioritySelector.setAttribute('name', 'seniority_level' + this.counter);
-                                newGenericRemoveSkillSelector.setAttribute('name', 'removeSkillSelector' + this.counter);
+                            newGenericSkillSelector.setAttribute('name', 'skill' + this.counter);
+                            newGenericSenioritySelector.setAttribute('name', 'seniority_level' + this.counter);
+                            newGenericRemoveSkillSelector.setAttribute('name', 'removeSkillSelector' + this.counter);
 
-                                newGenericRemoveSkillSelector.onclick =  function() {
-                                  var parentDiv = this.parentNode;
-                                  console.log(parentDiv);
-                                  skillsSelectorsDiv.removeChild(parentDiv);
-                                }
+                            newGenericSkillSelector.setAttribute('class', 'form-control');
+                            newGenericSenioritySelector.setAttribute('class', 'form-control');
+                            newGenericRemoveSkillSelector.setAttribute('class', 'btn btn-secondary')
 
-                                newSkillsSelector.appendChild(newGenericSkillSelector);
-                                newSkillsSelector.appendChild(newGenericSenioritySelector);
-                                newSkillsSelector.appendChild(newGenericRemoveSkillSelector);
+                            newGenericSkillSelector.setAttribute('style', 'width:45%;margin:0;display:inline-block;');
+                            newGenericSenioritySelector.setAttribute('style', 'width:45%;margin:0;display:inline-block;');
 
-                                console.log(newSkillsSelector, this.counter);
+                            newGenericSkillSelector.setAttribute('id', 'skillSelector' + this.counter);
 
-                                skillsSelectorsDiv.appendChild(newSkillsSelector);
-
-                                addSkillButton.counter = addSkillButton.counter + 1;
+                            newGenericRemoveSkillSelector.onclick =  function() {
+                              var parentDiv = this.parentNode;
+                              console.log(parentDiv);
+                              skillsSelectorsDiv.removeChild(parentDiv);
                             }
 
-                          </script>
+                            newGenericSelectorIdentifier.setAttribute('name', 'skillSelector[]');
+                            newGenericSelectorIdentifier.setAttribute('type', 'hidden');
+                            newGenericSelectorIdentifier.setAttribute('value', this.counter);
 
-                          <div class="form-group">
-                              <div class="col-md-8 col-md-offset-4">
-                                  <button type="submit" class="btn btn-primary">
-                                      Crear
-                                  </button>
-                              </div>
-                          </div>
-                      </form>
+                            newSkillsSelector.appendChild(newGenericSkillSelector);
+                            newSkillsSelector.appendChild(newGenericSenioritySelector);
+                            newSkillsSelector.appendChild(newGenericRemoveSkillSelector);
+                            newSkillsSelector.appendChild(newGenericSelectorIdentifier);
+
+                            console.log(newSkillsSelector, this.counter);
+
+                            skillsSelectorsDiv.appendChild(newSkillsSelector);
+
+                            addSkillButton.counter = addSkillButton.counter + 1;
+                          }
+                        }
+
+                        function validarSkillSelectors() {
+                          for (var i = 0; i < addSkillButton.counter + 1; i++) {
+                            var queryId = 'skillSelector' + i;
+                            var skillSelector = document.getElementById(queryId);
+                            console.log(skillSelector);
+                            if (skillSelector == null) {
+                            } else if(isNaN(skillSelector.value)) {
+                              alert('Por favor no dejes vacías especialidades antes de agregar otra.')
+                              return false;
+                            } else {
+                              for (var j = 0; j < addSkillButton.counter; j++) {
+                                if (i != j) {
+                                  var queryId2 = 'skillSelector' + j;
+                                  var skillSelector2 = document.getElementById(queryId2);
+                                  if (skillSelector2 == null) {
+                                  } else if (skillSelector2.value == skillSelector.value) {
+                                    alert('Por favor no pidas más que una vez la misma especialidad.');
+                                    return false;
+                                  }
+                                }
+                              }
+                            }
+                          }
+                          return true
+                        }
+
+                      </script>
+
+                      <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                          <button type="submit" class="btn btn-primary">
+                            Crear
+                          </button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
               </div>
           </div>
