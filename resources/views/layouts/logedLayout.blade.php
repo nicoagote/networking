@@ -118,8 +118,8 @@
         <div class="navbar-inverse side-collapse in">
           <nav role="navigation" class="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="#" id="net-working"><img src="nw.png" alt=""></a></li>
-              <li><a href="#" style="text-align:ceter;">
+              <li><a href="/home" id="net-working"><img src="nw.png" alt="Logo de networking"></a></li>
+              <li><a href="/perfil" style="text-align:ceter;">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
                   <img src="https://image.freepik.com/iconos-gratis/persona-de-negocios-hombre-que-sostiene-una-maleta_318-63795.jpg" class="image-Perfil">
                 </span>
@@ -127,11 +127,11 @@
                   Perfil
                 </span>
                 </a></li>
-              <li><a href="#">Buscar Proyectos</a></li>
-              <li><a href="#">Mis Proyectos</a></li>
+              <li><a href="/home">Buscar Proyectos</a></li>
+              <li><a href="/misproyectos">Mis Proyectos</a></li>
               <li><a href="/crearproyecto">Crear Proyectos</a></li>
               <li><a href="/contactos">Contactos</a></li>
-              <li><a href="#">FAQS</a></li>
+              <li><a href="/faqs">FAQS</a></li>
               <li>
                   <a href="{{ route('logout') }}"
                       onclick="event.preventDefault();

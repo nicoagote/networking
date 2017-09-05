@@ -4,5 +4,5 @@
 
  <h2>Mi Perfil</h2>
 
-  
-@stop
+
+@endsection
