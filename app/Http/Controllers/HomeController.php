@@ -87,6 +87,7 @@ class HomeController extends Controller
         $projectSkill->save();
       }
 
+      return redirect('misproyectos');
     }
 
     public function editarProyecto()

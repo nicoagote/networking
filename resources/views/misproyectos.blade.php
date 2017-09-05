@@ -17,7 +17,6 @@ body {
   font-size: 1.5em;
 }
 
-
 .panel > .list-group .list-group-item:first-child {
   /*border-top: 1px solid rgb(204, 204, 204);*/
 }
