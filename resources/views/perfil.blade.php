@@ -1,9 +1,11 @@
 @extends('layouts.logedLayout')
 
 @section('title')
-Home - NW
-@endesection
+Mi perfil - NW
+@endsection
 
-@section('contenidoLog')
+@section('contenido')
+
+Tu perfil!
 
 @endsection

@@ -34,7 +34,9 @@ class HomeController extends Controller
 
     public function editarPerfil()
     {
-        return view('editarperfil');
+        $usuario = Auth::user();
+        $data = compact('usuario');
+        return view('editarperfil', $data);
     }
 
     public function crearProyecto()
@@ -87,6 +89,7 @@ class HomeController extends Controller
         $projectSkill->save();
       }
 
+      return redirect('misproyectos');
     }
 
     public function editarProyecto()
@@ -134,4 +137,5 @@ class HomeController extends Controller
     {
         return view('faqs');
     }
+
 }

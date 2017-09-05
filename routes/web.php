@@ -29,7 +29,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@home')->name('home');
 
 Route::get('/perfil', 'HomeController@perfil')->name('perfil');
-Route::get('/editarpefil', 'HomeController@editarPefil')->name('editarperfil');
+Route::get('/editarperfil', 'HomeController@editarPerfil')->name('editarperfil');
 
 Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyecto');
 Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarProyecto');
