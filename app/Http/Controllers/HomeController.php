@@ -27,9 +27,11 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function perfil()
+    public function perfil($id)
     {
-        return view('perfil');
+        $perfil = App\User::find($id);
+        $data = compact('perfil');
+        return view('perfil', $data);
     }
 
     public function editarPerfil()
@@ -117,9 +119,12 @@ class HomeController extends Controller
         return view('misproyectos', $data);
     }
 
-    public function proyecto()
+    public function proyecto($id)
     {
-        return view('proyecto');
+
+        $proyecto = App\Project::find($id);
+        $data = compact('proyecto');
+        return view('proyecto', $data);
     }
 
     public function contacto()

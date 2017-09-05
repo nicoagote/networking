@@ -29,7 +29,7 @@ class Skill extends Model
         $name = $this->name;
         break;
     }
-    return 'logos/logo' . $name . '.png';
+    return '/logos/logo' . $name . '.png';
   }
 
   public function getAltOfImage() {
