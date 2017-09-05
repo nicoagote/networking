@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -10,7 +9,6 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 /*
 MODELO DE FACTORY
@@ -20,12 +18,9 @@ $factory->define(App\ClassName::class, function (Faker\Generator $faker) {
       ];
 });
 */
-
-
 // --------------------------- User Factory ----------------------------- //
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-
     $genders = array(
       'Male',
       'Female',
@@ -33,11 +28,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $key = array_rand($genders);
     $gender = $genders[$key];
     $sex = $gender == 'Male' ? 'm' : 'f';
-
     $available = $faker->boolean ? 'Y' : 'N';
-
     $username = $faker->userName();
-
     return [
         'name' => $faker->firstName($gender),
         'surname' => $faker->lastName(),
@@ -57,14 +49,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'profile_picture_file_location' => NULL #!!! randomize
     ];
 });
-
 // --------------------------- UserSkill Factory ----------------------------- //
 $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_id) {
     $seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior'];
-
     $key = array_rand($seniority_levels);
     $seniority_level = $seniority_levels[$key];
-
     // $skills = App\Skill::all();
     $skills = DB::select(
       'SELECT *
@@ -73,30 +62,22 @@ $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_
       FROM users_skills
       WHERE user_id = ' . $user_id['user_id'] . ');'
     );
-
     $skills = collect($skills);
-
     $randSkills = $skills->shuffle();
-
     $skill = $randSkills->first();
-
     return [
       'user_id' => $user_id,
       'skill_id' => $skill->id,
       'seniority_level' => $seniority_level,
     ];
 });
-
 // --------------------------- Project Factory ----------------------------- //
 $factory->define(App\Project::class, function (Faker\Generator $faker, $user_id) {
     $activeStates = ['Y', 'N'];
-
     $key = array_rand($activeStates);
     $active = $activeStates[$key];
-
     $titleString = $faker->sentence(floor(rand(1, 8)));
     $title = substr($titleString,0 ,strlen($titleString) - 1);
-
     return [
       'title' => $title,
       'short_description' => $faker->text(140),
@@ -104,14 +85,11 @@ $factory->define(App\Project::class, function (Faker\Generator $faker, $user_id)
       'active' => $active,
     ];
 });
-
 // ------------------------ ProjectSkills Factory -------------------------- //
 $factory->define(App\ProjectSkill::class, function (Faker\Generator $faker, $project_id) {
   $seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior', NULL];
-
   $key = array_rand($seniority_levels);
   $seniority_level = $seniority_levels[$key];
-
   $skills = DB::select(
     'SELECT *
     FROM skills
@@ -126,13 +104,11 @@ $factory->define(App\ProjectSkill::class, function (Faker\Generator $faker, $pro
   // var_dump($randSkills);
   $skill_id = $randSkills->first()->id;
   // var_dump($skill_id);
-
   return [
     'skill_id' => $skill_id,
     'seniority_level' => $seniority_level,
     ];
 });
-
 // ----------------------- ProjectUser Factory ----------------------------- //
 $factory->define(App\ProjectUser::class, function (Faker\Generator $faker, $project_id) {
   $users = DB::select(
@@ -142,37 +118,29 @@ $factory->define(App\ProjectUser::class, function (Faker\Generator $faker, $proj
     FROM projects_users
     WHERE project_id = ' . $project_id['project_id'] . ');'
   );
-
   $users = collect($users);
   $randUsers = $users->shuffle();
   $user_id = $randUsers->first()->id;
-
   $statesBaseArray = [
     #state => percentage ratio,
     'part_of' => 80,
     'request' => 19,
     'blocked' =>  1,
   ];
-
   $statesArray = [];
-
   foreach ($statesBaseArray as $state => $distribution) {
     for ($i=0; $i < $distribution; $i++) {
       $statesArray[] = $state;
     }
   }
-
   $key = array_rand($statesArray);
   $state = $statesArray[$key];
-
   return [
     'user_id' => $user_id,
     'state' => $state,
     ];
 });
-
 // -------------------- UserRelationship Factory --------------------------- //
-
 $factory->define(App\UserRelationship::class, function (Faker\Generator $faker, $relating_user_id) {
   $relatedUsers = DB::select(
     'SELECT *
@@ -185,43 +153,34 @@ $factory->define(App\UserRelationship::class, function (Faker\Generator $faker, 
     WHERE related_user_id = ' . $relating_user_id['relating_user_id'] . ')
     AND id != '. $relating_user_id['relating_user_id'] .';'
   );
-
   $relatedUsers = collect($relatedUsers);
   $randRelatedUsers = $relatedUsers->shuffle();
   $related_user_id = $randRelatedUsers->first()->id;
-
   $statesBaseArray = [
     #state => percentage ratio,
     'contact' => 80,
     'request' => 19,
     'blocked' =>  1,
   ];
-
   $statesArray = [];
-
   foreach ($statesBaseArray as $state => $distribution) {
     for ($i=0; $i < $distribution; $i++) {
       $statesArray[] = $state;
     }
   }
-
   $key = array_rand($statesArray);
   $state = $statesArray[$key];
-
   return [
     'related_user_id' => $related_user_id,
     'state' => $state,
     ];
 });
-
 // ----------------------- UserReview Factory ------------------------------ //
 $factory->define(App\UserReview::class, function (Faker\Generator $faker, $reviewer_id) {
   $projects = App\Project::all();
-
   $projects = collect($projects);
   $randProject = $projects->shuffle();
   $project_id = $randProject->first()->id;
-
   $users = DB::select(
       'SELECT *
       FROM users
@@ -230,18 +189,14 @@ $factory->define(App\UserReview::class, function (Faker\Generator $faker, $revie
       WHERE project_id = ' . $project_id . ')
       AND id != ' . $reviewer_id['reviewer_id'] . ';'
     );
-
-
   $users = collect($users);
   $randUser = $users->shuffle();
   $user_id = $randUser->first()->id;
-
   $overall = [
     'P', 'N',
   ];
   $key = array_rand($overall);
   $overall = $overall[$key];
-
   return [
     'user_id' => $user_id,
     'project_id' => $project_id,
@@ -249,21 +204,17 @@ $factory->define(App\UserReview::class, function (Faker\Generator $faker, $revie
     'review' => $faker->text(512),
     ];
 });
-
 // ---------------------- EndorseSkill Factory ----------------------------- //
 $factory->define(App\EndorseSkill::class, function (Faker\Generator $faker, $endorser_id) {
   $users = App\User::find($endorser_id['endorser_id'])->relationships;
-
   // DB::select(
   //     'SELECT *
   //     FROM users
   //     WHERE id != ' . $endorser_id['endorser_id'] . ';'
   //   );
-
   // $users = collect($users);
   $randUser = $users->shuffle();
   $user_id = $randUser->first()->id;
-
   $skills = DB::select(
       'SELECT *
       FROM skills
@@ -271,11 +222,9 @@ $factory->define(App\EndorseSkill::class, function (Faker\Generator $faker, $end
       FROM users_skills
       WHERE user_id = ' . $user_id . ');'
     );
-
   $skills = collect($skills);
   $randSkill = $skills->shuffle();
   $skill_id = $randSkill->first()->id;
-
   return [
     'user_id' => $user_id,
     'skill_id' => $skill_id,

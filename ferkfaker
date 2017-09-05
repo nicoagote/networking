@@ -1,0 +1,13 @@
+<?php
+
+$nombresMasculinos = ['Adrián', 'Agustín', 'Alex', 'Álvaro', 'Andrés', 'Bautista', 'Benjamín', 'Bernardo', 'Bruno', 'Camilo', 'Carlos', 'Damián', 'Daniel', 'Darío', 'Eduardo', 'Emilio', 'Esteban', 'Facundo', 'Felipe', 'Félix', 'Fernando', 'Fermín', 'Florentino', 'Francisco', 'Gabriel', 'Gerardo', 'Gonzalo', 'Gustavo', 'Héctor', 'Hernán', 'Horacio', 'Ignacio', 'Iñaki', 'Ismael', 'Iván', 'Javier', 'Jerónimo', 'Joel', 'Jonás', 'Jorge', 'José', 'Juan', 'Kevin', 'Leandro', 'Lionel', 'Lorenzo', 'Lucas', 'Manuel', 'Marcos', 'Mariano', 'Martín', 'Matías', 'Nahuel', 'Nicolás', 'Omar', 'Oscar', 'Pablo', 'Patricio', 'Pedro', 'Ramón', 'Raúl', 'Rodolfo', 'Santiago', 'Samuel', 'Saúl', 'Salomón', 'Simón', 'Tiago', 'Tobías', 'Tomás', 'Uriel', 'Valentín', 'Víctor', 'Walter', 'Wenceslao', 'Xavier', 'Zacarías'];
+
+$nombresFemeninos = ['Abril', 'Amparo', 'Azul', 'Beatriz', 'Belén', 'Bernarda', 'Bianca', 'Camila', 'Camelia', 'Carmen', 'Catalina', 'Daniela', 'Delfina', 'Elena', 'Emilia', 'Estefanía', 'Faustina', 'Fernanda', 'Florencia', 'Gabriela', 'Graciela', 'Inés', 'Jimena', 'Joaquina', 'Juana', 'Julieta', 'Justina', 'Karina', 'Lucia', 'Luciana', 'Lucila', 'Luz', 'Malena', 'María', 'Martina', 'Micaela', 'Michelle', 'Milagros', 'Morena', 'Nicole', 'Olivia', 'Paula', 'Paola', 'Paz', 'Pilar', 'Rosa', 'Rosario', 'Sofía', 'Stefanía', 'Valentina', 'Victoria'];
+
+$apellidos = ['Agote', 'Álvarez', 'Ayerza', 'Berisso', 'Bianchi', 'Brillarelli', 'Carman', 'Ceniceros', 'Coronel', 'Costa', 'Chatburn', "Dall'Asta", 'Damico', 'de Vedia', 'del Castillo', 'del Molino', 'Diehl', 'Domínguez', 'Favereau', 'Feit', 'Fernández', 'Ferrer', 'Fortunatti', 'Funes', 'Galmarini', 'Gómez', 'González', 'Green', 'Grether', 'Herrera', 'Innaco', 'Iván', 'Julianes', 'Ketelhohn', 'Larrosa', 'Latrichia', 'López', 'Madero', 'Martínez', 'Messi', 'Millán', 'Montero', 'Murphy', 'Olcese', 'Otaño', 'Pacheco', 'Petruccelli', 'Reyser', 'Rodríguez', 'Ruiu', 'Ruíz', 'Scala', 'Susnisky', 'Tauber', 'Tarquini', 'Teich', 'Torres', 'Vidal', 'Zalduendo'];
+
+$trabajos = ['Desarrollador C#', 'Desarrollador C++', 'Desarrollador Front End', 'Desarrollador HTML y CSS', 'Desarrollador Java', 'Desarrollador JavaScript', 'Desarrollador PHP', 'Desarrollador Python', 'Desarrollador Ruby', 'Desarrollador SQL' 'Diseñador Grafico', 'Diseñador UX', 'Desarrollador Mobile Android', 'Desarrollador Mobile iOS', 'Desarrollador Front End', 'Desarrollador Back End'];
+
+$seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior'];
+
+$emprendimientos = ['desarrollar una app', 'desarrollar una pagina web', 'una startup']
