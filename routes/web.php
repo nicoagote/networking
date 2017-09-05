@@ -37,3 +37,5 @@ Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarPr
 Route::get('/editarproyecto', 'HomeController@editarProyecto')->name('editarproyecto');
 Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
 Route::get('/proyecto', 'HomeController@proyecto')->name('proyecto');
+Route::get('/contactos', 'HomeController@contacto')->name('contactos');
+Route::get('/faqs', 'HomeController@faqs')->name('faqs');

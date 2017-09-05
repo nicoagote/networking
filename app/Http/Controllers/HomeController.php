@@ -103,4 +103,14 @@ class HomeController extends Controller
     {
         return view('proyecto');
     }
+
+    public function contacto()
+    {
+        return view('contactos');
+    }
+
+    public function faqs()
+    {
+        return view('faqs');
+    }
 }
