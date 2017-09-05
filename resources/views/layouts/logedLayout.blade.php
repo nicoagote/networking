@@ -5,6 +5,9 @@
     <title> @yield("title") </title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    @yield("link")
+
     <style>
     html, body {
       background-color: #fff;
@@ -70,6 +73,9 @@
       #net-working{
         display: block;
       }
+      .botones{
+        margin-top: 22px;
+      }
       @media screen and (max-width: 768px) {
           .side-collapse-container{
               width:100%;
@@ -103,7 +109,11 @@
           #net-working{
             display: none;
           }
+          .botones{
+            margin-top: 0px;
+          }
       }
+      @yield('css')
     </style>
    </head>
   <body>
@@ -118,8 +128,8 @@
         <div class="navbar-inverse side-collapse in">
           <nav role="navigation" class="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/home" id="net-working"><img src="nw.png" alt="Logo de networking"></a></li>
-              <li><a href="/perfil" style="text-align:ceter;">
+              <li><a class="botones" href="/home" id="net-working"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a></li>
+              <li><a class="botones" href="/perfil" style="text-align:ceter;">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
                   <img src="https://image.freepik.com/iconos-gratis/persona-de-negocios-hombre-que-sostiene-una-maleta_318-63795.jpg" class="image-Perfil">
                 </span>
@@ -127,13 +137,12 @@
                   Perfil
                 </span>
                 </a></li>
-              <li><a href="/home">Buscar Proyectos</a></li>
-              <li><a href="/misproyectos">Mis Proyectos</a></li>
-              <li><a href="/crearproyecto">Crear Proyectos</a></li>
-              <li><a href="/contactos">Contactos</a></li>
-              <li><a href="/faqs">FAQS</a></li>
+              <li><a class="botones" href="/misproyectos">Mis Proyectos</a></li>
+              <li><a class="botones" href="/crearproyecto">Crear Proyectos</a></li>
+              <li><a class="botones" href="/contactos">Contactos</a></li>
+              <li><a class="botones" href="/faqs">FAQS</a></li>
               <li>
-                  <a href="{{ route('logout') }}"
+                  <a class="botones" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
                       Cerrar Sesión
