@@ -173,7 +173,7 @@ ul.c-controls li a:hover {
   <div class="col-md-4 col-xs-12" style="padding-top: 10%;margin-bottom:5%;">
     <div class="row">
 
-            <div class="panel panel-default">
+            <div class="panel panel-default center-block">
 
               <ul>
 
@@ -189,7 +189,7 @@ ul.c-controls li a:hover {
                               <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
                           </div>
                           <div class="col-xs-12 col-sm-9">
-                              <span class="name"><?php echo $user->surname .", " . $user->name; ?></span><br/>
+                              <span class="name"> <a href="/perfil/{{$user->id}}"> <?php echo $user->surname .", " . $user->name; ?></a></span><br/>
                               <span class="username"> <?php echo $user->username; ?><br/></span>
                           </div>
                           <div class="clearfix"></div>

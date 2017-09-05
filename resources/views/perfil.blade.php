@@ -156,18 +156,18 @@ ul.c-controls li a:hover {
             </div>
 
             <div class="col-xs-12">
-              <h2>{{$perfil->description}}</h2>
+              <h3>{{$perfil->description}}</h2>
             </div>
           </div>
 
           <div class="panel-body">
 
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <h2>{{$perfil->email}}</h2><br>
+              <h3 class="pull-left">{{$perfil->email}}</h2><br>
             </div>
 
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <h2>{{$perfil->phone}}</h2><br>
+              <h3 class="pull-rigth">{{$perfil->phone}}</h2><br>
             </div>
 
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">

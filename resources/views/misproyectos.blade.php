@@ -172,7 +172,7 @@ ul.c-controls li a:hover {
                             <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
                           </div>
                           <div class="col-xs-12 col-sm-9">
-                            <span class="subtitle">{{$project->title}}</span><br/>
+                            <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
                           </div>
                           <div class="clearfix"></div>
                         </li>
@@ -199,7 +199,7 @@ ul.c-controls li a:hover {
                                 <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
                             </div>
                             <div class="col-xs-12 col-sm-9">
-                              <span class="subtitle">{{$project->title}}</span><br/>
+                              <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
                             </div>
                             <ul class="pull-right c-controls">
                               <form class="" action="/contactos" method="post">
@@ -229,7 +229,7 @@ ul.c-controls li a:hover {
                       <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="h3">{{$project->title}}</span><br/><span>by {{$project->creator->name}} {{$project->creator->surname}}</span>
+                      <span class="h3"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span>by {{$project->creator->name}} {{$project->creator->surname}}</span>
                   </div>
                   <div class="col-xs-12 col-sm-9">
                       <span class="small">
