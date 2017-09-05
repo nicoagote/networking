@@ -42,7 +42,7 @@ class HomeController extends Controller
     {
           $perfil = Auth::User();
           $data = compact('perfil');
-          return view('perfil', $data);
+          return view('perfilpropio', $data);
     }
 
     public function editarPerfil()

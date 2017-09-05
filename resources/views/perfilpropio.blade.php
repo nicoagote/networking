@@ -143,6 +143,9 @@ ul.c-controls li a:hover {
 
           <div class="panel-heading">
               <span class="title">Perfil</span>
+              <span class="pull-right c-controls">
+                <a href="/editarperfil"><span class="glyphicon glyphicon-pencil"></a>
+              </span>
           </div>
 
           <div class="panel-body">
