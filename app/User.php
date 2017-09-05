@@ -76,4 +76,9 @@ class User extends Authenticatable
       return $this->belongsToMany('App\User', 'endorse_skills', 'user_id', 'endorser_id')->where('skill_id', '=', $skill->id)->get();
     }
 
+    public function curriculumDownloadLink() {
+      $dotPosition = strpos($this->curriculum_file_location, '.');
+      $extension = substr($this->curriculum_file_location, $dotPosition + 1, strlen($this->curriculum_file_location) + 1 - $dotPosition);
+      echo '/download/curriculum' . $this->id . '.' . $extension;
+    }
 }
