@@ -19,6 +19,14 @@ class Project extends Model
     }
 
     public function users() {
-      return $this->belongsToMany('App\User', 'projects_users', 'project_id', 'user_id');
+      return $this->belongsToMany('App\User', 'projects_users', 'project_id', 'user_id')->where('state', '=', 'part_of');
+    }
+
+    public function requests() {
+      return $this->belongsToMany('App\User', 'projects_users', 'project_id', 'user_id')->where('state', '=', 'request');
+    }
+
+    public function blocked() {
+      return $this->belongsToMany('App\User', 'projects_users', 'project_id', 'user_id')->where('state', '=', 'blocked');
     }
 }
