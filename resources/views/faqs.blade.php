@@ -126,20 +126,72 @@ $(function() {
     });
 </script>
 
-<div class="container"  style="padding-top: 10%;margin-bottom:5%;">
-  <div class="col-md-4">
-    <ul class="list-group help-group">
-      <div class="faq-list list-group nav nav-tabs">
-        <a href="#tab1" class="list-group-item active" role="tab" data-toggle="tab">Frequently Asked Questions</a>
-        <a href="#tab2" class="list-group-item" role="tab" data-toggle="tab"><i class="mdi mdi-account"></i> My profile</a>
-        <a href="#tab3" class="list-group-item" role="tab" data-toggle="tab"><i class="mdi mdi-account-settings"></i> My account</a>
-        <a href="#tab4" class="list-group-item" role="tab" data-toggle="tab"><i class="mdi mdi-star"></i> My favorites</a>
-        <a href="#tab5" class="list-group-item" role="tab" data-toggle="tab"><i class="mdi mdi-cart"></i> Checkout</a>
-        <a href="#tab6" class="list-group-item" role="tab" data-toggle="tab"><i class="mdi mdi-heart"></i> Lorem ipsum</a>
-        <a href="#tab7" class="list-group-item" role="tab" data-toggle="tab"><i class="mdi mdi-check"></i> Dolor sit amet</a>
+
+
+<div class="container" style="padding-top: 10%;margin-bottom:5%;" >
+  <div class="row">
+      <div class="col-xs-12 col-sm-12">
+          <div class="panel panel-default">
+              <div class="panel-heading c-list">
+                  <span class="h2" >Frequently Asqued Questions</span>
+              </div>
+
+              <ul class="list-group" id="contact-list">
+
+                <li class="list-group-item">
+
+                    <div class="col-xs-12 col-sm-12">
+                        <span class="h3">Que es Networking?</span><br/>
+                        <span class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br/></span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                <li class="list-group-item">
+
+                    <div class="col-xs-12 col-sm-12">
+                        <span class="h3">Que es Networking?</span><br/>
+                        <span class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br/></span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                <li class="list-group-item">
+
+                    <div class="col-xs-12 col-sm-12">
+                        <span class="h3">Que es Networking?</span><br/>
+                        <span class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br/></span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                <li class="list-group-item">
+
+                    <div class="col-xs-12 col-sm-12">
+                        <span class="h3">Que es Networking?</span><br/>
+                        <span class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br/></span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                <li class="list-group-item">
+
+                    <div class="col-xs-12 col-sm-12">
+                        <span class="h3">Que es Networking?</span><br/>
+                        <span class="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br/></span>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+
+              </ul>
+          </div>
       </div>
-    </ul>
   </div>
+</div>
+
+<!-- <div class="container"  style="padding-top: 10%;margin-bottom:5%;">
+
   <div class="col-md-8">
     <div class="tab-content panels-faq">
       <div class="tab-pane active" id="tab1">
@@ -230,4 +282,4 @@ $(function() {
       </div>
     </div>
   </div>
-</div>
+</div> -->
