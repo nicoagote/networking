@@ -98,7 +98,22 @@ class HomeController extends Controller
 
     public function misProyectos()
     {
-        return view('misproyectos');
+        $projects = Auth::User()->projects;
+        $relatedProjectUser = App\ProjectUser::all()->filter(function($projectUser) {
+          if($projectUser['user_id'] == Auth::user()->id && $projectUser['state'] == 'part_of') {
+            return $projectUser;
+          }
+        });
+        $projectsPartOf = collect([]);
+        foreach ($relatedProjectUser as $projectUser) {
+          $projectsPartOf[] = App\Project::find($projectUser['project_id']);
+        }
+
+        $recentProject = collect([]);
+
+        $data = compact('projects', 'projectsPartOf', 'recentProject');
+
+        return view('misproyectos', $data);
     }
 
     public function proyecto()
@@ -108,7 +123,13 @@ class HomeController extends Controller
 
     public function contacto()
     {
-        return view('contactos');
+        $contactos = Auth::User()->contacts;
+        $solicitudes = Auth::User()->pendingRequests;
+        $bloqueados = Auth::User()->blocked;
+
+        $data = compact('contactos', 'solicitudes', 'bloqueados');
+
+        return view('contactos', $data);
     }
 
     public function faqs()
