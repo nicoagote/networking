@@ -28,10 +28,37 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@home')->name('home');
 
+Route::get('download/{filename}', function($filename)
+{
+    // Check if file exists in app/storage/file folder
+    if (substr($filename, 0, 3) == 'cur') {
+      $file_path =  storage_path() . '\\app\\public\\curriculums\\'. $filename;
+    } else {
+      $file_path =  storage_path() .'\\app\\public\\profile_pictures\\'. $filename;
+    }
+
+    // dd($file_path);
+
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path)
+        ]);
+    }
+    else
+    {
+        // Error
+        exit('Requested file does not exist on our server!');
+    }
+})
+->where('filename', '[A-Za-z0-9\-\_\.]+');
+
 Route::get('/perfil/{id}', 'HomeController@perfil');
 Route::get('/perfil', 'HomeController@perfilpropio');
 
 Route::get('/editarperfil', 'HomeController@editarPerfil')->name('editarperfil');
+Route::post('/editarperfil', 'HomeController@guardarPerfil');
 
 Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyecto');
 Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarProyecto');

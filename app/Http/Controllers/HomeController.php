@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -47,9 +48,80 @@ class HomeController extends Controller
 
     public function editarPerfil()
     {
-        $usuario = Auth::user();
-        $data = compact('usuario');
+        $user = Auth::user();
+        $data = compact('user');
         return view('editarperfil', $data);
+    }
+
+    public function guardarPerfil(Request $req) {
+      $rules = [
+        'name'      => 'required|string|max:191',
+        'surname'   => 'required|string|max:191',
+        'username'  => ['required',
+                        'string',
+                        'max:191',
+                        Rule::unique('users')->ignore(Auth::user()->id),
+                      ],
+        'email'     => ['required',
+                        'string',
+                        'email',
+                        'max:191',
+                        Rule::unique('users')->ignore(Auth::user()->id),
+                      ],
+        'phone' => 'max:191',
+        'git' => 'max:191',
+        'linkedin' => 'max:191',
+        'description' => 'max:191',
+      ];
+
+      $messages = [
+        'name.required' => 'Tu nombre no puede quedarse vacío',
+        'name.max' => 'Lo sentimos. Tu nombre debe ser más corto que los 191 caracteres.',
+        'surname.required' => 'Tu apellido no puede quedarse vacío',
+        'surname.max' => 'Lo sentimos. Tu apellido debe ser más corto que los 191 caracteres.',
+        'username.required' => 'Tu nombre de usuario no puede quedarse vacío',
+        'username.max' => 'Lo sentimos. Tu nombre de usuario debe ser más corto que los 191 caracteres.',
+        'email.required' => 'Tu email no puede quedarse vacío',
+        'phone.max' => 'Lo sentimos. Tu telefono debe ser más corto que los 191 caracteres.',
+        'git.max' => 'Lo sentimos. El link a tu cuenta de git debe ser más corto que los 191 caracteres.',
+        'linkedin.max' => 'Lo sentimos. Tu link a tu cuenta de linkedin debe ser más corto que los 191 caracteres.',
+        'description.max' => 'Lo sentimos. Tu descripcion personal debe ser más corto que los 191 caracteres.',
+      ];
+
+      $this->validate($req, $rules, $messages);
+      
+      $user = [];
+      $user['name'] = $req['name'];
+      $user['surname'] = $req['surname'];
+      $user['username'] = $req['username'];
+      $user['email'] = $req['email'];
+      $user['password'] = Auth::user()->password;
+      $user['phone'] = $req['phone'];
+      $user['date_of_birth'] = $req['date_of_birth'];
+      $user['git'] = $req['git'];
+      $user['linkedin'] = $req['linkedin'];
+      $user['description'] = $req['description'];
+      $user['available'] = isset($req['available'])? 'Y' : 'N';
+
+      if (isset($req['profile_picture_file_location'])) {
+        // dd($req['profile_picture_file_location']);
+        $profilePictureName = 'perfil' . Auth::user()->id . '.' . $req->profile_picture_file_location->extension();
+        $profilePictureFolder = '/profile_pictures';
+        $path = $req->profile_picture_file_location->storeAs($profilePictureFolder, $profilePictureName, 'public');
+        $user['profile_picture_file_location'] = $profilePictureFolder."/".$profilePictureName;
+      }
+      if (isset($req['curriculum_file_location'])) {
+        $curriculumName = 'curriculum' . Auth::user()->id . '.' . $req->curriculum_file_location->extension();
+        $curriculumFolder = '/curriculums';
+        $path = $req->curriculum_file_location->storeAs($curriculumFolder, $curriculumName, 'public');
+        $user['curriculum_file_location'] = $curriculumFolder."/".$curriculumName;
+      }
+
+      // dd($user);
+
+      Auth::user()->update($user);
+
+      return redirect('perfil');
     }
 
     public function crearProyecto()
