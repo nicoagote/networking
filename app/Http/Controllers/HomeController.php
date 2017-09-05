@@ -24,7 +24,11 @@ class HomeController extends Controller
      */
     public function home()
     {
-        return view('home');
+        $skills = App\Skill::all();
+
+        $data = compact('skills');
+
+        return view('home', $data);
     }
 
     public function perfil($id)
@@ -45,7 +49,7 @@ class HomeController extends Controller
     {
         $skills = App\Skill::all();
 
-        $data = ['skills' => $skills];
+        $data = compact('skills');
 
         return view('crearproyecto', $data);
     }
