@@ -129,7 +129,8 @@
                 </a></li>
               <li><a href="#">Buscar Proyectos</a></li>
               <li><a href="#">Mis Proyectos</a></li>
-              <li><a href="#">Contactos</a></li>
+              <li><a href="/crearproyecto">Crear Proyectos</a></li>
+              <li><a href="/contactos">Contactos</a></li>
               <li><a href="#">FAQS</a></li>
             </ul>
           </nav>
