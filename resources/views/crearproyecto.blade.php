@@ -1,5 +1,9 @@
 @extends("layouts.logedLayout")
 
+@section('title')
+Creá tu proyecto - NW
+@endsection
+
 @section("contenidoLog")
 
   <div class="container"style="padding-top: 10%;margin-bottom:5%;">

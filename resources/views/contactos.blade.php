@@ -1,5 +1,9 @@
 @extends("layouts.logedLayout")
 
+@section('title')
+Mis contactos - NW
+@endsection
+
 @section("contenidoLog")
 
 
