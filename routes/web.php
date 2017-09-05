@@ -54,7 +54,9 @@ Route::get('download/{filename}', function($filename)
 })
 ->where('filename', '[A-Za-z0-9\-\_\.]+');
 
-Route::get('/perfil', 'HomeController@perfil')->name('perfil');
+Route::get('/perfil/{id}', 'HomeController@perfil');
+Route::get('/perfil', 'HomeController@perfilpropio');
+
 Route::get('/editarperfil', 'HomeController@editarPerfil')->name('editarperfil');
 Route::post('/editarperfil', 'HomeController@guardarPerfil');
 
@@ -63,6 +65,6 @@ Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarPr
 
 Route::get('/editarproyecto', 'HomeController@editarProyecto')->name('editarproyecto');
 Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
-Route::get('/proyecto', 'HomeController@proyecto')->name('proyecto');
 Route::get('/contactos', 'HomeController@contacto')->name('contactos');
 Route::get('/faqs', 'HomeController@faqs')->name('faqs');
+Route::get('/proyecto/{id?}', 'HomeController@proyecto');

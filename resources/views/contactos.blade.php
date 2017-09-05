@@ -169,7 +169,7 @@ ul.c-controls li a:hover {
                         <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                        <span class="name"><?php echo $contacto->surname .", " . $contacto->name; ?></span><br/>
+                        <span class="name"> <a href="/perfil/{{$contacto->id}}"><?php echo $contacto->surname .", " . $contacto->name; ?></a> </span><br/>
                         <span class="username"> <?php echo $contacto->username; ?><br/></span>
                         <span class="email" data-toggle="tooltip" title="<?php echo $contacto->email; ?>"><?php echo $contacto->email; ?><br/></span>
                         <span class="phone" data-toggle="tooltip" title="<?php echo $contacto->phone; ?>"><?php echo $contacto->phone; ?></span>
@@ -197,7 +197,7 @@ ul.c-controls li a:hover {
                       <img src="<?php echo $solicitud->profile_picture_file_location; ?>" alt="" class="img-responsive img-circle" />
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="subtitle"><?php echo $solicitud->surname . ', ' . $solicitud->name; ?></span><br/>
+                      <span class="subtitle"><a href="/perfil/{{$contacto->id}}"><?php echo $solicitud->surname .", " . $solicitud->name; ?></a></span><br/>
                   </div>
                   <ul class="pull-right c-controls">
                       <form class="" action="/contactos" method="post">

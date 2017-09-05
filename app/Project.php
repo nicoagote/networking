@@ -11,7 +11,7 @@ class Project extends Model
     ];
 
     public function skills() {
-      return $this->belongsToMany('App\ProjectSkill', 'project_skill', 'project_id', 'skill_id');
+      return $this->belongsToMany('App\Skill', 'projects_skills', 'project_id', 'skill_id');
     }
 
     public function creator() {
