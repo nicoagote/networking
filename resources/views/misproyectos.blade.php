@@ -17,6 +17,16 @@ body {
   margin-top: auto;
 }
 
+.adelante{
+  z-index: 150;
+}
+
+.agrandar img:hover{
+  height: 55px;
+}
+
+
+
 .btn-link {
   font-size: 1.5em;
 }
@@ -38,6 +48,21 @@ body {
 @media (max-width: 767px) {
   .visible-xs {
       display: inline-block !important;
+  }
+
+  .achicartitulo{
+    font-size: 18px;
+  }
+
+  .achicardes{
+    font-size: 14px;
+    padding: 2%;
+    margin: auto;
+  }
+
+  .separarpencil{
+    margin: 3%;
+    padding: 3%;
   }
 
   .pull-rigth{
@@ -156,7 +181,7 @@ ul.c-controls li a:hover {
                       </div>
                   </div>
               </div>
-
+              @if($recentProject != collect([]))
               <div class="panel-default panel col-xs-12">
                 <div class="panel-heading ">
                   <div class="panel panel-primary">Proyectos recientes</div>
@@ -169,7 +194,7 @@ ul.c-controls li a:hover {
 
                         <li class="list-group-item">
                           <div class="col-xs-12 col-sm-3">
-                            <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                            <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                           </div>
                           <div class="col-xs-12 col-sm-9">
                             <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
@@ -185,7 +210,8 @@ ul.c-controls li a:hover {
                 </div>
 
               </div>
-
+              @endif
+              @if($projects != collect([]))
               <div class="panel-default panel col-xs-12">
                 <div class="panel-heading ">
                     <div class="panel panel-primary">Mis proyectos</div>
@@ -196,10 +222,35 @@ ul.c-controls li a:hover {
 
                         <li class="list-group-item">
                             <div class="col-xs-12 col-sm-3">
-                                <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                                <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                             </div>
                             <div class="col-xs-12 col-sm-9">
-                              <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
+
+                              <span class="pull-right">
+
+                                  <?php foreach ($project->skills as $skill): ?>
+
+                                        <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
+
+                                          <div class="adelante agrandar" >
+                                            <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
+                                          </div>
+
+                                        </div>
+
+                                  <?php endforeach; ?>
+
+                              </span>
+
+                              <div class="col-xs-12 col-sm-9">
+                                  <span class="h3 achicardes"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicardes">by {{$project->creator->name}} {{$project->creator->surname}}</span>
+                              </div>
+                              <div class="col-xs-12 col-sm-9">
+                                  <span class="small achicardes">
+                                    {{$project->short_description}}
+                                  </span>
+                              </div>
+
                             </div>
                             <ul class="pull-right c-controls">
                               <form class="" action="/contactos" method="post">
@@ -216,7 +267,8 @@ ul.c-controls li a:hover {
                   </div>
                 </div>
           </div>
-
+          @endif
+          @if($projectsPartOf != collect([]))
       <div class="panel-default panel col-xs-12">
         <div class="panel-heading ">
             <div class="panel panel-primary">Proyectos en los que participo</div>
@@ -226,16 +278,35 @@ ul.c-controls li a:hover {
 
               <li class="list-group-item">
                   <div class="col-xs-12 col-sm-3">
-                      <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                      <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="h3"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span>by {{$project->creator->name}} {{$project->creator->surname}}</span>
+                      <span class="h3 achicartitulo"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicartitulo">by {{$project->creator->name}} {{$project->creator->surname}}</span>
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="small">
+                      <span class="small achicardes">
                         {{$project->short_description}}
                       </span>
                   </div>
+
+                  <span class="pull-right">
+
+
+
+                      <?php foreach ($project->skills as $skill): ?>
+
+
+                            <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
+                                {{$skill->getImage()}}
+                            </div>
+
+
+
+
+                      <?php endforeach; ?>
+
+
+                  </span>
                   <div class="clearfix"></div>
               </li>
 
@@ -244,6 +315,7 @@ ul.c-controls li a:hover {
             </ul>
         </div>
       </div>
+      @endif
 
 
 </div>

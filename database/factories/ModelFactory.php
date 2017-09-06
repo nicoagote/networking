@@ -49,7 +49,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'linkedin' => 'https://linkedin.com/' . $username,
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', #!!! randomize
         'curriculum_file_location' => NULL, #!!! randomize
-        'profile_picture_file_location' => "/profile_pictures/" . $default_profile_picture,
+        'profile_picture_file_location' => "profile_pictures/" . $default_profile_picture,
     ];
 });
 // --------------------------- UserSkill Factory ----------------------------- //

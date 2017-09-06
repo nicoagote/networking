@@ -107,9 +107,9 @@ class HomeController extends Controller
       if (isset($req['profile_picture_file_location'])) {
         // dd($req['profile_picture_file_location']);
         $profilePictureName = 'perfil' . Auth::user()->id . '.' . $req->profile_picture_file_location->extension();
-        $profilePictureFolder = '/profile_pictures';
-        $path = $req->profile_picture_file_location->storeAs($profilePictureFolder, $profilePictureName, 'public');
-        $user['profile_picture_file_location'] = $profilePictureFolder."/".$profilePictureName;
+        $profilePictureFolder = 'profile_pictures';
+        $path = $req->profile_picture_file_location->storeAs('/' . $profilePictureFolder, $profilePictureName, 'public');
+        $user['profile_picture_file_location'] = $profilePictureFolder . '/' . $profilePictureName;
       }
       if (isset($req['curriculum_file_location'])) {
         $curriculumName = 'curriculum' . Auth::user()->id . '.' . $req->curriculum_file_location->extension();
@@ -205,6 +205,8 @@ class HomeController extends Controller
         $recentProject = collect([]);
 
         $data = compact('projects', 'projectsPartOf', 'recentProject');
+
+        // dd($data);
 
         return view('misproyectos', $data);
     }
