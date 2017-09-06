@@ -5,8 +5,10 @@
     <title>NW</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
     <style>
     html, body {
       background-color: #fff;
@@ -69,7 +71,7 @@
         @if (Auth::check())
 
         @else
-          <a class="navbar-brand" href="/"><img src="nw.png" alt=""></a>
+          <a class="navbar-brand" href="/"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a>
           <a href="{{ url('/login') }}" class="pull-right navbar-brand">Entrá</a>
           <a href="{{ url('/register') }}" class="pull-right navbar-brand">Registrate</a>
         @endif

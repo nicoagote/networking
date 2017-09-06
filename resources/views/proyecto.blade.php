@@ -186,7 +186,7 @@ ul.c-controls li a:hover {
 
                       <li class="list-group-item">
                           <div class="col-xs-12 col-sm-3">
-                              <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                              <img src="{{$user->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                           </div>
                           <div class="col-xs-12 col-sm-9">
                               <span class="name"> <a href="/perfil/{{$user->id}}"> <?php echo $user->surname .", " . $user->name; ?></a></span><br/>

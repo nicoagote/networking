@@ -1,6 +1,8 @@
 @extends('layouts/welcomeLayout')
 
 @section('contenido')
+
+  <img src="{{$usuarios->first()->getProfilePictureLocation()}}" alt="Imagen de perfil">
   <div class="container">
 
     <?php
