@@ -204,7 +204,7 @@ ul.c-controls li a:hover {
                             <ul class="pull-right c-controls">
                               <form class="" action="/contactos" method="post">
                                 {{ csrf_field() }}
-                                <a href="editarproyecto" class="glyphicon glyphicon-pencil"></a>
+                                <a href="editarproyecto/{{$project->id}}" class="glyphicon glyphicon-pencil"></a>
                               </form>
                               <!-- <li><a href="/home"  title="Añadir Contacto"><i ></i></a></li> -->
                             </ul>
