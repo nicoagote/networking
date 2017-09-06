@@ -221,14 +221,15 @@ ul.c-controls li a:hover {
   </div>
 </div>
 
-<div class="container col-xs-12" style="padding-top: 5%;margin-bottom:5%;">
+<div class="container" style="padding-top: 5%;margin-bottom:5%;">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 col-md-12-offset-2">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <span class="title">Proyectos</span>
+              </div>
 
-
-
-          <div class="panel-default panel col-xs-12 col-md-10 ">
-            <div class="panel-heading center-block ">
-                <div class="panel panel-primary">Proyectos</div>
-
+              <div class="panel-body">
                   <ul class="list-group" id="contact-list">
 
                       <?php foreach ($proyecto as $project): ?>
@@ -271,16 +272,28 @@ ul.c-controls li a:hover {
                                       {{$proyecto->links()}}
 
                 </ul>
-            </div>
+
+              </div>
+
+          </div>
         </div>
+      </div>
+
+
+
 
 
 </div>
 
-<div class="container col-xs-12" style="padding-top: 5%;margin-bottom:5%;">
-          <div class="panel-default panel col-xs-12 col-md-12 center-block">
-            <div class="panel-heading ">
-                <div class="panel panel-primary">Usuarios</div>
+<div class="container" style="padding-top: 5%;margin-bottom:5%;">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 col-md-12-offset-2">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <span class="title">Usuarios</span>
+              </div>
+
+              <div class="panel-body">
 
                   <ul class="list-group" id="contact-list">
 
@@ -324,12 +337,11 @@ ul.c-controls li a:hover {
                                       {{$usuarios->links()}}
 
                 </ul>
-            </div>
+              </div>
+
+          </div>
         </div>
-
-
-</div>
-
+      </div>
 
 
 
