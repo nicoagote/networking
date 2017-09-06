@@ -17,7 +17,7 @@
 
                         <div class="form-group{{ $errors->has('profile_picture_file_location') ? ' has-error' : '' }}">
                           <label class="col-md-12" for="profile_picture_file_location" title="Si no elegís ningún archivo no se sobreescribirá">
-                            <img src="http://api.randomuser.me/portraits/men/49.jpg"  class="center-block img-circle" alt="">
+                            <img src="{{Auth::user()->getProfilePictureLocation()}}"  class="center-block img-circle" alt="">
                           </label>
                             <label for="profile_picture_file_location" class="col-md-4 control-label" title="Si no elegís ningún archivo no se sobreescribirá">Foto de Perfil</label>
 

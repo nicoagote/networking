@@ -112,11 +112,15 @@
           .botones{
             margin-top: 0px;
           }
+          .perfil{
+            background-color: rgb(34, 34, 34);
+            border-bottom: 1px solid rgb(81, 82, 82);
+          }
       }
       @yield('css')
     </style>
    </head>
-  <body>
+  <body id="body">
     <div class="full-height">
 
     <!-- nav bar -->
@@ -129,12 +133,12 @@
           <nav role="navigation" class="navbar-collapse">
             <ul class="nav navbar-nav">
               <li><a class="botones" href="/home" id="net-working"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a></li>
-              <li><a class="botones" href="/perfil" style="text-align:ceter;">
+              <li><a class="botones perfil" href="/perfil" style="text-align:ceter;">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
-                  <img src="https://image.freepik.com/iconos-gratis/persona-de-negocios-hombre-que-sostiene-una-maleta_318-63795.jpg" class="image-Perfil">
+                  {{Auth::user()->getProfilePicture()}}
                 </span>
                 <span>
-                  Perfil
+                  {{Auth::user()->name}}  {{Auth::user()->surname}}
                 </span>
                 </a></li>
               <li><a class="botones" href="/misproyectos">Mis Proyectos</a></li>

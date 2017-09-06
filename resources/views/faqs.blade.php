@@ -129,6 +129,7 @@ $(function() {
           <div class="panel panel-default">
               <div class="panel-heading c-list">
                   <span class="h2" >Frequently Asqued Questions</span>
+                  <span><button type="button" name="button" class="pull-right"  id="tema"style="background-color:white; border: none;">otro Tema</button></span>
               </div>
 
               <ul class="list-group" id="contact-list">
@@ -184,7 +185,26 @@ $(function() {
       </div>
   </div>
 </div>
+<script type="text/javascript">
+  var numTema = 1;
+  var tema = document.getElementById('tema')
+  tema.onclick = function () {
+    if (numTema == 1) {
+      document.getElementById("body").style.backgroundColor = "black";
+      document.getElementById("body").style.Color = "white"
+      numTema = 2;
+    }else {
+      document.getElementById("body").style.backgroundColor = "white";
+      document.getElementById("body").style.Color = "black"
+      numTema = 1;
+    }
+  }
 
+
+
+
+
+</script>
 <!-- <div class="container"  style="padding-top: 10%;margin-bottom:5%;">
 
   <div class="col-md-8">

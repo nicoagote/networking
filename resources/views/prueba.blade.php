@@ -1,6 +1,8 @@
 @extends('layouts/welcomeLayout')
 
 @section('contenido')
+
+  {{$usuarios->first()->getProfilePicture()}}
   <div class="container">
 
     <?php

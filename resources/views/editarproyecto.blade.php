@@ -61,6 +61,10 @@ Edita tu proyecto - NW
                         <span class="col-md-6"></span>
                         <button type="button" id="addSkill" class="btn btn-info" >+</button>
                         <div class="col-md-12" id='skillsSelectors'>
+                          @foreach($proyecto->projectSkills as $projectSkill)
+                          <input type="hidden" name="{{'defaultSkills' . $projectSkill->skill->id . '_id'}}" value="{{[$projectSkill->skill->id]}}">
+                          @endforeach
+
                           <select class="hidden" id='genericSkillSelector'>
                             <option value=NULL>Seleccioná una habilidad</option>
                             @foreach ($skills as $skill)

@@ -29,4 +29,8 @@ class Project extends Model
     public function blocked() {
       return $this->belongsToMany('App\User', 'projects_users', 'project_id', 'user_id')->where('state', '=', 'blocked');
     }
+
+    public function projectSkills() {
+      return $this->belongsToMany('App\ProjectSkill', 'id', 'project_id');
+    }
 }

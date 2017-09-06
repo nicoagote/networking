@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -83,6 +84,15 @@ class User extends Authenticatable
     }
 
     public function getProfilePictureLocation() {
-      echo storage_path() .'\\app\\public\\profile_pictures\\' . $this->profile_picture_file_location;
+      $url = Storage::url($this->profile_picture_file_location);
+      return "$url";
+    }
+
+    public function getAltOfImage() {
+      return "Imagen de perfil de " . $this->name . ' ' . $this->surname;
+    }
+
+    public function getProfilePicture() {
+      echo '<img src="' . $this->getProfilePictureLocation() . '" alt="' .  $this->getAltOfImage() . '" width="128px" height="128px">';
     }
 }

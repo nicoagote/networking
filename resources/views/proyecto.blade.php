@@ -151,26 +151,26 @@ ul.c-controls li a:hover {
         {{$proyecto->long_description}}
       </div>
 
-      <div class="panel-body">
-        <ul style="list-style-type:none">
-          <?php foreach ($proyecto->skills as $skill): ?>
-              <li style="">
 
-                <div class="col-xs-3 col-sm-6">
-                    {{$skill->getImage()}}
-                    <span class="name"><?php echo $skill->name; ?></span><br/>
-                </div>
-                <div class="clearfix"></div>
+        <div style="width:40;">
 
-              <li>
-          <?php endforeach; ?>
+            <?php foreach ($proyecto->skills as $skill): ?>
 
-        </ul>
-      </div>
+
+                  <div class="col-xs-3 col-sm-2 center-block" style="margin-top:4%; padding-top:3%;" title="<?php echo $skill->name; ?>">
+                      {{$skill->getImage()}}
+                  </div>
+
+
+
+            <?php endforeach; ?>
+
+        </div>
+
     </div>
   </div>
 
-  <div class="col-md-4 col-xs-12" style="padding-top: 10%;margin-bottom:5%;">
+  <div class="col-md-4 col-xs-12" style="padding-top: 5%;margin-bottom:5%;">
     <div class="row">
 
             <div class="panel panel-default center-block">
@@ -186,7 +186,7 @@ ul.c-controls li a:hover {
 
                       <li class="list-group-item">
                           <div class="col-xs-12 col-sm-3">
-                              <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                              <img src="{{$user->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                           </div>
                           <div class="col-xs-12 col-sm-9">
                               <span class="name"> <a href="/perfil/{{$user->id}}"> <?php echo $user->surname .", " . $user->name; ?></a></span><br/>

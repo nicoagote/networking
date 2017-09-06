@@ -45,43 +45,20 @@ Home
 </div>
 <div id="opcionesBusquedaAvanzada" style="display:none">
   <div class="form-group">
-    <ul class="nav">
+    <ul class="nav nav-tabs justify-content-center">
       <li class="nav-item">
-        <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Ordenar Por
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Asendiente</a></li>
-          <li><a href="#">desendiente</a></li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <button type="button" id="addSkill" class="btn btn-info" >Buscar por Skills</button>
-      <div class="col-md-12" id='skillsSelectors'>
-        <select class="hidden" id='genericSkillSelector'>
-          <option value=NULL>Seleccioná una habilidad</option>
-          @foreach ($skills as $skill)
-            <option value="{{$skill->id}}">{{$skill->name}}</option>
-          @endforeach
-        </select>
-        <select class="hidden" id='genericSenioritySelector'>
-          @php
-            $seniorities = [NULL => 'Cualquier nivel de expertise',
-                            'trainee' => 'Trainee',
-                            'junior' => 'Junior',
-                            'semi-senior' => 'Semi-senior',
-                            'senior' => 'Senior'];
-          @endphp
-          @foreach ($seniorities as $seniority_level => $nivel)
-            <option value="{{$seniority_level}}">{{$nivel}}</option>
-          @endforeach
-        </select>
-        <button type="button" class="hidden" id='genericRemoveSkillSelector' >-</button>
-      </div>
-    </div>
-
-    </li>
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+      </li>
     </ul>
   {{-- <label class="col-md-4 control-label">Especialidades en las que estas interesado</label> --}}
   {{-- <span class="col-md-6"></span> --}}
