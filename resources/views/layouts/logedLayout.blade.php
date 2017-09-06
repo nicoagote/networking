@@ -138,7 +138,7 @@
                   <img src="{{Auth::user()->getProfilePictureLocation()}}" class="image-Perfil">
                 </span>
                 <span>
-                  {{Auth::user()->name Auth::user()->surname}}
+                  {{Auth::user()->name}} {{Auth::user()->surname}}
                 </span>
                 </a></li>
               <li><a class="botones" href="/misproyectos">Mis Proyectos</a></li>

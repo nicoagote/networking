@@ -150,7 +150,7 @@ ul.c-controls li a:hover {
 
           <div class="panel-body">
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <img width="50%"src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle center-block" />
+              <img width="50%"src="{{Auth::user()->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle center-block" />
             </div>
 
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">

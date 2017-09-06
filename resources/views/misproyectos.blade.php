@@ -156,7 +156,7 @@ ul.c-controls li a:hover {
                       </div>
                   </div>
               </div>
-
+              @if($recentProject != collect([]))
               <div class="panel-default panel col-xs-12">
                 <div class="panel-heading ">
                   <div class="panel panel-primary">Proyectos recientes</div>
@@ -169,7 +169,7 @@ ul.c-controls li a:hover {
 
                         <li class="list-group-item">
                           <div class="col-xs-12 col-sm-3">
-                            <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                            <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                           </div>
                           <div class="col-xs-12 col-sm-9">
                             <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
@@ -185,7 +185,8 @@ ul.c-controls li a:hover {
                 </div>
 
               </div>
-
+              @endif
+              @if($projects != collect([]))
               <div class="panel-default panel col-xs-12">
                 <div class="panel-heading ">
                     <div class="panel panel-primary">Mis proyectos</div>
@@ -196,7 +197,7 @@ ul.c-controls li a:hover {
 
                         <li class="list-group-item">
                             <div class="col-xs-12 col-sm-3">
-                                <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                                <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                             </div>
                             <div class="col-xs-12 col-sm-9">
                               <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
@@ -216,7 +217,8 @@ ul.c-controls li a:hover {
                   </div>
                 </div>
           </div>
-
+          @endif
+          @if($projectsPartOf != collect([]))
       <div class="panel-default panel col-xs-12">
         <div class="panel-heading ">
             <div class="panel panel-primary">Proyectos en los que participo</div>
@@ -226,7 +228,7 @@ ul.c-controls li a:hover {
 
               <li class="list-group-item">
                   <div class="col-xs-12 col-sm-3">
-                      <img src="<?php echo "http://api.randomuser.me/portraits/men/49.jpg"; ?>" alt="" class="img-responsive img-circle" />
+                      <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                   </div>
                   <div class="col-xs-12 col-sm-9">
                       <span class="h3"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span>by {{$project->creator->name}} {{$project->creator->surname}}</span>
@@ -244,6 +246,7 @@ ul.c-controls li a:hover {
             </ul>
         </div>
       </div>
+      @endif
 
 
 </div>
