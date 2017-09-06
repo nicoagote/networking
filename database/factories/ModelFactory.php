@@ -30,6 +30,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $sex = $gender == 'Male' ? 'm' : 'f';
     $available = $faker->boolean ? 'Y' : 'N';
     $username = $faker->userName();
+
+    $default_profile_picture = 'default_profile_picture.jpg';
+
     return [
         'name' => $faker->firstName($gender),
         'surname' => $faker->lastName(),
@@ -46,7 +49,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'linkedin' => 'https://linkedin.com/' . $username,
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', #!!! randomize
         'curriculum_file_location' => NULL, #!!! randomize
-        'profile_picture_file_location' => NULL #!!! randomize
+        'profile_picture_file_location' => "/profile_pictures/" . $default_profile_picture,
     ];
 });
 // --------------------------- UserSkill Factory ----------------------------- //

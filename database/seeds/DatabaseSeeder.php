@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
           }
         }
       });
+      echo "Seeding: Users and Projects" . PHP_EOL;
 
       $users = App\User::all();
       $users->each(function($u) {
@@ -46,6 +47,8 @@ class DatabaseSeeder extends Seeder
           factory(App\UserReview::class)->create(['reviewer_id' => $u->id]);
         }
       });
+
+      echo "Seeding: User Interactions" . PHP_EOL;
 
     }
 }
