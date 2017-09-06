@@ -28,7 +28,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@home')->name('home');
 
-Route::get('download/{filename}', function($filename)
+Route::get('/download/{filename}', function($filename)
 {
     // Check if file exists in app/storage/file folder
     if (substr($filename, 0, 3) == 'cur') {

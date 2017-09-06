@@ -170,27 +170,42 @@ ul.c-controls li a:hover {
               <h3 class="pull-rigth">{{$perfil->phone}}</h2><br>
             </div>
 
-            <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <h2>{{$perfil->curriculum_file_location}}</h2><br>
-            </div>
-
-            <!-- <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <h2>{{$perfil->country}}</h2><br>
-            </div> -->
-
+            @if(isset($perfil->curriculum_file_location))
             <div class="row col-sm-12">
+              <div class="col-xs-12 col-sm-1 col-sm-offset-2">
+                <a class="h3" href="{{$perfil->curriculumDownloadLink()}}">Curriculum</a>
+              </div>
 
-              <div class="col-sm-1 col-sm-offset-3" title="Ir a su LinkedIn">
+              <div class="col-xs-12 col-sm-1 col-sm-offset-2" title="Ir a su LinkedIn">
                 <a href="{{$perfil->linkedin}}"><i class="fa fa-linkedin-square" aria-hidden="true" style="font-size: 6em; text-align:center;"></i>
                 </a>
               </div>
 
-              <div class="col-sm-1 col-sm-offset-3" title="Ir a su GitHub">
+              <div class="col-xs-12 col-sm-1 col-sm-offset-2" title="Ir a su GitHub">
                 <a href="{{$perfil->git}}"><i class="fa fa-github" aria-hidden="true" style="font-size: 6em; text-align:center;"></i>
                 </a>
               </div>
 
             </div>
+            @else
+            <div class="row col-sm-12">
+
+              <div class="col-xs-12 col-sm-1 col-sm-offset-3" title="Ir a su LinkedIn">
+                <a href="{{$perfil->linkedin}}"><i class="fa fa-linkedin-square" aria-hidden="true" style="font-size: 6em; text-align:center;"></i>
+                </a>
+              </div>
+
+              <div class="col-xs-12 col-sm-1 col-sm-offset-3" title="Ir a su GitHub">
+                <a href="{{$perfil->git}}"><i class="fa fa-github" aria-hidden="true" style="font-size: 6em; text-align:center;"></i>
+                </a>
+              </div>
+
+            </div>
+            @endif
+            <!-- <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
+              <h2>{{$perfil->country}}</h2><br>
+            </div> -->
+
 
           </div>
 

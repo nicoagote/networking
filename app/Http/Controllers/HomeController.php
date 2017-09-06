@@ -102,6 +102,7 @@ class HomeController extends Controller
       $user['linkedin'] = $req['linkedin'];
       $user['description'] = $req['description'];
       $user['available'] = isset($req['available'])? 'Y' : 'N';
+      $user['country'] = $req['country'];
 
       if (isset($req['profile_picture_file_location'])) {
         // dd($req['profile_picture_file_location']);
