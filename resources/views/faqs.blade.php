@@ -123,7 +123,7 @@ $(function() {
 
 
 
-<div class="container" style="padding-top: 10%;margin-bottom:5%;" >
+<div class="container" style="padding-top: 5%;margin-bottom:5%;" >
   <div class="row">
       <div class="col-xs-12 col-sm-12">
           <div class="panel panel-default">

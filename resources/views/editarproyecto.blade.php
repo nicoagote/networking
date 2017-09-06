@@ -1,12 +1,12 @@
 @extends("layouts.logedLayout")
 
 @section('title')
-Creá tu proyecto - NW
+Edita tu proyecto - NW
 @endsection
 
 @section("contenidoLog")
 
-  <div class="container"style="padding-top: 10%;margin-bottom:5%;">
+  <div class="container"style="padding-top: 5%;margin-bottom:5%;">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
               <div class="panel panel-default">

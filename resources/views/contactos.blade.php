@@ -135,7 +135,7 @@ ul.c-controls li a:hover {
 }
 </style>
 
-<div class="container" style="padding-top: 10%;margin-bottom:5%;">
+<div class="container" style="padding-top: 5%;margin-bottom:5%;">
 
   <div class="row">
 
