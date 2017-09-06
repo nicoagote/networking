@@ -14,7 +14,7 @@
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control form-control-success" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control form-has-error" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                        <div id="sexDiv" class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                             <label for="sex" class="col-md-4 control-label">Género</label>
 
                             <div class="container col-md-8">
@@ -117,22 +117,71 @@
                         <script type="text/javascript">
 
                           window.addEventListener("load", function() {
-                            var name = document.querySelector("#name");
-                            var surnameDiv         = document.getElementById('surnameDiv');
-                            var usernameDiv        = document.getElementById('usernameDiv');
-                            var emailDiv           = document.getElementById('emailDiv');
-                            var passwordDiv        = document.getElementById('passwordDiv');
-                            var passwordConfirmDiv = document.getElementById('password-confirmDiv');
-                            console.log(name);
-                            name.addEventListener("click", function() {
-                              if (this.value = "") {
-                                this.setAttribute('class', 'form-control form-control-danger');
+                            var name               = document.querySelector("#name");
+                            var surname            = document.querySelector("#surname");
+                            var username           = document.querySelector("#username");
+                            var email              = document.querySelector("#email");
+                            var password           = document.querySelector("#password");
+                            var passwordConfirm    = document.querySelector("#password-confirm");
 
+                            var nameDiv             = document.querySelector("#nameDiv");
+                            var surnameDiv          = document.querySelector("#surnameDiv");
+                            var usernameDiv         = document.querySelector("#usernameDiv");
+                            var emailDiv            = document.querySelector("#emailDiv");
+                            var passwordDiv         = document.querySelector("#passwordDiv");
+                            var passwordConfirmDiv  = document.querySelector("#password-confirmDiv");
+
+
+                            name.addEventListener("blur", function() {
+                              if (this.value == "") {
+                                nameDiv.setAttribute('class', 'form-group has-error');
                               } else {
-                                console.log(1);
-                                this.setAttribute('class', 'form-control form-control-success');
+                                nameDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
+
+                            surname.addEventListener("blur", function() {
+                              if (this.value == "") {
+                                surnameDiv.setAttribute('class', 'form-group has-error');
+                              } else {
+                                surnameDiv.setAttribute('class', 'form-group has-success');
+                              }
+                            });
+
+                            username.addEventListener("blur", function() {
+                              if (this.value == "") {
+                                usernameDiv.setAttribute('class', 'form-group has-error');
+                              } else {
+                                usernameDiv.setAttribute('class', 'form-group has-success');
+                              }
+                            });
+
+                            email.addEventListener("blur", function() {
+                              if (this.value == "") {
+                                emailDiv.setAttribute('class', 'form-group has-error');
+                              } else {
+                                emailDiv.setAttribute('class', 'form-group has-success');
+                              }
+                            });
+
+                            console.log(passwordDiv);
+
+                            password.addEventListener("blur", function() {
+                              if (this.value == "") {
+                                passwordDiv.setAttribute('class', 'form-group has-error');
+                              } else {
+                                passwordDiv.setAttribute('class', 'form-group has-success');
+                              }
+                            });
+
+                            passwordConfirm.addEventListener("blur", function() {
+                              if (this.value == "") {
+                                passwordConfirmDiv.setAttribute('class', 'form-group has-error');
+                              } else {
+                                passwordConfirmDiv.setAttribute('class', 'form-group has-success');
+                              }
+                            });
+
                           });
                         </script>
                     </form>
