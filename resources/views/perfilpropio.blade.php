@@ -138,7 +138,7 @@ ul.c-controls li a:hover {
 
   <div class="row">
 
-    <div class="col-xs-12 col-md-8 col-md-offset-2 ">
+    <div class="col-xs-12 col-md-8 col-md-offset-1 ">
       <div class="panel panel-default">
 
           <div class="panel-heading">
@@ -213,11 +213,29 @@ ul.c-controls li a:hover {
               <h2>{{$perfil->country}}</h2><br>
             </div> -->
 
-
           </div>
 
       </div>
     </div>
+
+    <div class="panel-body col-xs-12 col-md-1">
+      <ul style="list-style-type:none">
+        <?php foreach ($perfil->skills as $skill): ?>
+            <li style="">
+
+              <div class="col-xs-3 col-sm-6">
+                  {{$skill->getImage()}}
+                  <span class="name"><?php echo $skill->name; ?></span><br/>
+              </div>
+              <div class="clearfix"></div>
+
+            <li>
+        <?php endforeach; ?>
+
+      </ul>
+    </div>
+
+
   </div>
 
 </div>
