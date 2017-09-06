@@ -81,4 +81,8 @@ class User extends Authenticatable
       $extension = substr($this->curriculum_file_location, $dotPosition + 1, strlen($this->curriculum_file_location) + 1 - $dotPosition);
       echo '/download/curriculum' . $this->id . '.' . $extension;
     }
+
+    public function getProfilePictureLocation() {
+      echo storage_path() .'\\app\\public\\profile_pictures\\' . $this->profile_picture_file_location;
+    }
 }

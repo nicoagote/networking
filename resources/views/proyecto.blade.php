@@ -1,7 +1,7 @@
 @extends("layouts.logedLayout")
 
 @section("title")
- Proyecto
+ Proyecto - NW
 @endsection
 
 
@@ -140,7 +140,7 @@ ul.c-controls li a:hover {
 
 <div class="container-fluid">
 
-  <div class="col-md-8 col-xs-12" style="padding-top: 10%;margin-bottom:5%;">
+  <div class="col-md-8 col-xs-12" style="padding-top: 5%;margin-bottom:5%;">
     <div class="panel panel-default">
       <div class="panel-heading h2">{{$proyecto->title}}</div>
       <div class="panel-body">

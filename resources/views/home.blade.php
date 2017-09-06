@@ -1,10 +1,11 @@
 @extends('layouts.logedLayout')
 
 @section('title')
+Home
 @endsection
 @section('css')
   .input-group{
-    margin-top:150px;
+    margin-top:100px;
   }
 @endsection
 @section('link')

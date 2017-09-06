@@ -89,7 +89,7 @@ class HomeController extends Controller
       ];
 
       $this->validate($req, $rules, $messages);
-      
+
       $user = [];
       $user['name'] = $req['name'];
       $user['surname'] = $req['surname'];
@@ -102,6 +102,7 @@ class HomeController extends Controller
       $user['linkedin'] = $req['linkedin'];
       $user['description'] = $req['description'];
       $user['available'] = isset($req['available'])? 'Y' : 'N';
+      $user['country'] = $req['country'];
 
       if (isset($req['profile_picture_file_location'])) {
         // dd($req['profile_picture_file_location']);
@@ -131,6 +132,17 @@ class HomeController extends Controller
         $data = compact('skills');
 
         return view('crearproyecto', $data);
+    }
+
+    public function editarProyecto($id)
+    {
+        $skills = App\Skill::all();
+        $proyecto = App\Project::find($id);
+
+
+        $data = compact('skills','proyecto');
+
+        return view('editarproyecto', $data);
     }
 
     public function guardarProyecto(Request $req) {
@@ -175,11 +187,6 @@ class HomeController extends Controller
       }
 
       return redirect('misproyectos');
-    }
-
-    public function editarProyecto()
-    {
-        return view('editarproyecto');
     }
 
     public function misProyectos()
