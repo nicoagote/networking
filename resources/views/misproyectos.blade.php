@@ -165,7 +165,7 @@ ul.c-controls li a:hover {
               <div class="panel-heading c-list">
                   <span class="title">Mis Proyectos</span>
                   <ul class="pull-right c-controls">
-                      <li><a href="crearproyecto" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"><i class="glyphicon glyphicon-plus"></i></a></li>
+                      <li><a href="crearproyecto" data-toggle="tooltip" data-placement="top" title="Crear Proyecto"><i class="glyphicon glyphicon-plus"></i></a></li>
                   </ul>
               </div>
 

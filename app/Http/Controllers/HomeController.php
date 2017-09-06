@@ -5,6 +5,9 @@ use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Collection;
+use Storage;
+
 
 class HomeController extends Controller
 {
@@ -26,8 +29,10 @@ class HomeController extends Controller
     public function home()
     {
         $skills = App\Skill::all();
+        $proyecto = App\Project::paginate(10);
+        $usuarios = App\User::paginate(10);
 
-        $data = compact('skills');
+        $data = compact('skills','proyecto','usuarios');
 
         return view('home', $data);
     }
