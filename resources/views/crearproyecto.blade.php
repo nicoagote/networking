@@ -6,7 +6,7 @@ Creá tu proyecto - NW
 
 @section("contenidoLog")
 
-  <div class="container"style="padding-top: 5%;margin-bottom:5%;">
+  <div class="container"style="padding-top: 10%;margin-bottom:5%;">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
               <div class="panel panel-default">
@@ -24,27 +24,27 @@ Creá tu proyecto - NW
                     <form class="form-horizontal" method="POST" action="{{ route('crearproyecto') }}">
                       {{ csrf_field() }}
 
-                      <div class="form-group">
+                      <div id="titleDiv" class="form-group">
                           <label for="title" class="col-md-4 control-label">Titulo</label>
 
                           <div class="col-md-6">
-                              <input type="text" class="form-control" name="title" required>
+                              <input id="title" type="text" class="form-control" name="title" required>
                           </div>
                       </div>
 
-                      <div class="form-group">
+                      <div id="short-descriptionDiv" class="form-group">
                           <label for="short_description" class="col-md-4 control-label">Presentacion</label>
 
                           <div class="col-md-6">
-                            <textarea name="short_description" cols="40" rows="5" class="form-control" required autofocus ></textarea>
+                            <textarea id="short-description" name="short_description" cols="40" rows="5" class="form-control" required autofocus ></textarea>
                           </div>
                       </div>
 
-                      <div class="form-group">
+                      <div id="long-descriptionDiv" class="form-group">
                           <label for="long_description" class="col-md-4 control-label">Descripcion completa</label>
 
                           <div class="col-md-6">
-                            <textarea name="long_description" cols="40" rows="10" class="form-control" required autofocus ></textarea>
+                            <textarea id="long-description" name="long_description" cols="40" rows="10" class="form-control" required autofocus ></textarea>
                           </div>
                       </div>
 
@@ -184,6 +184,78 @@ Creá tu proyecto - NW
                           </button>
                         </div>
                       </div>
+
+                      <script type="text/javascript">
+
+                        var title            = document.querySelector("#title");
+                        var shortDescription = document.querySelector("#short-description");
+                        var longDescription  = document.querySelector("#long-description");
+
+                        var titleDiv            = document.querySelector("#titleDiv");
+                        var shortDescriptionDiv = document.querySelector("#short-descriptionDiv");
+                        var longDescriptionDiv  = document.querySelector("#long-descriptionDiv");
+
+                        title.addEventListener("blur", function() {
+                          if (this.value == "") {
+                            if (!titleDiv.children[1].children[1]) {
+                              var span = document.createElement("span");
+                              span.setAttribute('class', 'help-block');
+                              span.innerHTML = "<strong> Por favor, ingresá un título </strong>";
+                              titleDiv.children[1].appendChild(span);
+                            }
+                            titleDiv.setAttribute('class', 'form-group has-error');
+                          } else {
+                            if (titleDiv.children[1].children[1]) {
+                              titleDiv.children[1].removeChild(titleDiv.children[1].children[1]);
+                            }
+                            if (titleDiv.children[1].children[1]) {
+                              titleDiv.removeChild(titleDiv.children[1].children[1]);
+                            }
+                            titleDiv.setAttribute('class', 'form-group has-success');
+                          }
+                        });
+
+                        shortDescription.addEventListener("blur", function() {
+                          if (this.value == "") {
+                            if (!shortDescriptionDiv.children[1].children[1]) {
+                              var span = document.createElement("span");
+                              span.setAttribute('class', 'help-block');
+                              span.innerHTML = "<strong> Por favor, ingresa una corta descripción de tu proyecto </strong>";
+                              shortDescriptionDiv.children[1].appendChild(span);
+                            }
+                            shortDescriptionDiv.setAttribute('class', 'form-group has-error');
+                          } else {
+                            if (shortDescriptionDiv.children[1].children[1]) {
+                              shortDescriptionDiv.children[1].removeChild(shortDescriptionDiv.children[1].children[1]);
+                            }
+                            if (shortDescriptionDiv.children[1].children[1]) {
+                              shortDescriptionDiv.removeChild(shortDescriptionDiv.children[1].children[1]);
+                            }
+                            shortDescriptionDiv.setAttribute('class', 'form-group has-success');
+                          }
+                        });
+
+                        longDescription.addEventListener("blur", function() {
+                          if (this.value == "") {
+                            if (!longDescriptionDiv.children[1].children[1]) {
+                              var span = document.createElement("span");
+                              span.setAttribute('class', 'help-block');
+                              span.innerHTML = "<strong> Por favor, describe tu proyecto en detalle </strong>";
+                              longDescriptionDiv.children[1].appendChild(span);
+                            }
+                            longDescriptionDiv.setAttribute('class', 'form-group has-error');
+                          } else {
+                            if (longDescriptionDiv.children[1].children[1]) {
+                              longDescriptionDiv.children[1].removeChild(longDescriptionDiv.children[1].children[1]);
+                            }
+                            if (longDescriptionDiv.children[1].children[1]) {
+                              longDescriptionDiv.removeChild(longDescriptionDiv.children[1].children[1]);
+                            }
+                            longDescriptionDiv.setAttribute('class', 'form-group has-success');
+                          }
+                        });
+
+                      </script>
                     </form>
                   </div>
               </div>

@@ -134,54 +134,123 @@
 
                             name.addEventListener("blur", function() {
                               if (this.value == "") {
+                                if (!nameDiv.children[1].children[1]) {
+                                  var span = document.createElement("span");
+                                  span.setAttribute('class', 'help-block');
+                                  span.innerHTML = "<strong> Por favor, ingresá un nombre </strong>";
+                                  nameDiv.children[1].appendChild(span);
+                                }
                                 nameDiv.setAttribute('class', 'form-group has-error');
                               } else {
+                                if (nameDiv.children[1].children[1]) {
+                                  nameDiv.children[1].removeChild(nameDiv.children[1].children[1]);
+                                }
+                                if (nameDiv.children[1].children[1]) {
+                                  nameDiv.removeChild(nameDiv.children[1].children[1]);
+                                }
                                 nameDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
 
                             surname.addEventListener("blur", function() {
                               if (this.value == "") {
+                                if (!surnameDiv.children[1].children[1]) {
+                                  var span = document.createElement("span");
+                                  span.setAttribute('class', 'help-block');
+                                  span.innerHTML = "<strong> Por favor, ingresá un apellido </strong>";
+                                  surnameDiv.children[1].appendChild(span);
+                                }
                                 surnameDiv.setAttribute('class', 'form-group has-error');
                               } else {
+                                if (surnameDiv.children[1].children[1]) {
+                                  surnameDiv.children[1].removeChild(surnameDiv.children[1].children[1]);
+                                }
+                                if (surnameDiv.children[1].children[1]) {
+                                  surnameDiv.removeChild(surnameDiv.children[1].children[1]);
+                                }
                                 surnameDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
 
                             username.addEventListener("blur", function() {
                               if (this.value == "") {
+                                if (!usernameDiv.children[1].children[1]) {
+                                  var span = document.createElement("span");
+                                  span.setAttribute('class', 'help-block');
+                                  span.innerHTML = "<strong> Por favor, ingresá un nombre de usuario </strong>";
+                                  usernameDiv.children[1].appendChild(span);
+                                }
                                 usernameDiv.setAttribute('class', 'form-group has-error');
                               } else {
+                                if (usernameDiv.children[1].children[1]) {
+                                  usernameDiv.children[1].removeChild(usernameDiv.children[1].children[1]);
+                                }
+                                if (usernameDiv.children[1].children[1]) {
+                                  usernameDiv.removeChild(usernameDiv.children[1].children[1]);
+                                }
                                 usernameDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
 
                             email.addEventListener("blur", function() {
                               if (this.value == "") {
+                                if (!emailDiv.children[1].children[1]) {
+                                  var span = document.createElement("span");
+                                  span.setAttribute('class', 'help-block');
+                                  span.innerHTML = "<strong> Por favor, ingresá un e-mail </strong>";
+                                  emailDiv.children[1].appendChild(span);
+                                }
                                 emailDiv.setAttribute('class', 'form-group has-error');
                               } else {
+                                if (emailDiv.children[1].children[1]) {
+                                  emailDiv.children[1].removeChild(emailDiv.children[1].children[1]);
+                                }
+                                if (emailDiv.children[1].children[1]) {
+                                  emailDiv.removeChild(emailDiv.children[1].children[1]);
+                                }
                                 emailDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
 
-                            console.log(passwordDiv);
-
                             password.addEventListener("blur", function() {
                               if (this.value == "") {
+                                if (!passwordDiv.children[1].children[1]) {
+                                  var span = document.createElement("span");
+                                  span.setAttribute('class', 'help-block');
+                                  span.innerHTML = "<strong> Por favor, ingresá una contraseña </strong>";
+                                  passwordDiv.children[1].appendChild(span);
+                                }
                                 passwordDiv.setAttribute('class', 'form-group has-error');
                               } else {
+                                if (passwordDiv.children[1].children[1]) {
+                                  passwordDiv.children[1].removeChild(passwordDiv.children[1].children[1]);
+                                }
+                                if (passwordDiv.children[1].children[1]) {
+                                  passwordDiv.removeChild(passwordDiv.children[1].children[1]);
+                                }
                                 passwordDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
 
                             passwordConfirm.addEventListener("blur", function() {
                               if (this.value == "") {
+                                if (!passwordConfirmDiv.children[1].children[1]) {
+                                  var span = document.createElement("span");
+                                  span.setAttribute('class', 'help-block');
+                                  span.innerHTML = "<strong> Por favor, confirma tu contraseña </strong>";
+                                  passwordConfirmDiv.children[1].appendChild(span);
+                                }
                                 passwordConfirmDiv.setAttribute('class', 'form-group has-error');
                               } else {
+                                if (passwordConfirmDiv.children[1].children[1]) {
+                                  passwordConfirmDiv.children[1].removeChild(passwordConfirmDiv.children[1].children[1]);
+                                }
+                                if (passwordConfirmDiv.children[1].children[1]) {
+                                  passwordConfirmDiv.removeChild(passwordConfirmDiv.children[1].children[1]);
+                                }
                                 passwordConfirmDiv.setAttribute('class', 'form-group has-success');
                               }
                             });
-
                           });
                         </script>
                     </form>
