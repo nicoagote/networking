@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-  <img src="{{$usuarios->first()->getProfilePictureLocation()}}" alt="Imagen de perfil">
+  {{$usuarios->first()->getProfilePicture()}}
   <div class="container">
 
     <?php

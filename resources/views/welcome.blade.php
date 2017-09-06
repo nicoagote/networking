@@ -11,7 +11,7 @@
       </div>
 
       <div class="text">
-        <p class="text-center" style="padding: 0 12%;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p class="text-center" style="padding: 0 22%;">Bienvenido a la primera página web que te permite conectarte con gente de todo el mundo para desarrollar proyectos de alta calidad, de igual forma tenemos la funcionalidad de red social para buscar contactos y proyectos para desarrollar.</p>
       </div>
     </div>
   </div>

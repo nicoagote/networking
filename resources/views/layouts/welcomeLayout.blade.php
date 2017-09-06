@@ -60,6 +60,11 @@
     .m-b-md {
       margin-bottom: 30px;
     }
+    @media (min-width: 768px){
+      .navbar {
+         border-radius: 0px; 
+      }
+    }
     </style>
    </head>
   <body>
