@@ -137,7 +137,6 @@
                 <span><!-- IMAGEN Y NOMBRE !!!-->
                   <img src="{{Auth::user()->getProfilePictureLocation()}}" class="image-Perfil">
                 </span>
-                {{Auth::user()->getProfilePictureLocation()}}
                 <span>
                   {{Auth::user()->name}}  {{Auth::user()->surname}}
                 </span>
