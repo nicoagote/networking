@@ -134,7 +134,7 @@ ul.c-controls li a:hover {
 }
 </style>
 
-<div class="container" style="padding-top: 5%;margin-bottom:5%;">
+<div class="container" style="padding-top: 10%;margin-bottom:5%;">
 
   <div class="row">
 
@@ -170,6 +170,11 @@ ul.c-controls li a:hover {
               <h3 class="pull-rigth">{{$perfil->phone}}</h2><br>
             </div>
 
+            <!-- <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
+              <h2>{{$perfil->country}}</h2><br>
+            </div> -->
+
+
             @if(isset($perfil->curriculum_file_location))
             <div class="row col-sm-12">
               <div class="col-xs-12 col-sm-1 col-sm-offset-2">
@@ -202,10 +207,6 @@ ul.c-controls li a:hover {
 
             </div>
             @endif
-            <!-- <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <h2>{{$perfil->country}}</h2><br>
-            </div> -->
-
 
           </div>
 
