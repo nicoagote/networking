@@ -120,7 +120,7 @@
       @yield('css')
     </style>
    </head>
-  <body>
+  <body id="body">
     <div class="full-height">
 
     <!-- nav bar -->
@@ -137,8 +137,9 @@
                 <span><!-- IMAGEN Y NOMBRE !!!-->
                   <img src="{{Auth::user()->getProfilePictureLocation()}}" class="image-Perfil">
                 </span>
+                {{Auth::user()->getProfilePictureLocation()}}
                 <span>
-                  {{Auth::user()->name Auth::user()->surname}}
+                  {{Auth::user()->name}}  {{Auth::user()->surname}}
                 </span>
                 </a></li>
               <li><a class="botones" href="/misproyectos">Mis Proyectos</a></li>
