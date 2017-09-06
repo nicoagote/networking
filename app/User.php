@@ -84,6 +84,15 @@ class User extends Authenticatable
     }
 
     public function getProfilePictureLocation() {
-      echo Storage::url($this->profile_picture_file_location);
+      $url = Storage::url($this->profile_picture_file_location);
+      return "$url";
+    }
+
+    public function getAltOfImage() {
+      return "Imagen de perfil de " . $this->name . ' ' . $this->surname;
+    }
+
+    public function getProfilePicture() {
+      echo '<img src="' . $this->getProfilePictureLocation() . '" alt="' .  $this->getAltOfImage() . '" width="128px" height="128px">';
     }
 }

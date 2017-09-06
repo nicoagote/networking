@@ -135,7 +135,7 @@
               <li><a class="botones" href="/home" id="net-working"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a></li>
               <li><a class="botones perfil" href="/perfil" style="text-align:ceter;">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
-                  <img src="{{Auth::user()->getProfilePictureLocation()}}" class="image-Perfil">
+                  {{Auth::user()->getProfilePicture()}}
                 </span>
                 <span>
                   {{Auth::user()->name}}  {{Auth::user()->surname}}
