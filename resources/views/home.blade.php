@@ -222,8 +222,11 @@ ul.c-controls li a:hover {
 </div>
 
 <div class="container col-xs-12" style="padding-top: 5%;margin-bottom:5%;">
-          <div class="panel-default panel col-xs-12 col-md-12 center-block">
-            <div class="panel-heading ">
+
+
+
+          <div class="panel-default panel col-xs-12 col-md-10 ">
+            <div class="panel-heading center-block ">
                 <div class="panel panel-primary">Proyectos</div>
 
                   <ul class="list-group" id="contact-list">
