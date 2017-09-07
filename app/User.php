@@ -97,6 +97,6 @@ class User extends Authenticatable
     }
 
     public function getProfilePicture($width, $height) {
-      echo '<img src="' . $this->getProfilePictureLocation() . '" abc alt="' .  $this->getAltOfImage() . '" width=" ' . $width . '" height="' . $height . '" class="image-responsive img-circle ">';
+      echo '<img src="' . $this->getProfilePictureLocation() . '" alt="' .  $this->getAltOfImage() . '" width=" ' . $width . '" height="' . $height . '" class="image-responsive img-circle ">';
     }
 }

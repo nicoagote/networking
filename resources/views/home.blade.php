@@ -171,7 +171,7 @@ ul.c-controls li a:hover {
 		    <div class="input-group">
                 <div class="input-group-btn search-panel">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
+                    	<span id="search_concept">Filtrar</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a href="#contains">Proyectos</a></li>
@@ -236,7 +236,7 @@ ul.c-controls li a:hover {
 
                           <li class="list-group-item">
                               <div class="col-xs-12 col-sm-3">
-                                  <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
+                                  {{Auth::user()->getProfilePicture(125,125)}}
                               </div>
                               <div class="col-xs-12 col-sm-9">
 
