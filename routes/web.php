@@ -67,7 +67,7 @@ Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyect
 Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarProyecto');
 
 Route::get('/editarproyecto/{id}', 'HomeController@editarProyecto');
-Route::post('/editarproyecto', 'HomeController@editarProyecto');
+Route::post('/editarproyecto/guardar', 'HomeController@guardarProyectoEditado');
 
 
 

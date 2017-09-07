@@ -21,8 +21,10 @@ Edita tu proyecto - NW
                           </ul>
                       </div>
                     @endif
-                    <form class="form-horizontal" method="POST" action="{{ route('crearproyecto') }}">
+                    <form class="form-horizontal" method="POST" action="/editarproyecto/guardar">
                       {{ csrf_field() }}
+
+                      <input type="hidden" name="project_id" value="{{$proyecto->id}}">
 
                       <div class="form-group">
                           <label for="title" class="col-md-4 control-label">Titulo</label>
@@ -61,10 +63,7 @@ Edita tu proyecto - NW
                         <span class="col-md-6"></span>
                         <button type="button" id="addSkill" class="btn btn-info" >+</button>
                         <div class="col-md-12" id='skillsSelectors'>
-                          @foreach($proyecto->projectSkills as $projectSkill)
-                          <input type="hidden" name="{{'defaultSkills' . $projectSkill->skill->id . '_id'}}" value="{{[$projectSkill->skill->id]}}">
-                          @endforeach
-
+                          <input type="hidden" id='genericSelectorIdentifier'>
                           <select class="hidden" id='genericSkillSelector'>
                             <option value=NULL>Seleccioná una habilidad</option>
                             @foreach ($skills as $skill)
@@ -76,7 +75,7 @@ Edita tu proyecto - NW
                               $seniorities = [NULL => 'Cualquier nivel de expertise',
                                               'trainee' => 'Trainee',
                                               'junior' => 'Junior',
-                                              'semi-senior' => 'Semi-senior',
+                                              'semi_senior' => 'Semi-senior',
                                               'senior' => 'Senior'];
                             @endphp
                             @foreach ($seniorities as $seniority_level => $nivel)
@@ -84,107 +83,141 @@ Edita tu proyecto - NW
                             @endforeach
                           </select>
                           <button type="button" class="hidden" id='genericRemoveSkillSelector' >-</button>
-                        </div>
-                      </div>
+                          <script>
+                          var skillsSelectorsDiv = document.getElementById('skillsSelectors');
+                          var addSkillButton = document.getElementById('addSkill');
+                          addSkillButton.counter = 0;
 
-                      <input type="hidden" id='genericSelectorIdentifier'>
+                          var genericSelectorIdentifier = document.getElementById('genericSelectorIdentifier');
 
-                      <script>
-                        var skillsSelectorsDiv = document.getElementById('skillsSelectors');
-                        var addSkillButton = document.getElementById('addSkill');
-                        addSkillButton.counter = 0;
+                          var genericSkillSelector = document.getElementById('genericSkillSelector');
+                          var genericSenioritySelector = document.getElementById('genericSenioritySelector');
+                          var genericRemoveSkillSelector = document.getElementById('genericRemoveSkillSelector');
 
-                        var genericSelectorIdentifier = document.getElementById('genericSelectorIdentifier');
+                          addSkillButton.onclick = function() {addSkillSelector();};
 
-                        var genericSkillSelector = document.getElementById('genericSkillSelector');
-                        var genericSenioritySelector = document.getElementById('genericSenioritySelector');
-                        var genericRemoveSkillSelector = document.getElementById('genericRemoveSkillSelector');
+                          function addSkillSelector() {
+                            if (validarSkillSelectors()) {
+                              if(isNaN(addSkillButton.counter)) {
+                                addSkillButton.counter = 0;
+                              }
+                              var newSkillsSelector = document.createElement('div');
+                              newSkillsSelector.setAttribute('class', 'col-md-12');
+                              var newGenericSkillSelector = genericSkillSelector.cloneNode(true);
+                              var newGenericSenioritySelector = genericSenioritySelector.cloneNode(true);
+                              var newGenericRemoveSkillSelector = genericRemoveSkillSelector.cloneNode(true);
+                              var newGenericSelectorIdentifier = genericSelectorIdentifier.cloneNode(true);
+                              console.log(addSkillButton.counter);
+                              newGenericSkillSelector.removeAttribute('id');
+                              newGenericSenioritySelector.removeAttribute('id');
+                              newGenericRemoveSkillSelector.removeAttribute('id');
 
-                        addSkillButton.onclick = function() {
-                          if (validarSkillSelectors()) {
-                            var newSkillsSelector = document.createElement('div');
-                            newSkillsSelector.setAttribute('class', 'col-md-12');
-                            var newGenericSkillSelector = genericSkillSelector.cloneNode(true);
-                            var newGenericSenioritySelector = genericSenioritySelector.cloneNode(true);
-                            var newGenericRemoveSkillSelector = genericRemoveSkillSelector.cloneNode(true);
-                            var newGenericSelectorIdentifier = genericSelectorIdentifier.cloneNode(true);
+                              newGenericSkillSelector.removeAttribute('class', 'hidden');
+                              newGenericSenioritySelector.removeAttribute('class', 'hidden');
+                              newGenericRemoveSkillSelector.removeAttribute('class', 'hidden');
 
-                            newGenericSkillSelector.removeAttribute('id');
-                            newGenericSenioritySelector.removeAttribute('id');
-                            newGenericRemoveSkillSelector.removeAttribute('id');
+                              newGenericSkillSelector.setAttribute('name', 'skill' + addSkillButton.counter);
+                              newGenericSenioritySelector.setAttribute('name', 'seniority_level' + addSkillButton.counter);
+                              newGenericRemoveSkillSelector.setAttribute('name', 'removeSkillSelector' + addSkillButton.counter);
 
-                            newGenericSkillSelector.removeAttribute('class', 'hidden');
-                            newGenericSenioritySelector.removeAttribute('class', 'hidden');
-                            newGenericRemoveSkillSelector.removeAttribute('class', 'hidden');
+                              newGenericSkillSelector.setAttribute('class', 'form-control');
+                              newGenericSenioritySelector.setAttribute('class', 'form-control');
+                              newGenericRemoveSkillSelector.setAttribute('class', 'btn btn-secondary')
 
-                            newGenericSkillSelector.setAttribute('name', 'skill' + this.counter);
-                            newGenericSenioritySelector.setAttribute('name', 'seniority_level' + this.counter);
-                            newGenericRemoveSkillSelector.setAttribute('name', 'removeSkillSelector' + this.counter);
+                              newGenericSkillSelector.setAttribute('style', 'width:45%;margin:0;display:inline-block;');
+                              newGenericSenioritySelector.setAttribute('style', 'width:45%;margin:0;display:inline-block;');
 
-                            newGenericSkillSelector.setAttribute('class', 'form-control');
-                            newGenericSenioritySelector.setAttribute('class', 'form-control');
-                            newGenericRemoveSkillSelector.setAttribute('class', 'btn btn-secondary')
+                              newGenericSkillSelector.setAttribute('id', 'skill' + addSkillButton.counter);
+                              newGenericSenioritySelector.setAttribute('id', 'seniority_level' + addSkillButton.counter);
+                              newSkillsSelector.setAttribute('id', 'skillSelectorDiv' + addSkillButton.counter);
 
-                            newGenericSkillSelector.setAttribute('style', 'width:45%;margin:0;display:inline-block;');
-                            newGenericSenioritySelector.setAttribute('style', 'width:45%;margin:0;display:inline-block;');
+                              newGenericRemoveSkillSelector.onclick =  function() {
+                                var parentDiv = this.parentNode;
+                                skillsSelectorsDiv.removeChild(parentDiv);
+                              }
 
-                            newGenericSkillSelector.setAttribute('id', 'skillSelector' + this.counter);
+                              newGenericSelectorIdentifier.setAttribute('name', 'skillSelector[]');
+                              newGenericSelectorIdentifier.setAttribute('type', 'hidden');
+                              newGenericSelectorIdentifier.setAttribute('value', addSkillButton.counter);
 
-                            newGenericRemoveSkillSelector.onclick =  function() {
-                              var parentDiv = this.parentNode;
-                              console.log(parentDiv);
-                              skillsSelectorsDiv.removeChild(parentDiv);
+                              newSkillsSelector.appendChild(newGenericSkillSelector);
+                              newSkillsSelector.appendChild(newGenericSenioritySelector);
+                              newSkillsSelector.appendChild(newGenericRemoveSkillSelector);
+                              newSkillsSelector.appendChild(newGenericSelectorIdentifier);
+
+                              console.log(newSkillsSelector, addSkillButton.counter);
+
+                              skillsSelectorsDiv.appendChild(newSkillsSelector);
+
+                              addSkillButton.counter = addSkillButton.counter+1;
                             }
-
-                            newGenericSelectorIdentifier.setAttribute('name', 'skillSelector[]');
-                            newGenericSelectorIdentifier.setAttribute('type', 'hidden');
-                            newGenericSelectorIdentifier.setAttribute('value', this.counter);
-
-                            newSkillsSelector.appendChild(newGenericSkillSelector);
-                            newSkillsSelector.appendChild(newGenericSenioritySelector);
-                            newSkillsSelector.appendChild(newGenericRemoveSkillSelector);
-                            newSkillsSelector.appendChild(newGenericSelectorIdentifier);
-
-                            console.log(newSkillsSelector, this.counter);
-
-                            skillsSelectorsDiv.appendChild(newSkillsSelector);
-
-                            addSkillButton.counter = addSkillButton.counter + 1;
+                            console.log(addSkillButton.counter);
                           }
-                        }
 
-                        function validarSkillSelectors() {
-                          for (var i = 0; i < addSkillButton.counter + 1; i++) {
-                            var queryId = 'skillSelector' + i;
-                            var skillSelector = document.getElementById(queryId);
-                            console.log(skillSelector);
-                            if (skillSelector == null) {
-                            } else if(isNaN(skillSelector.value)) {
-                              alert('Por favor no dejes vacías especialidades antes de agregar otra.')
-                              return false;
-                            } else {
-                              for (var j = 0; j < addSkillButton.counter; j++) {
-                                if (i != j) {
-                                  var queryId2 = 'skillSelector' + j;
-                                  var skillSelector2 = document.getElementById(queryId2);
-                                  if (skillSelector2 == null) {
-                                  } else if (skillSelector2.value == skillSelector.value) {
-                                    alert('Por favor no pidas más que una vez la misma especialidad.');
-                                    return false;
+                          function validarSkillSelectors() {
+                            for (var i = 0; i < addSkillButton.counter + 1; i++) {
+                              var queryId = 'skill' + i;
+                              var skillSelector = document.getElementById(queryId);
+                              if (skillSelector == null) {
+                              } else if(isNaN(skillSelector.value)) {
+                                alert('Por favor no dejes vacías especialidades antes de agregar otra.')
+                                return false;
+                              } else {
+                                for (var j = 0; j < addSkillButton.counter; j++) {
+                                  if (i != j) {
+                                    var queryId2 = 'skillSelector' + j;
+                                    var skillSelector2 = document.getElementById(queryId2);
+                                    if (skillSelector2 == null) {
+                                    } else if (skillSelector2.value == skillSelector.value) {
+                                      alert('Por favor no pidas más que una vez la misma especialidad.');
+                                      return false;
+                                    }
                                   }
                                 }
                               }
                             }
+                            return true
                           }
-                          return true
-                        }
 
-                      </script>
+                        </script>
+                        @foreach ($projectSkills as $projectSkill)
+                        <script>
+                          var query;
+                          addSkillSelector();
+                          query = 'skillSelectorDiv' + (addSkillButton.counter - 1);
+                          console.log(query);
+                          var currentSkillSelectorDiv = document.getElementById(query);
+                          var currentSkillSelector = currentSkillSelectorDiv.children[0];
+                          var currentSenioritySelector =  currentSkillSelectorDiv.children[1];
+
+                          currentSkillSelector.children[{{$projectSkill->skill_id}}].selected = true;
+                          var key;
+                          var seniority_level = '<?=$projectSkill->seniority_level?>';
+                          if (seniority_level == 'trainee') {
+                            key = 1;
+                          } else if (seniority_level == 'junior') {
+                            key = 2;
+                          } else if (seniority_level == 'semi_senior') {
+                            key = 3;
+                          } else if (seniority_level == 'senior') {
+                            key = 4;
+                          } else {
+                            key = 0;
+                          }
+
+                          currentSenioritySelector.children[key].selected = true;
+
+                        </script>
+                        @endforeach
+                        </div>
+                      </div>
+
+
 
                       <div class="form-group">
                         <div class="col-md-8 col-md-offset-4">
                           <button type="submit" class="btn btn-primary">
-                            Crear
+                            Editar
                           </button>
                         </div>
                       </div>
