@@ -19,7 +19,7 @@ class CreateUsersSkillsTable extends Migration
              $table->foreign('user_id')->references('id')->on('users');
              $table->integer('skill_id')->unsigned();
              $table->foreign('skill_id')->references('id')->on('skills');
-             $table->enum('seniority_level', ['trainee', 'junior', 'semi_senior', 'senior']);
+             $table->enum('seniority_level', ['trainee', 'junior', 'semi_senior', 'senior'])->nullable();
              $table->timestamps();
          });
      }
