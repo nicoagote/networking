@@ -195,7 +195,7 @@ ul.c-controls li a:hover {
                             {{Auth::user()->getProfilePicture(100,100)}}
                           </div>
                           <div class="col-xs-12 col-sm-9">
-                            <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
+                            <span class="subtitle"><a href="/proyecto{{$project->id}}">{{$project->title}}</a></span><br/>
                           </div>
                           <div class="clearfix"></div>
                         </li>
@@ -241,7 +241,7 @@ ul.c-controls li a:hover {
                               </span>
 
                               <div class="col-xs-12 col-sm-9">
-                                  <span class="h3 achicardes"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicardes">by {{$project->creator->name}} {{$project->creator->surname}}</span>
+                                  <span class="h3 achicardes"><a href="/proyecto{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicardes">by {{$project->creator->name}} {{$project->creator->surname}}</span>
                               </div>
                               <div class="col-xs-12 col-sm-9">
                                   <span class="small achicardes">
@@ -253,7 +253,7 @@ ul.c-controls li a:hover {
                             <ul class="pull-right c-controls">
                               <form class="" action="/contactos" method="post">
                                 {{ csrf_field() }}
-                                <a href="editarproyecto/{{$project->id}}" class="glyphicon glyphicon-pencil"></a>
+                                <a href="editarproyecto{{$project->id}}" class="glyphicon glyphicon-pencil"></a>
                               </form>
                               <!-- <li><a href="/home"  title="Añadir Contacto"><i ></i></a></li> -->
                             </ul>
@@ -286,7 +286,7 @@ ul.c-controls li a:hover {
                               </div>
                         <?php endforeach; ?>
                     </span>
-                      <span class="h3 achicartitulo"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicartitulo">by {{$project->creator->name}} {{$project->creator->surname}}</span>
+                      <span class="h3 achicartitulo"><a href="/proyecto{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicartitulo">by {{$project->creator->name}} {{$project->creator->surname}}</span>
                   </div>
                   <div class="row col-xs-12">
                       <span class="small col-sm-9 col-sm-offset-3 col-xs-12">

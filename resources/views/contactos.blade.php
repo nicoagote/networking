@@ -145,7 +145,7 @@ ul.c-controls li a:hover {
               <div class="panel-heading c-list">
                   <span class="title">Mis Contactos</span>
                   <ul class="pull-right c-controls">
-                      <li><a href="/home/usuarios" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"> <i class="glyphicon glyphicon-plus"></i></a></li>
+                      <li><a href="/homeusuario" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"> <i class="glyphicon glyphicon-plus"></i></a></li>
                   </ul>
               </div>
 
@@ -169,7 +169,7 @@ ul.c-controls li a:hover {
                       {{Auth::user()->getProfilePicture(125,125)}}
                     </div>
                     <div class="col-xs-12 col-sm-9">
-                        <span class="name"> <a href="/perfil/{{$contacto->id}}"><?php echo $contacto->surname .", " . $contacto->name; ?></a> </span><br/>
+                        <span class="name"> <a href="/perfil{{$contacto->id}}"><?php echo $contacto->surname .", " . $contacto->name; ?></a> </span><br/>
                         <span class="username"> <?php echo $contacto->username; ?><br/></span>
                         <span class="email" data-toggle="tooltip" title="<?php echo $contacto->email; ?>"><?php echo $contacto->email; ?><br/></span>
                         <span class="phone" data-toggle="tooltip" title="<?php echo $contacto->phone; ?>"><?php echo $contacto->phone; ?></span>
@@ -197,7 +197,7 @@ ul.c-controls li a:hover {
                     {{Auth::user()->getProfilePicture(75,75)}}
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="subtitle"><a href="/perfil/{{$solicitud->id}}"><?php echo $solicitud->surname .", " . $solicitud->name; ?></a></span><br/>
+                      <span class="subtitle"><a href="/perfil{{$solicitud->id}}"><?php echo $solicitud->surname .", " . $solicitud->name; ?></a></span><br/>
                   </div>
                   <ul class="pull-right c-controls">
                       <form class="" action="/contactos" method="post">
@@ -231,7 +231,7 @@ ul.c-controls li a:hover {
                     {{$usuario->getProfilePicture(70,70)}}
                   </div>
                   <div class="col-xs-12">
-                      <span class="subtitle"><a href="/perfil/{{$usuario->id}}"><?php echo $usuario->surname .", " . $usuario->name; ?></a></span><br/>
+                      <span class="subtitle"><a href="/perfil{{$usuario->id}}"><?php echo $usuario->surname .", " . $usuario->name; ?></a></span><br/>
                   </div>
                   <ul class="pull-right c-controls">
                       <form class="" action="/contactos" method="post">

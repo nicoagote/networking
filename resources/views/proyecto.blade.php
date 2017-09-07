@@ -189,7 +189,7 @@ ul.c-controls li a:hover {
                               {{Auth::user()->getProfilePicture(125,125)}}
                           </div>
                           <div class="col-xs-12 col-sm-9">
-                              <span class="name"> <a href="/perfil/{{$user->id}}"> <?php echo $user->surname .", " . $user->name; ?></a></span><br/>
+                              <span class="name"> <a href="/perfil{{$user->id}}"> <?php echo $user->surname .", " . $user->name; ?></a></span><br/>
                               <span class="username"> <?php echo $user->username; ?><br/></span>
                           </div>
                           <div class="clearfix"></div>

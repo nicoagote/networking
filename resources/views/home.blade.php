@@ -29,8 +29,8 @@ body {
   z-index: 150;
 }
 
-.agrandar img:hover{
-  height: 55px;
+.resaltar img:hover{
+  opacity: 0.8;
 }
 
 
@@ -262,7 +262,7 @@ ul.c-controls li a:hover {
 
                                           <div class="col-xs-2 col-sm-1" style="float:right" title="<?php echo $skill->name; ?>">
 
-                                            <div class="adelante agrandar" >
+                                            <div class="adelante resaltar" >
                                               <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
                                             </div>
 
@@ -273,7 +273,7 @@ ul.c-controls li a:hover {
                                 </span>
 
                                 <div class="col-xs-12 col-sm-9">
-                                    <span class="h3 achicardes"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicardes">by {{$project->creator->name}} {{$project->creator->surname}}</span>
+                                    <span class="h3 achicardes"><a href="/proyecto{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicardes">by {{$project->creator->name}} {{$project->creator->surname}}</span>
                                 </div>
                                 <div class="col-xs-12 col-sm-9">
                                     <span class="small achicardes">
@@ -327,7 +327,7 @@ ul.c-controls li a:hover {
 
                                           <div class="col-xs-2 col-sm-1 separarpencil" style="float:right" title="<?php echo $skill->name; ?>">
 
-                                            <div class="adelante agrandar">
+                                            <div class="adelante resaltar">
                                               <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
                                             </div>
 
@@ -338,7 +338,7 @@ ul.c-controls li a:hover {
                                 </span>
 
                                 <div class="col-xs-12">
-                                    <span class="h3 achicardes"><a href="/perfil/{{$usuario->id}}">{{$usuario->surname}}, {{$usuario->name}} </a></span><br/>
+                                    <span class="h3 achicardes"><a href="/perfil{{$usuario->id}}">{{$usuario->surname}}, {{$usuario->name}} </a></span><br/>
                                 </div>
                                 <div class="col-xs-12">
                                     <span class="small achicardes">
