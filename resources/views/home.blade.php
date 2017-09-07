@@ -178,10 +178,10 @@ ul.c-controls li a:hover {
                     <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     	<span id="search_concept">Filtrar</span> <span class="caret"></span>
                     </button> -->
-                    <select class="form-control" name="filtrar">
-                      <option value="busqueda">Buscar Todo</option>
-                      <option value="usuarios">Usuarios</option>
-                      <option value="proyectos">Proyectos</option>
+                    <select class="form-control" name="show">
+                      <option value="both">Buscar Todo</option>
+                      <option value="usuario">Usuarios</option>
+                      <option value="proyecto">Proyectos</option>
                     </select>
                     <!-- <ul class="dropdown-menu" role="menu">
                       <li><a href="#contains">Proyectos</a></li>
@@ -189,8 +189,6 @@ ul.c-controls li a:hover {
                       <li><a href="#its_equal">Personas</a></li>
                     </ul> -->
 
-
-                  <input type="hidden" name="buscador" value="all" id="buscador">
                   <input type="text" class="form-control" name="buscador" placeholder="Search term...">
                   <input type="submit" value="Buscar">
                   <!-- <span class="input-group-btn">

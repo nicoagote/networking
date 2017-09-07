@@ -40,29 +40,20 @@ class HomeController extends Controller
 
     public function buscar(Request $req) {
 
+      $show = $req["show"];
+      $buscador = $req["buscador"];
 
+      $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
+      $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
+      $skills = App\Skill::all();
+      $data = compact("proyecto","usuarios","skills", "show");
 
-      if($req["filtrar"]=="busqueda"){
-        $buscador = $req->input("buscador");
-        $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
-        $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
-        $skills = App\Skill::all();
-        $data = compact("proyecto","usuarios","skills");
-        return view("home/both", $data);
-      }elseif($req["filtrar"]=="usuarios"){
-        $buscador = $req->input("buscador");
-        $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
-        $proyecto = App\Project::where("title", "like", "%null%")->paginate(0); ;
-        $skills = App\Skill::all();
-        $data = compact("proyecto","usuarios","skills");
-        return view("home/usuarios", $data);
-      }elseif($req["filtrar"]=="proyectos") {
-        $buscador = $req->input("buscador");
-        $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
-        $usuarios = App\User::where("name", "like", "%null%")->orWhere("surname", "like", "%$buscador%")->paginate(0);
-        $skills = App\Skill::all();
-        $data = compact("proyecto","usuarios","skills");
-        return view("home/proyectos", $data);
+      if($show=="both"){
+        return view("home", $data);
+      }elseif($show=="usuario"){
+        return view("home", $data);
+      }elseif($show=="proyecto") {
+        return view("home", $data);
       }
 
 
