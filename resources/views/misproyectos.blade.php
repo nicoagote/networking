@@ -228,7 +228,7 @@ ul.c-controls li a:hover {
 
                                   <?php foreach ($project->skills as $skill): ?>
 
-                                        <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
+                                        <div class="col-xs-2 col-sm-1 separarpencil" style="float:right" title="<?php echo $skill->name; ?>">
 
                                           <div class="adelante resaltar" >
                                             <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
@@ -281,7 +281,7 @@ ul.c-controls li a:hover {
                   <div class="col-xs-12 col-sm-9">
                     <span class="pull-right">
                         <?php foreach ($project->skills as $skill): ?>
-                              <div class="col-xs-2 col-sm-1 resaltar" title="<?php echo $skill->name; ?>">
+                              <div class="col-xs-2 col-sm-1 resaltar" style="float:right" title="<?php echo $skill->name; ?>">
                                   {{$skill->getImage()}}
                               </div>
                         <?php endforeach; ?>

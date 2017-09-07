@@ -27,13 +27,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function home($show = 'both')
     {
         $skills = App\Skill::all();
         $proyecto = App\Project::orderBy('created_at', 'desc')->paginate(10);
         $usuarios = App\User::paginate(10);
 
-        $data = compact('skills','proyecto','usuarios');
+        $data = compact('skills','proyecto','usuarios', 'show');
 
         return view('home', $data);
     }
@@ -48,28 +48,26 @@ class HomeController extends Controller
         $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
         $skills = App\Skill::all();
         $data = compact("proyecto","usuarios","skills");
-        return view("home", $data);
+        return view("home/both", $data);
       }elseif($req["filtrar"]=="usuarios"){
         $buscador = $req->input("buscador");
         $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
         $proyecto = App\Project::where("title", "like", "%null%")->paginate(0); ;
         $skills = App\Skill::all();
         $data = compact("proyecto","usuarios","skills");
-        return view("home", $data);
+        return view("home/usuarios", $data);
       }elseif($req["filtrar"]=="proyectos") {
         $buscador = $req->input("buscador");
         $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
         $usuarios = App\User::where("name", "like", "%null%")->orWhere("surname", "like", "%$buscador%")->paginate(0);
         $skills = App\Skill::all();
         $data = compact("proyecto","usuarios","skills");
-        return view("home", $data);
+        return view("home/proyectos", $data);
       }
 
 
 
     }
-
-
 
 
     public function perfil($id)
@@ -331,9 +329,39 @@ class HomeController extends Controller
         $solicitudes = Auth::User()->pendingRequests;
         $bloqueados = Auth::User()->blocked;
 
-        $data = compact('contactos', 'solicitudes', 'bloqueados');
+        $user_relationships = Auth::User()->relationships->map(function ($u) {
+          return $u->id;
+        });
+
+        $usuarios = App\User::all()
+            ->whereNotIn('id', $user_relationships);
+
+        $data = compact('contactos', 'solicitudes', 'bloqueados', 'usuarios');
 
         return view('contactos', $data);
+    }
+
+    public function request(Request $req) {
+      if (isset($req["request_id"])) {
+        try {
+          DB::table('user_relationships')
+                ->where('relating_user_id', $req['request_id'])
+                ->where('related_user_id', Auth::user()->id)
+                ->update(['state' => 'contact']);
+          return redirect('/contactos');
+        } catch (Exception $e) {
+          return $e->getErrorMessage();
+        }
+      } else {
+        try {
+          DB::table('user_relationships')->insert(
+              ['relating_user_id' => Auth::user()->id, 'state' => 'request', 'related_user_id' => $req['send_request_id']]);
+          return redirect('/contactos');
+        } catch (Exception $e) {
+          return $e->getErrorMessage();
+        }
+      }
+
     }
 
     public function faqs()

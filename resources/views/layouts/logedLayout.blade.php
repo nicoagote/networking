@@ -137,7 +137,7 @@
         <div class="navbar-inverse side-collapse in">
           <nav role="navigation" class="navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a class="botones" href="/home" id="net-working"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a></li>
+              <li><a class="botones" href="/home/both" id="net-working"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a></li>
               <li><a class="botones perfil" href="/perfil">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
                   {{Auth::user()->getProfilePicture(45, 45)}}

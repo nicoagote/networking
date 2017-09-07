@@ -26,7 +26,7 @@ Route::middleware('guest')->get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/home/{show}', 'HomeController@home');
 
 Route::get('/download/{filename}', function($filename)
 {
@@ -72,6 +72,9 @@ Route::post('/editarproyecto/guardar', 'HomeController@guardarProyectoEditado');
 
 
 Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
+
 Route::get('/contactos', 'HomeController@contacto')->name('contactos');
+Route::post('/contactos', 'HomeController@request');
+
 Route::get('/faqs', 'HomeController@faqs')->name('faqs');
 Route::get('/proyecto/{id?}', 'HomeController@proyecto');
