@@ -43,10 +43,52 @@ class HomeController extends Controller
       $show = $req["show"];
       $buscador = $req["buscador"];
 
-      $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
-      $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
+      $skillSelectors = $req['skillSelector'];
+      if ($skillSelectors != null) {
+        $paginate = false;
+
+        $skillQueries = [];
+        foreach ($skillSelectors as $index) {
+          $skillQueries[] = [
+            'skill_id' => $req['skill' . $index],
+            'seniority_level' => $req['seniority_level' . $index],
+          ];
+        }
+
+        $proyecto = App\Project::where('active', '=', 'Y')->where("title", "like", "%$buscador%")->orWhere("short_description", "like", "%$buscador%")->orWhere("long_description", "like", "%$buscador%")->get();
+        $usuarios = App\User::where('available', '=', 'Y')->where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->orWhere("username", "like", "%$buscador%")->orWhere("email", "like", "%$buscador%")->get();
+        foreach ($skillQueries as $query) {
+          if ($query['seniority_level'] == null) {
+            $projectSkillId = App\ProjectSkill::select('project_id')->where('skill_id', '=', $query['skill_id'])->get();
+
+            $userSkillId = App\UserSkills::addselect('user_id')->where('skill_id', '=', $query['skill_id'])->get();
+          } else {
+            $projectSkillId = App\ProjectSkill::select('project_id')->where('skill_id', '=', $query['skill_id'])->where('seniority_level', '=', $query['seniority_level'])->get();
+
+            $userSkillId = App\UserSkills::select('user_id')->where('skill_id', '=', $query['skill_id'])->where('seniority_level', '=', $query['seniority_level'])->get();
+          }
+
+          $projectIdArray = [];
+          foreach ($projectSkillId as $arrayProject) {
+            $projectIdArray[] = $arrayProject['project_id'];
+          }
+
+          $userIdArray = [];
+          foreach ($userSkillId as $arrayUser) {
+            $userIdArray[] = $arrayUser['user_id'];
+          }
+
+          $proyecto = $proyecto->whereIn('id', $projectIdArray);
+          $usuarios = $usuarios->whereIn('id', $userIdArray);
+        }
+      } else {
+        $proyecto = App\Project::where('active', '=', 'Y')->where("title", "like", "%$buscador%")->orWhere("short_description", "like", "%$buscador%")->orWhere("long_description", "like", "%$buscador%")->paginate(10);
+        $usuarios = App\User::where('available', '=', 'Y')->where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->orWhere("username", "like", "%$buscador%")->orWhere("email", "like", "%$buscador%")->paginate(10);
+        $paginate = true;
+      }
+
       $skills = App\Skill::all();
-      $data = compact("proyecto","usuarios","skills", "show");
+      $data = compact("proyecto","usuarios","skills", "show", "paginate");
 
       if($show=="both"){
         return view("home", $data);
