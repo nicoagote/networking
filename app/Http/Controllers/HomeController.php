@@ -33,7 +33,9 @@ class HomeController extends Controller
         $proyecto = App\Project::orderBy('created_at', 'desc')->paginate(10);
         $usuarios = App\User::paginate(10);
 
-        $data = compact('skills','proyecto','usuarios', 'show');
+        $paginate = true;
+
+        $data = compact('skills','proyecto','usuarios', 'show', 'paginate');
 
         return view('home', $data);
     }
