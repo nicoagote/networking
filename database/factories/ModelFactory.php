@@ -31,11 +31,28 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $available = $faker->boolean ? 'Y' : 'N';
     $username = $faker->userName();
 
+    $firstNameMale = array('Adrián', 'Agustín', 'Alex', 'Álvaro', 'Andrés', 'Bautista', 'Benjamín', 'Bernardo', 'Bruno', 'Camilo', 'Carlos', 'Damián', 'Daniel', 'Darío', 'Eduardo', 'Emilio', 'Esteban', 'Facundo', 'Felipe', 'Félix', 'Fernando', 'Fermín', 'Florentino', 'Francisco', 'Gabriel', 'Gerardo', 'Gonzalo', 'Gustavo', 'Héctor', 'Hernán', 'Horacio', 'Ignacio', 'Iñaki', 'Ismael', 'Iván', 'Javier', 'Jerónimo', 'Joel', 'Jonás', 'Jorge', 'José', 'Juan', 'Kevin', 'Leandro', 'Lionel', 'Lorenzo', 'Lucas', 'Manuel', 'Marcos', 'Mariano', 'Martín', 'Matías', 'Nahuel', 'Nicolás', 'Omar', 'Oscar', 'Pablo', 'Patricio', 'Pedro', 'Ramón', 'Raúl', 'Rodolfo', 'Santiago', 'Samuel', 'Saúl', 'Salomón', 'Simón', 'Tiago', 'Tobías', 'Tomás', 'Uriel', 'Valentín', 'Víctor', 'Walter', 'Wenceslao', 'Xavier', 'Zacarías');
+
+    $firstNameFemale = array('Abril', 'Amparo', 'Azul', 'Beatriz', 'Belén', 'Bernarda', 'Bianca', 'Camila', 'Camelia', 'Carmen', 'Catalina', 'Daniela', 'Delfina', 'Elena', 'Emilia', 'Estefanía', 'Faustina', 'Fernanda', 'Florencia', 'Gabriela', 'Graciela', 'Inés', 'Jimena', 'Joaquina', 'Juana', 'Julieta', 'Justina', 'Karina', 'Lucia', 'Luciana', 'Lucila', 'Luz', 'Malena', 'María', 'Martina', 'Micaela', 'Michelle', 'Milagros', 'Morena', 'Nicole', 'Olivia', 'Paula', 'Paola', 'Paz', 'Pilar', 'Rosa', 'Rosario', 'Sofía', 'Stefanía', 'Valentina', 'Victoria');
+
+    $surnames = array('Agote', 'Álvarez', 'Ayerza', 'Berisso', 'Bianchi', 'Brillarelli', 'Carman', 'Ceniceros', 'Coronel', 'Costa', 'Chatburn', "Dall'Asta", 'Damico', 'de Vedia', 'del Castillo', 'del Molino', 'Diehl', 'Domínguez', 'Favereau', 'Feit', 'Fernández', 'Ferrer', 'Fortunatti', 'Funes', 'Galmarini', 'Gómez', 'González', 'Green', 'Grether', 'Herrera', 'Innaco', 'Iván', 'Julianes', 'Karadagián', 'Ketelhohn', 'Larrosa', 'Latrichia', 'López', 'Madero', 'Martínez', 'Messi', 'Millán', 'Montero', 'Murphy', 'Olcese', 'Otaño', 'Pacheco', 'Petruccelli', 'Reyser', 'Rodríguez', 'Ruiu', 'Ruíz', 'Scala', 'Susnisky', 'Tauber', 'Tarquini', 'Tedesco', 'Teich', 'Torres', 'Vidal', 'Zalduendo');
+
+    $nameKey= array_rand($gender == 'Male' ? $firstNameMale : $firstNameFemale);
+    $name = $gender == 'Male' ? $firstNameMale[$nameKey] : $firstNameFemale[$nameKey];
+
+    $surnameKey = array_rand($surnames);
+    $surname = $surnames[$surnameKey];
+
+    $emailAdresses = array('@hotmail.com', '@gmail.com', '@yahoo.com.ar', '@fibertel.com.ar');
+
+    $emailAdressKey = array_rand($emailAdresses);
+    $email = $name + $surname + $emailAdresses[$emailAdressKey];
+
     $default_profile_picture = 'default_profile_picture.jpg';
 
     return [
-        'name' => $faker->firstName($gender),
-        'surname' => $faker->lastName(),
+        'name' => $name,
+        'surname' => $surname,
         'username' => $username,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('12345678'),
@@ -44,7 +61,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'date_of_birth' => $faker->dateTimeThisCentury->format('Y-m-d'),
         'available' => $available,
         'country' => NULL, #!!! randomize
-        'phone' => $faker->phoneNumber,
+        'phone' => rand(1500000000, 1599999999),
         'git' => 'https://github.com/' . $username,
         'linkedin' => 'https://linkedin.com/' . $username,
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', #!!! randomize

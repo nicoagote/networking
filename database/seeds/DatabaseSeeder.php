@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
       $this->call(SkillsSeeder::class);
 
       // Generar usuarios
-      factory(App\User::class, 50)->create()->each(function ($u) {
+      factory(App\User::class, 500)->create()->each(function ($u) {
         // Le asignamos skills al usuario.
         for($userSkills = 0; $userSkills < 3; $userSkills++) {
           $userSkill = factory(App\UserSkills::class)->create(["user_id" => $u->id]);

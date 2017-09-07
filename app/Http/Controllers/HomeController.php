@@ -33,22 +33,21 @@ class HomeController extends Controller
         $proyecto = App\Project::orderBy('created_at', 'desc')->paginate(10);
         $usuarios = App\User::paginate(10);
 
-        $paginate = true;
+        $displayPaginate = true;
 
-        $data = compact('skills','proyecto','usuarios', 'show', 'paginate');
+        $data = compact('skills','proyecto','usuarios', 'show', 'displayPaginate');
 
         return view('home', $data);
     }
 
     public function buscar(Request $req) {
-
+      // dd($req);
       $show = $req["show"];
       $buscador = $req["buscador"];
+      $displayPaginate = false;
 
       $skillSelectors = $req['skillSelector'];
       if ($skillSelectors != null) {
-        $paginate = false;
-
         $skillQueries = [];
         foreach ($skillSelectors as $index) {
           $skillQueries[] = [
@@ -86,11 +85,10 @@ class HomeController extends Controller
       } else {
         $proyecto = App\Project::where('active', '=', 'Y')->where("title", "like", "%$buscador%")->orWhere("short_description", "like", "%$buscador%")->orWhere("long_description", "like", "%$buscador%")->paginate(10);
         $usuarios = App\User::where('available', '=', 'Y')->where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->orWhere("username", "like", "%$buscador%")->orWhere("email", "like", "%$buscador%")->paginate(10);
-        $paginate = true;
       }
 
       $skills = App\Skill::all();
-      $data = compact("proyecto","usuarios","skills", "show", "paginate");
+      $data = compact("proyecto","usuarios","skills", "show", "displayPaginate");
 
       if($show=="both"){
         return view("home", $data);
@@ -99,16 +97,26 @@ class HomeController extends Controller
       }elseif($show=="proyecto") {
         return view("home", $data);
       }
-
-
-
     }
 
+    public function buscarGet() {
+        $skills = App\Skill::all();
+
+        $proyecto = App\Project::orderBy('created_at', 'desc')->paginate(10);
+        $usuarios = App\User::paginate(10);
+
+        $displayPaginate = true;
+        $show = 'both';
+
+        $data = compact('skills','proyecto','usuarios', 'show', 'displayPaginate');
+
+      return view('home', $data);
+    }
 
     public function perfil($id)
     {
           $perfil = App\User::find($id);
-          $data = compact('perfil');          
+          $data = compact('perfil');
           return view('perfil', $data);
     }
 

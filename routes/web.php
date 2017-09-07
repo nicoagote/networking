@@ -60,7 +60,7 @@ Route::get('/perfil', 'HomeController@perfilpropio');
 Route::post('/perfil', 'HomeController@interactionPerfil');
 
 Route::post('/buscar', 'HomeController@buscar');
-
+Route::get('/buscar', 'HomeController@buscarGet');
 
 Route::get('/editarperfil', 'HomeController@editarPerfil')->name('editarperfil');
 Route::post('/editarperfil', 'HomeController@guardarPerfil');

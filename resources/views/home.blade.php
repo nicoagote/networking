@@ -165,8 +165,6 @@ ul.c-controls li a:hover {
 }
 </style>
 
-
-
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
@@ -398,7 +396,7 @@ ul.c-controls li a:hover {
                           </li>
 
                                       <?php endforeach; ?>
-                                      <?php if ($paginate): ?>
+                                      <?php if ($displayPaginate): ?>
                                         {{$proyecto->links()}}
                                       <?php endif; ?>
 
@@ -464,7 +462,7 @@ ul.c-controls li a:hover {
                           </li>
 
                                       <?php endforeach; ?>
-                                      <?php if ($paginate): ?>
+                                      <?php if ($displayPaginate): ?>
                                         {{$usuarios->links()}}
                                       <?php endif; ?>
 
