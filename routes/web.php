@@ -26,7 +26,7 @@ Route::middleware('guest')->get('/', function () {
 
 Auth::routes();
 
-Route::get('/home/{show}', 'HomeController@home');
+Route::get('/home{show}', 'HomeController@home');
 
 Route::get('/download/{filename}', function($filename)
 {
@@ -54,7 +54,7 @@ Route::get('/download/{filename}', function($filename)
 })
 ->where('filename', '[A-Za-z0-9\-\_\.]+');
 
-Route::get('/perfil/{id}', 'HomeController@perfil');
+Route::get('/perfil{id}', 'HomeController@perfil');
 Route::get('/perfil', 'HomeController@perfilpropio');
 
 Route::post('/buscar', 'HomeController@buscar');
@@ -66,10 +66,8 @@ Route::post('/editarperfil', 'HomeController@guardarPerfil');
 Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyecto');
 Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarProyecto');
 
-Route::get('/editarproyecto/{id}', 'HomeController@editarProyecto');
+Route::get('/editarproyecto{id}', 'HomeController@editarProyecto');
 Route::post('/editarproyecto/guardar', 'HomeController@guardarProyectoEditado');
-
-
 
 Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
 
@@ -77,4 +75,5 @@ Route::get('/contactos', 'HomeController@contacto')->name('contactos');
 Route::post('/contactos', 'HomeController@request');
 
 Route::get('/faqs', 'HomeController@faqs')->name('faqs');
-Route::get('/proyecto/{id?}', 'HomeController@proyecto');
+
+Route::get('/proyecto{id?}', 'HomeController@proyecto');

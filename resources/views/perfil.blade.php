@@ -147,7 +147,7 @@ ul.c-controls li a:hover {
 
           <div class="panel-body">
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              {{$perfil->getProfilePicture(125,125)}}
+              {{$perfil->getProfilePicture(150, 150)}}
             </div>
 
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
