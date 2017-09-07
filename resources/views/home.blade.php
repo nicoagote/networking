@@ -165,27 +165,41 @@ ul.c-controls li a:hover {
 }
 </style>
 
+
+
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    	<span id="search_concept">Filter by</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
+          <form action="/buscar" method="post">
+            {{ csrf_token() }}
+            {{ csrf_field() }}
+		          <div class="input-group">
+
+                    <!-- <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    	<span id="search_concept">Filtrar</span> <span class="caret"></span>
+                    </button> -->
+                    <select class="form-control" name="filtrar">
+                      <option value="busqueda">Buscar Todo</option>
+                      <option value="usuarios">Usuarios</option>
+                      <option value="proyectos">Proyectos</option>
+                    </select>
+                    <!-- <ul class="dropdown-menu" role="menu">
                       <li><a href="#contains">Proyectos</a></li>
                       <li class="divider"></li>
                       <li><a href="#its_equal">Personas</a></li>
-                    </ul>
+                    </ul> -->
+
+
+                  <input type="hidden" name="buscador" value="all" id="buscador">
+                  <input type="text" class="form-control" name="buscador" placeholder="Search term...">
+                  <span class="input-group-btn">
+
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"><input type="submit" ></span></button>
+                  </span>
+
                 </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
-            </div>
-        </div>
+          </form>
+      </div>
 	</div>
 </div>
 <div class="row">
@@ -278,10 +292,6 @@ ul.c-controls li a:hover {
           </div>
         </div>
       </div>
-
-
-
-
 
 </div>
 
