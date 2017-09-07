@@ -355,6 +355,30 @@ class HomeController extends Controller
 
     }
 
+    public function interactionPerfil(Request $req) {
+      if (isset($req["request_id"])) {
+        try {
+          DB::table('user_relationships')
+                ->where('relating_user_id', $req['request_id'])
+                ->where('related_user_id', Auth::user()->id)
+                ->update(['state' => 'contact']);
+          return redirect('/perfil{{id}}');
+        } catch (Exception $e) {
+          return $e->getErrorMessage();
+        }
+      } else {
+        try {
+          DB::table('user_relationships')->insert(
+              ['relating_user_id' => Auth::user()->id, 'state' => 'request', 'related_user_id' => $req['send_request_id']]);
+          return redirect('/perfil{{id}}');
+        } catch (Exception $e) {
+          return $e->getErrorMessage();
+        }
+      }
+
+
+      }
+
     public function faqs()
     {
         return view('faqs');
