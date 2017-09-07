@@ -192,10 +192,11 @@ ul.c-controls li a:hover {
 
                   <input type="hidden" name="buscador" value="all" id="buscador">
                   <input type="text" class="form-control" name="buscador" placeholder="Search term...">
-                  <span class="input-group-btn">
-
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"><input type="submit" ></span></button>
-                  </span>
+                  <input type="submit" value="Buscar">
+                  <!-- <span class="input-group-btn">
+                    <input type="submit" value="Buscar" >
+                    <! <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"><input type="submit" ></span></button> -->
+                  <!-- </span> -->
 
                 </div>
           </form>
