@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Project extends Model
 {
@@ -30,7 +31,4 @@ class Project extends Model
       return $this->belongsToMany('App\User', 'projects_users', 'project_id', 'user_id')->where('state', '=', 'blocked');
     }
 
-    public function projectSkills() {
-      return $this->belongsToMany('App\ProjectSkill', 'id', 'project_id');
-    }
 }

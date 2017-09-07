@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
@@ -138,11 +139,60 @@ class HomeController extends Controller
     {
         $skills = App\Skill::all();
         $proyecto = App\Project::find($id);
+        $projectSkills = App\ProjectSkill::all()->where('project_id', '=', $proyecto->id);
 
-
-        $data = compact('skills','proyecto');
+        $data = compact('skills','proyecto', 'projectSkills');
 
         return view('editarproyecto', $data);
+    }
+
+    public function guardarProyectoEditado(Request $req) {
+      $rules = [
+        'title' => 'required|string|max:191',
+        'short_description' => 'required|string|max:140',
+        'long_description' => 'required|string|max:1400',
+        'skillSelector' => 'required',
+      ];
+      $messages = [
+        'title.required' => 'Por favor completá el campo título.',
+        'title.max' => 'El título no puede superar los 191 caracteres.',
+        'short_description.required' => 'Por favor completá la presentación de tu proyecto. Recimendamos que sea un resumen en una o dos oraciones de tu idea.',
+        'short_description.max' => 'La descripción corta de tu proyecto no puede superar los 140 caracteres.',
+        'long_description.required' => 'Por favor completá la descripción más detallada de tu proyecto. Recomendamos que acá incluyas una descripcion de uno o dos párrafos más completa de tu idea y sus alcances.',
+        'long_description.max' => 'La descripción más detallada de tu proyecto no puede superar los 1400 caracteres.',
+        'skillSelector.required' => 'Por favor especifique que habilidades te serían útiles para este proyecto (por lo menos una, pero recomendamos no menos que 3, y no mas que 5).',
+      ];
+
+      $this->validate($req, $rules, $messages);
+
+      $id = $req['project_id'];
+      $project = [];
+      $project['title'] = $req['title'];
+      $project['creator_id'] = Auth::user()->id;
+      $project['short_description'] = $req['short_description'];
+      $project['long_description'] = $req['long_description'];
+      $project['active'] = isset($req['active'])? 'Y' : 'N';
+
+      DB::table('projects')->where('id', '=', $id)->update($project);
+
+      $skillSelectors = $req['skillSelector'];
+
+      // dd($skillSelectors);
+
+      DB::table('projects_skills')->where('project_id', '=', $id)->delete();
+
+      foreach ($skillSelectors as $index) {
+        $projectSkill = new App\ProjectSkill();
+        $projectSkill->project_id = $id;
+        $projectSkill->skill_id = $req['skill' . $index];
+        $projectSkill->seniority_level = $req['seniority_level' . $index];
+        echo "<pre>";
+        var_dump($projectSkill);
+        $projectSkill->save();
+      }
+      // dd('---------------------------------------');
+
+      return redirect('misproyectos');
     }
 
     public function guardarProyecto(Request $req) {
