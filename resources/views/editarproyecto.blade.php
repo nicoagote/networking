@@ -132,7 +132,7 @@ Edita tu proyecto - NW
                               newSkillsSelector.setAttribute('id', 'skillSelectorDiv' + addSkillButton.counter);
 
                               newGenericRemoveSkillSelector.onclick =  function() {
-                                var parentDiv = addSkillButton.parentNode;
+                                var parentDiv = this.parentNode;
                                 skillsSelectorsDiv.removeChild(parentDiv);
                               }
 
