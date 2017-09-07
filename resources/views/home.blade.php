@@ -236,6 +236,7 @@ ul.c-controls li a:hover {
   </div>
 </div>
 
+@if ($show == 'both' || $show == 'proyecto')
 <div class="container" style="padding-top: 5%;margin-bottom:5%;">
       <div class="row">
         <div class="col-xs-12 col-md-12 col-md-12-offset-2">
@@ -259,7 +260,7 @@ ul.c-controls li a:hover {
 
                                     <?php foreach ($project->skills as $skill): ?>
 
-                                          <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
+                                          <div class="col-xs-2 col-sm-1" style="float:right" title="<?php echo $skill->name; ?>">
 
                                             <div class="adelante agrandar" >
                                               <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
@@ -296,6 +297,10 @@ ul.c-controls li a:hover {
 
 </div>
 
+@endif
+
+@if ($show == 'both' || $show == 'usuario')
+
 <div class="container" style="padding-top: 5%;margin-bottom:5%;">
       <div class="row">
         <div class="col-xs-12 col-md-12 col-md-12-offset-2">
@@ -320,9 +325,9 @@ ul.c-controls li a:hover {
 
                                     <?php foreach ($usuario->skills as $skill): ?>
 
-                                          <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
+                                          <div class="col-xs-2 col-sm-1 separarpencil" style="float:right" title="<?php echo $skill->name; ?>">
 
-                                            <div class="adelante agrandar" >
+                                            <div class="adelante agrandar">
                                               <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
                                             </div>
 
@@ -353,6 +358,9 @@ ul.c-controls li a:hover {
           </div>
         </div>
       </div>
+    </div>
+
+    @endif
 
 
 

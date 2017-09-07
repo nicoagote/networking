@@ -26,7 +26,7 @@ Route::middleware('guest')->get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/home/{show}', 'HomeController@home');
 
 Route::get('/download/{filename}', function($filename)
 {

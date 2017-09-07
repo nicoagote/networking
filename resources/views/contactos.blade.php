@@ -145,7 +145,7 @@ ul.c-controls li a:hover {
               <div class="panel-heading c-list">
                   <span class="title">Mis Contactos</span>
                   <ul class="pull-right c-controls">
-                      <li><a href="/home" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"><i class="glyphicon glyphicon-plus"></i></a></li>
+                      <li><a href="/home/usuarios" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"> <i class="glyphicon glyphicon-plus"></i></a></li>
                   </ul>
               </div>
 

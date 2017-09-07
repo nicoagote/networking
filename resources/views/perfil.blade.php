@@ -208,26 +208,25 @@ ul.c-controls li a:hover {
             </div>
             @endif
 
-            <div class="panel-body">
-              <ul style="list-style-type:none">
-                <?php foreach ($perfil->skills as $skill): ?>
-                    <li style="">
-
-                      <div class="col-xs-3 col-sm-6">
-                          {{$skill->getImage()}}
-                          <span class="name"><?php echo $skill->name; ?></span><br/>
-                      </div>
-                      <div class="clearfix"></div>
-
-                    <li>
-                <?php endforeach; ?>
-
-              </ul>
-            </div>
-
           </div>
 
       </div>
+    </div>
+    <div class="panel-body col-xs-12 col-md-1">
+      <ul style="list-style-type:none">
+        <?php foreach ($perfil->skills as $skill): ?>
+            <li style="">
+
+              <div class="col-xs-3 col-sm-6">
+                  {{$skill->getImage()}}
+                  <span class="name"><?php echo $skill->name; ?></span><br/>
+              </div>
+              <div class="clearfix"></div>
+
+            <li>
+        <?php endforeach; ?>
+
+      </ul>
     </div>
   </div>
 
