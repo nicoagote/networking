@@ -76,6 +76,11 @@
       .botones{
         margin-top: 22px;
       }
+
+      .botones.perfil {
+        margin-top: 12px;
+      }
+
       @media screen and (max-width: 768px) {
           .side-collapse-container{
               width:100%;
@@ -133,11 +138,11 @@
           <nav role="navigation" class="navbar-collapse">
             <ul class="nav navbar-nav">
               <li><a class="botones" href="/home" id="net-working"><span style="color:rgb(195, 21, 45); font-family: 'Roboto', sans-serif;font-size: 44px;">N</span><span style="color:rgb(255, 255, 255);font-family: 'Roboto', sans-serif;font-size: 44px;">W</span></a></li>
-              <li><a class="botones perfil" href="/perfil" style="text-align:ceter;">
+              <li><a class="botones perfil" href="/perfil">
                 <span><!-- IMAGEN Y NOMBRE !!!-->
-                  {{Auth::user()->getProfilePicture()}}
+                  {{Auth::user()->getProfilePicture(45, 45)}}
                 </span>
-                <span>
+                <span style="margin-left: 10px;">
                   {{Auth::user()->name}}  {{Auth::user()->surname}}
                 </span>
                 </a></li>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Collection;
+use Storage;
+
 
 class HomeController extends Controller
 {
@@ -27,11 +30,47 @@ class HomeController extends Controller
     public function home()
     {
         $skills = App\Skill::all();
+        $proyecto = App\Project::orderBy('created_at', 'desc')->paginate(10);
+        $usuarios = App\User::paginate(10);
 
-        $data = compact('skills');
+        $data = compact('skills','proyecto','usuarios');
 
         return view('home', $data);
     }
+
+    public function buscar(Request $req) {
+
+
+
+      if($req["filtrar"]=="busqueda"){
+        $buscador = $req->input("buscador");
+        $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
+        $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
+        $skills = App\Skill::all();
+        $data = compact("proyecto","usuarios","skills");
+        return view("home", $data);
+      }elseif($req["filtrar"]=="usuarios"){
+        $buscador = $req->input("buscador");
+        $usuarios = App\User::where("name", "like", "%$buscador%")->orWhere("surname", "like", "%$buscador%")->paginate(10);
+        $proyecto = App\Project::where("title", "like", "%null%")->paginate(0); ;
+        $skills = App\Skill::all();
+        $data = compact("proyecto","usuarios","skills");
+        return view("home", $data);
+      }elseif($req["filtrar"]=="proyectos") {
+        $buscador = $req->input("buscador");
+        $proyecto = App\Project::where("title", "like", "%$buscador%")->paginate(10);
+        $usuarios = App\User::where("name", "like", "%null%")->orWhere("surname", "like", "%$buscador%")->paginate(0);
+        $skills = App\Skill::all();
+        $data = compact("proyecto","usuarios","skills");
+        return view("home", $data);
+      }
+
+
+
+    }
+
+
+
 
     public function perfil($id)
     {
@@ -284,5 +323,6 @@ class HomeController extends Controller
     {
         return view('faqs');
     }
+
 
 }

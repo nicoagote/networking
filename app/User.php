@@ -84,7 +84,11 @@ class User extends Authenticatable
     }
 
     public function getProfilePictureLocation() {
-      $url = Storage::url($this->profile_picture_file_location);
+      if ($this->profile_picture_file_location == null) {
+        $url = "storage/profile_pictures/default_profile_picture.jpg";
+      } else {
+        $url = "storage/" . $this->profile_picture_file_location;
+      }
       return "$url";
     }
 
@@ -92,7 +96,7 @@ class User extends Authenticatable
       return "Imagen de perfil de " . $this->name . ' ' . $this->surname;
     }
 
-    public function getProfilePicture() {
-      echo '<img src="' . $this->getProfilePictureLocation() . '" alt="' .  $this->getAltOfImage() . '" width="128px" height="128px">';
+    public function getProfilePicture($width, $height) {
+      echo '<img src="' . $this->getProfilePictureLocation() . '" alt="' .  $this->getAltOfImage() . '" width=" ' . $width . '" height="' . $height . '" class="image-responsive img-circle ">';
     }
 }

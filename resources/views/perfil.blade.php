@@ -147,7 +147,7 @@ ul.c-controls li a:hover {
 
           <div class="panel-body">
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">
-              <img width="50%"src="{{$perfil->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle center-block" />
+              {{Auth::user()->getProfilePicture(125,125)}}
             </div>
 
             <div class="col-xs-12 col-sm-6" style="padding-top: 3%;">

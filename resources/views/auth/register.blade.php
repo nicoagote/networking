@@ -14,7 +14,7 @@
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control form-has-error" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control form-has-error" name="name" value="{{ old('name') }}" required>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -28,7 +28,7 @@
                             <label for="surname" class="col-md-4 control-label">Apellido</label>
 
                             <div class="col-md-6">
-                                <input id="surname" type="text" class="form-control" name="surname" value="{{ old('surname') }}" required autofocus>
+                                <input id="surname" type="text" class="form-control" name="surname" value="{{ old('surname') }}" required>
 
                                 @if ($errors->has('surname'))
                                     <span class="help-block">
@@ -42,7 +42,7 @@
                             <label for="username" class="col-md-4 control-label">Nombre de Usuario</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" required>
 
                                 @if ($errors->has('username'))
                                     <span class="help-block">

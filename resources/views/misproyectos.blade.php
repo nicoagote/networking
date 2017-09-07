@@ -21,11 +21,9 @@ body {
   z-index: 150;
 }
 
-.agrandar img:hover{
-  height: 55px;
+.resaltar img:hover{
+  opacity: 0.8;
 }
-
-
 
 .btn-link {
   font-size: 1.5em;
@@ -167,7 +165,7 @@ ul.c-controls li a:hover {
               <div class="panel-heading c-list">
                   <span class="title">Mis Proyectos</span>
                   <ul class="pull-right c-controls">
-                      <li><a href="crearproyecto" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"><i class="glyphicon glyphicon-plus"></i></a></li>
+                      <li><a href="crearproyecto" data-toggle="tooltip" data-placement="top" title="Crear Proyecto"><i class="glyphicon glyphicon-plus"></i></a></li>
                   </ul>
               </div>
 
@@ -194,7 +192,7 @@ ul.c-controls li a:hover {
 
                         <li class="list-group-item">
                           <div class="col-xs-12 col-sm-3">
-                            <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
+                            {{Auth::user()->getProfilePicture(100,100)}}
                           </div>
                           <div class="col-xs-12 col-sm-9">
                             <span class="subtitle"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/>
@@ -222,7 +220,7 @@ ul.c-controls li a:hover {
 
                         <li class="list-group-item">
                             <div class="col-xs-12 col-sm-3">
-                                <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
+                                {{Auth::user()->getProfilePicture(150,150)}}
                             </div>
                             <div class="col-xs-12 col-sm-9">
 
@@ -232,7 +230,7 @@ ul.c-controls li a:hover {
 
                                         <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
 
-                                          <div class="adelante agrandar" >
+                                          <div class="adelante resaltar" >
                                             <img src="{{$skill->getLogoLocation()}}" alt="{{$skill->getAltOfImage()}}" style="width:50px;">
                                           </div>
 
@@ -281,32 +279,20 @@ ul.c-controls li a:hover {
                       <img src="{{$project->creator->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
                   </div>
                   <div class="col-xs-12 col-sm-9">
+                    <span class="pull-right">
+                        <?php foreach ($project->skills as $skill): ?>
+                              <div class="col-xs-2 col-sm-1 resaltar" title="<?php echo $skill->name; ?>">
+                                  {{$skill->getImage()}}
+                              </div>
+                        <?php endforeach; ?>
+                    </span>
                       <span class="h3 achicartitulo"><a href="/proyecto/{{$project->id}}">{{$project->title}}</a></span><br/><span class="achicartitulo">by {{$project->creator->name}} {{$project->creator->surname}}</span>
                   </div>
-                  <div class="col-xs-12 col-sm-9">
-                      <span class="small achicardes">
+                  <div class="row col-xs-12">
+                      <span class="small col-sm-9 col-sm-offset-3 col-xs-12">
                         {{$project->short_description}}
                       </span>
                   </div>
-
-                  <span class="pull-right">
-
-
-
-                      <?php foreach ($project->skills as $skill): ?>
-
-
-                            <div class="col-xs-2 col-sm-1 separarpencil" title="<?php echo $skill->name; ?>">
-                                {{$skill->getImage()}}
-                            </div>
-
-
-
-
-                      <?php endforeach; ?>
-
-
-                  </span>
                   <div class="clearfix"></div>
               </li>
 

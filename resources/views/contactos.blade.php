@@ -166,7 +166,7 @@ ul.c-controls li a:hover {
 
                 <li class="list-group-item">
                     <div class="col-xs-12 col-sm-3">
-                        <img src="{{$contacto->getProfilePictureLocation()}}" alt="" class="img-responsive img-circle" />
+                      {{Auth::user()->getProfilePicture(125,125)}}
                     </div>
                     <div class="col-xs-12 col-sm-9">
                         <span class="name"> <a href="/perfil/{{$contacto->id}}"><?php echo $contacto->surname .", " . $contacto->name; ?></a> </span><br/>
@@ -194,7 +194,7 @@ ul.c-controls li a:hover {
 
               <li class="list-group-item">
                   <div class="col-xs-12 col-sm-3">
-                      <img src="<?php echo $solicitud->profile_picture_file_location; ?>" alt="" class="img-responsive img-circle" />
+                    {{Auth::user()->getProfilePicture(75,75)}}
                   </div>
                   <div class="col-xs-12 col-sm-9">
                       <span class="subtitle"><a href="/perfil/{{$contacto->id}}"><?php echo $solicitud->surname .", " . $solicitud->name; ?></a></span><br/>
@@ -227,10 +227,10 @@ ul.c-controls li a:hover {
 
               <li class="list-group-item">
                   <div class="col-xs-12 col-sm-3">
-                      <img src="<?php echo $contacto->profile_picture_file_location; ?>" alt="" class="img-responsive img-circle" />
+                    {{Auth::user()->getProfilePicture(70,70)}}
                   </div>
-                  <div class="col-xs-12 col-sm-9">
-                      <span class="subtitle"><?php echo $contacto->name; ?></span><br/>
+                  <div class="col-xs-12">
+                      <span class="subtitle"><a href="/perfil/{{$contacto->id}}"><?php echo $contacto->surname .", " . $contacto->name; ?></a></span><br/>
                   </div>
                   <ul class="pull-right c-controls">
                       <li><a href="/home" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"><i class="glyphicon glyphicon-plus"></i></a></li>

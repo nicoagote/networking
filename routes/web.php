@@ -57,6 +57,9 @@ Route::get('/download/{filename}', function($filename)
 Route::get('/perfil/{id}', 'HomeController@perfil');
 Route::get('/perfil', 'HomeController@perfilpropio');
 
+Route::post('/buscar', 'HomeController@buscar');
+
+
 Route::get('/editarperfil', 'HomeController@editarPerfil')->name('editarperfil');
 Route::post('/editarperfil', 'HomeController@guardarPerfil');
 

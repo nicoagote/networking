@@ -36,7 +36,7 @@ Creá tu proyecto - NW
                           <label for="short_description" class="col-md-4 control-label">Presentacion</label>
 
                           <div class="col-md-6">
-                            <textarea id="short-description" name="short_description" cols="40" rows="5" class="form-control" required autofocus ></textarea>
+                            <textarea id="short-description" name="short_description" cols="40" rows="5" class="form-control" required ></textarea>
                           </div>
                       </div>
 
@@ -44,7 +44,7 @@ Creá tu proyecto - NW
                           <label for="long_description" class="col-md-4 control-label">Descripcion completa</label>
 
                           <div class="col-md-6">
-                            <textarea id="long-description" name="long_description" cols="40" rows="10" class="form-control" required autofocus ></textarea>
+                            <textarea id="long-description" name="long_description" cols="40" rows="10" class="form-control" required ></textarea>
                           </div>
                       </div>
 
