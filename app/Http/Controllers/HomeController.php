@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Collection;
 use Storage;
@@ -67,8 +68,6 @@ class HomeController extends Controller
 
 
     }
-
-
 
 
     public function perfil($id)
@@ -264,9 +263,39 @@ class HomeController extends Controller
         $solicitudes = Auth::User()->pendingRequests;
         $bloqueados = Auth::User()->blocked;
 
-        $data = compact('contactos', 'solicitudes', 'bloqueados');
+        $user_relationships = Auth::User()->relationships->map(function ($u) {
+          return $u->id;
+        });
+
+        $usuarios = App\User::all()
+            ->whereNotIn('id', $user_relationships);
+
+        $data = compact('contactos', 'solicitudes', 'bloqueados', 'usuarios');
 
         return view('contactos', $data);
+    }
+
+    public function request(Request $req) {
+      if (isset($req["request_id"])) {
+        try {
+          DB::table('user_relationships')
+                ->where('relating_user_id', $req['request_id'])
+                ->where('related_user_id', Auth::user()->id)
+                ->update(['state' => 'contact']);
+          return redirect('/contactos');
+        } catch (Exception $e) {
+          return $e->getErrorMessage();
+        }
+      } else {
+        try {
+          DB::table('user_relationships')->insert(
+              ['relating_user_id' => Auth::user()->id, 'state' => 'request', 'related_user_id' => $req['send_request_id']]);
+          return redirect('/contactos');
+        } catch (Exception $e) {
+          return $e->getErrorMessage();
+        }
+      }
+
     }
 
     public function faqs()

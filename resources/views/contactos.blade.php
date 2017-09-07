@@ -197,12 +197,13 @@ ul.c-controls li a:hover {
                     {{Auth::user()->getProfilePicture(75,75)}}
                   </div>
                   <div class="col-xs-12 col-sm-9">
-                      <span class="subtitle"><a href="/perfil/{{$contacto->id}}"><?php echo $solicitud->surname .", " . $solicitud->name; ?></a></span><br/>
+                      <span class="subtitle"><a href="/perfil/{{$solicitud->id}}"><?php echo $solicitud->surname .", " . $solicitud->name; ?></a></span><br/>
                   </div>
                   <ul class="pull-right c-controls">
                       <form class="" action="/contactos" method="post">
                         {{ csrf_field() }}
-                        <input type="submit" name="Añadir Contacto" class="btn btn-link"  title="Añadir Contacto" value="+" data-toggle="tooltip" data-placement="top">
+                          <button id="friendRequest" name="Añadir Contacto" class="btn btn-link" title="Añadir Contacto" type='submit' data-toggle="tooltip" data-placement="top" >+</button>
+                          <input type="hidden" name="request_id" value="{{$solicitud->id}}">
                       </form>
                       <!-- <li><a href="/home"  title="Añadir Contacto"><i ></i></a></li> -->
                   </ul>
@@ -223,17 +224,22 @@ ul.c-controls li a:hover {
         <ul class="list-group" id="contact-list">
 
           <div class="panel-body">
-            <?php foreach ($contactos as $contacto): ?>
+            <?php foreach ($usuarios->shuffle()->slice(0,5) as $usuario): ?>
 
               <li class="list-group-item">
                   <div class="col-xs-12 col-sm-3">
-                    {{Auth::user()->getProfilePicture(70,70)}}
+                    {{$usuario->getProfilePicture(70,70)}}
                   </div>
                   <div class="col-xs-12">
-                      <span class="subtitle"><a href="/perfil/{{$contacto->id}}"><?php echo $contacto->surname .", " . $contacto->name; ?></a></span><br/>
+                      <span class="subtitle"><a href="/perfil/{{$usuario->id}}"><?php echo $usuario->surname .", " . $usuario->name; ?></a></span><br/>
                   </div>
                   <ul class="pull-right c-controls">
-                      <li><a href="/home" data-toggle="tooltip" data-placement="top" title="Añadir Contacto"><i class="glyphicon glyphicon-plus"></i></a></li>
+                      <form class="" action="/contactos" method="post">
+                        {{ csrf_field() }}
+                          <button id="sendFriendRequest" name="Añadir Contacto" class="btn btn-link" title="Añadir Contacto" type='submit' data-toggle="tooltip" data-placement="top" >+</button>
+                          <input type="hidden" name="send_request_id" value="{{$usuario->id}}">
+                      </form>
+                      <!-- <li><a href="/home"  title="Añadir Contacto"><i ></i></a></li> -->
                   </ul>
                   <div class="clearfix"></div>
               </li>
