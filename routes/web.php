@@ -55,7 +55,9 @@ Route::get('/download/{filename}', function($filename)
 ->where('filename', '[A-Za-z0-9\-\_\.]+');
 
 Route::get('/perfil{id}', 'HomeController@perfil');
+
 Route::get('/perfil', 'HomeController@perfilpropio');
+Route::post('/perfil', 'HomeController@interactionPerfil');
 
 Route::post('/buscar', 'HomeController@buscar');
 
