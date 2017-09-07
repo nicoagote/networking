@@ -145,25 +145,25 @@ ul.c-controls li a:hover {
               <span class="title">Perfil</span>
               <?php
 
-              $contactos = Auth::user()->contacts;
+              /* $contactos = Auth::user()->contacts;
               $muestroboton = true;
 
               foreach ($contactos as $contacto) {
                 $muestroboton = $muestroboton && $contacto->id != $perfil->id;
 
 
-              if ($muestroboton) {
+              if ($muestroboton) { */
                 ?>
-              <ul class="pull-right c-controls">
+              <!-- <ul class="pull-right c-controls">
                   <form class="" action="/perfil" method="post">
                     {{ csrf_field() }}
 
                       <button id="friendRequest" name="Añadir Contacto" class="btn btn-link" title="Añadir Contacto" type='submit' data-toggle="tooltip" data-placement="top" >+</button>
                       <input type="hidden" name="request_id" value="{{$perfil->id}}">
                   </form>
-                  <!-- <li><a href="/home"  title="Añadir Contacto"><i ></i></a></li> -->
-              </ul>
-            <?php }
+                  <li><a href="/homeboth"  title="+"><i ></i>+</a></li>
+              </ul> -->
+            <?php // }
 
             ?>
           </div>

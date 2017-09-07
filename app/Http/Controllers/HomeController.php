@@ -108,7 +108,7 @@ class HomeController extends Controller
     public function perfil($id)
     {
           $perfil = App\User::find($id);
-          $data = compact('perfil');
+          $data = compact('perfil');          
           return view('perfil', $data);
     }
 
