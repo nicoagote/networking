@@ -410,11 +410,12 @@ class HomeController extends Controller
     public function interactionPerfil(Request $req) {
       if (isset($req["request_id"])) {
         try {
-          DB::table('user_relationships')
-                ->where('relating_user_id', $req['request_id'])
-                ->where('related_user_id', Auth::user()->id)
-                ->update(['state' => 'contact']);
-          return redirect('/perfil{{id}}');
+          $userRequest = new App\UserRelationship();
+          $userRequest->relating_user_id = Auth::user()->id;
+          $userRequest->related_user_id = $req['request_id'];
+          $userRequest->state = 'request';
+          $userRequest->save();
+          return redirect('/contactos');
         } catch (Exception $e) {
           return $e->getErrorMessage();
         }
