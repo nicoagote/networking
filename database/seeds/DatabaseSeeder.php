@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         for($userSkills = 0; $userSkills < 3; $userSkills++) {
           $userSkill = factory(App\UserSkills::class)->create(["user_id" => $u->id]);
         }
+        
         for($userProjects = 0; $userProjects < 3; $userProjects++) {
           $userProject = factory(App\Project::class)->create(["creator_id" => $u->id]);
           $project = App\Project::all()->last();

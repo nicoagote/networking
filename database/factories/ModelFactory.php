@@ -29,7 +29,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $gender = $genders[$key];
     $sex = $gender == 'Male' ? 'm' : 'f';
     $available = $faker->boolean ? 'Y' : 'N';
-    $username = $faker->userName();
+    $username = $faker->unique()->userName;
 
     $firstNameMale = array('Adrián', 'Agustín', 'Alex', 'Álvaro', 'Andrés', 'Bautista', 'Benjamín', 'Bernardo', 'Bruno', 'Camilo', 'Carlos', 'Damián', 'Daniel', 'Darío', 'Eduardo', 'Emilio', 'Esteban', 'Facundo', 'Felipe', 'Félix', 'Fernando', 'Fermín', 'Florentino', 'Francisco', 'Gabriel', 'Gerardo', 'Gonzalo', 'Gustavo', 'Héctor', 'Hernán', 'Horacio', 'Ignacio', 'Iñaki', 'Ismael', 'Iván', 'Javier', 'Jerónimo', 'Joel', 'Jonás', 'Jorge', 'José', 'Juan', 'Kevin', 'Leandro', 'Lionel', 'Lorenzo', 'Lucas', 'Manuel', 'Marcos', 'Mariano', 'Martín', 'Matías', 'Nahuel', 'Nicolás', 'Omar', 'Oscar', 'Pablo', 'Patricio', 'Pedro', 'Ramón', 'Raúl', 'Rodolfo', 'Santiago', 'Samuel', 'Saúl', 'Salomón', 'Simón', 'Tiago', 'Tobías', 'Tomás', 'Uriel', 'Valentín', 'Víctor', 'Walter', 'Wenceslao', 'Xavier', 'Zacarías');
 
@@ -46,7 +46,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     $emailAdresses = array('@hotmail.com', '@gmail.com', '@yahoo.com.ar', '@fibertel.com.ar');
 
     $emailAdressKey = array_rand($emailAdresses);
-    $email = $name + $surname + $emailAdresses[$emailAdressKey];
+    $email = $name . $surname . $emailAdresses[$emailAdressKey];
 
     $default_profile_picture = 'default_profile_picture.jpg';
 
@@ -71,7 +71,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 // --------------------------- UserSkill Factory ----------------------------- //
 $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_id) {
-    $seniority_levels = ['trainee', 'junior', 'semi_senior', 'senior'];
+    $seniority_levels = [null, 'trainee', 'junior', 'semi_senior', 'senior'];
     $key = array_rand($seniority_levels);
     $seniority_level = $seniority_levels[$key];
     // $skills = App\Skill::all();
@@ -90,6 +90,7 @@ $factory->define(App\UserSkills::class, function (Faker\Generator $faker, $user_
       'skill_id' => $skill->id,
       'seniority_level' => $seniority_level,
     ];
+
 });
 // --------------------------- Project Factory ----------------------------- //
 $factory->define(App\Project::class, function (Faker\Generator $faker, $user_id) {
