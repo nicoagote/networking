@@ -87,7 +87,10 @@ class HomeController extends Controller
     public function editarPerfil()
     {
         $user = Auth::user();
-        $data = compact('user');
+        $skills = App\Skill::all();
+        $userSkills = App\UserSkills::all()->where('user_id', '=', $user->id);
+
+        $data = compact('user', 'skills', 'userSkills');
         return view('editarperfil', $data);
     }
 
@@ -159,6 +162,20 @@ class HomeController extends Controller
       // dd($user);
 
       Auth::user()->update($user);
+      $id = Auth::user()->id;
+      DB::table('users_skills')->where('user_id', '=', $id)->delete();
+
+      $skillSelectors = $req['skillSelector'];
+
+      foreach ($skillSelectors as $index) {
+        $userSkill = new App\UserSkills();
+        $userSkill->user_id = $id;
+        $userSkill->skill_id = $req['skill' . $index];
+        $userSkill->seniority_level = $req['seniority_level' . $index];
+        echo "<pre>";
+        var_dump($userSkill);
+        $userSkill->save();
+      }
 
       return redirect('perfil');
     }
