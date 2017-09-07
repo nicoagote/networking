@@ -50,7 +50,7 @@ Creá tu proyecto - NW
 
                       <div class="form-group">
                         <label for="active" class="col-md-4 control-label">Activo</label>
-
+                        
                         <div class="col-md-6" id="active" >
                           <input type="checkbox" class="form-check-input" name="active" value="Y">
                         </div>

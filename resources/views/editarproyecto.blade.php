@@ -52,10 +52,13 @@ Edita tu proyecto - NW
 
                       <div class="form-group">
                         <label for="active" class="col-md-4 control-label">Activo</label>
-
                         <div class="col-md-6" id="active" >
+                        <?php if ($proyecto->active == 'Y'): ?>
+                          <input type="checkbox" class="form-check-input" name="active" value="Y" checked>
+                        <?php else: ?>
                           <input type="checkbox" class="form-check-input" name="active" value="Y">
-                        </div>
+                        <?php endif; ?>
+                      </div>
                       </div>
 
                       <div class="form-group">
