@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-  {{$usuarios->first()->getProfilePicture()}}
+  {{$usuarios->first()->projects->first()->projectSkills}}
   <div class="container">
 
     <?php

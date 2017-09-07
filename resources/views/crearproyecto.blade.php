@@ -72,7 +72,7 @@ Creá tu proyecto - NW
                               $seniorities = [NULL => 'Cualquier nivel de expertise',
                                               'trainee' => 'Trainee',
                                               'junior' => 'Junior',
-                                              'semi-senior' => 'Semi-senior',
+                                              'semi_senior' => 'Semi-senior',
                                               'senior' => 'Senior'];
                             @endphp
                             @foreach ($seniorities as $seniority_level => $nivel)

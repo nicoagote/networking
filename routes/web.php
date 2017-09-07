@@ -67,11 +67,14 @@ Route::get('/crearproyecto', 'HomeController@crearProyecto')->name('crearproyect
 Route::post('/crearproyecto', 'HomeController@guardarProyecto')->name('guardarProyecto');
 
 Route::get('/editarproyecto/{id}', 'HomeController@editarProyecto');
-Route::post('/editarproyecto', 'HomeController@editarProyecto');
+Route::post('/editarproyecto/guardar', 'HomeController@guardarProyectoEditado');
 
 
 
 Route::get('/misproyectos', 'HomeController@misProyectos')->name('misproyectos');
+
 Route::get('/contactos', 'HomeController@contacto')->name('contactos');
+Route::post('/contactos', 'HomeController@request');
+
 Route::get('/faqs', 'HomeController@faqs')->name('faqs');
 Route::get('/proyecto/{id?}', 'HomeController@proyecto');
